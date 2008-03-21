@@ -1,0 +1,97 @@
+body {
+    background-color: #efefef;
+}
+
+h1 a {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+address {
+    clear: both;
+    text-align: center;
+}
+
+/* for PC */
+
+body {
+    padding: 0 20px;
+}
+
+div.entry {
+    border: 1px solid gray;
+    margin-bottom: 2em;
+    padding: 1em;
+}
+
+ul.feedback li {
+    display: inline;
+    padding: 0 1ex;
+}
+
+h1 {
+    font-size: 300%;
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+form#searchbar input {
+    width: 100%;
+}
+
+a:hover {
+    color: #000;
+    background-color: #aaf;
+}
+
+blockquote {
+    border: solid 1px #f77;
+    padding: 0 1ex;
+}
+
+pre.code {
+    border: solid 1px #7f7;
+    padding: 0 1ex;
+}
+
+dd {
+    margin-bottom: 1em;
+}
+
+div#preview {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid gray;
+}
+
+div.entry table {
+    border-collapse: collapse;
+}
+
+div.entry td, div.entry th {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+div.ads {
+    text-align: center;
+}
+
+q {
+    background-color: #ddd;
+}
+
+div.amazonitem, p.amazonitem {
+    float: left;
+    margin: 0 1ex 1ex 0;
+}
+
+p.photo {
+    clear: both;
+    text-align: center;
+}

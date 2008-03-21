@@ -1,0 +1,52 @@
+blogch3
+=======
+
+Author(s):
+  (main)            Satoshi Fukutomi <info@fuktommy.com>
+
+WebSite:
+  http://fuktommy.com/blogch/
+
+SLBは簡易的なブログです。
+コメントやトラックバックの機能はありませんが、
+かわりに「はてなブックマーク」や「Google Blog Search」への
+リンクがあり、同様の機能を使うことができます。
+
+●インストール手順
+(1) PHP(ver5)とSmartyをインストールしてください。
+(2) http://blog.fuktommy.com/ と同じようにインストールするには、
+    次のような場所にコピーしてください。
+    htdocs      -> /srv/www/blog.fuktommy.com
+    libs        -> /srv/lib/php/blog.fuktommy.com
+    templates   -> /srv/templates/blog.fuktommy.com
+(3) img, rss.rdf, sitemap.txt にはApacheが書き込めるようにしてください。
+(4) 内部的なデータは /srv/data/blog.fuktommy.com/data に書き込まれます。
+    ここもApacheが書き込めるようにしてください。
+(5) 設定を変更します。
+    libs の blogconfig.php です。
+(6) 見栄えやそのほかの設定は
+    htdocs の各種ファイルや
+    templates の各種テンプレートを変更してください。
+    デフォルトだとFuktommy用の広告などが入っています。
+
+●記事の投稿と削除
+(1) 記事は edit.php を使い、HTML形式で投稿します。
+    裸の文字列が<p>タグで囲まれるような工夫はありません。
+    ただし1行目はタイトルになり、<h2>で囲まれます。
+(2) 入力したHTMLが正しいかどうかのチェックはしていません。
+    PREVIEWボタンを押し、テキストエリア下の表示で確認してください。
+    HTMLの間違いに気付くことができるかもしれません。
+(3) /admin/edit?12345 のように記事の日付番号を指定すると編集ができます。
+(4) 本文を空にしてSAVEボタンを押すと記事が削除されます。
+
+●謝辞
+(1) XLSTについて次のページを参考にしました。
+    http://sonic64.com/2005-03-16.html
+(2) バックリンクには Google Blog Search を利用しています。
+    http://blogsearch.google.com/
+(3) コメントには はてなブックマーク を利用しています。
+    [B] アイコンははてなブックマークから借用したものです。
+    http://www.hatena.ne.jp/
+(4) RSS のアイコンは Firefox のアイコンを借用したものです。
+    http://www.mozilla.org/
+    http://feedicons.com/

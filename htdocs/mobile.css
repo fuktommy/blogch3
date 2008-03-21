@@ -1,0 +1,36 @@
+body {
+    background-color: #efefef;
+}
+
+h1 a {
+    text-decoration: none;
+}
+
+img {
+    border: none;
+}
+
+address {
+    clear: both;
+    text-align: center;
+}
+
+/* for Mobile */
+
+h1 {
+    font-size: medium;
+}
+
+h2 {
+    font-size: medium;
+    background-color: #afa;
+}
+
+p, ul, ol, dl, pre {
+    margin-bottom: 1ex;
+}
+
+ul.feedback {
+    border-top: solid 1px gray;
+    border-bottom: solid 1px gray;
+}
