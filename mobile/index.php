@@ -62,7 +62,7 @@ function print_http_header()
     $ua = $_SERVER['HTTP_USER_AGENT'];
     if (preg_match("/DoCoMo\/2\.0/", $ua)) {
         header('Content-Type: application/xhtml+xml; charset=UTF-8');
-        return array('xhtml' => true, 'encoding' => 'UTF-8', 'ads' => 'amazon');
+        return array('xhtml' => true, 'encoding' => 'UTF-8', 'ads' => 'google');
     } elseif (preg_match("/DoCoMo\/1\.0/", $ua)) {
         mb_http_output('sjis-win');
         mb_internal_encoding('UTF-8');
