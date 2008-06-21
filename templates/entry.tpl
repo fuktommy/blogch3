@@ -53,7 +53,7 @@ google_ui_features = "rc:6";
 </script>
 {else}
 <script type="text/javascript"><!--
-amazon_ad_tag="fuktommysstor-22"; 
+amazon_ad_tag="fuktommy-22"; 
 amazon_ad_width="468"; 
 amazon_ad_height="60"; 
 amazon_color_background="EFEFEF"; 
