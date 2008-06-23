@@ -45,7 +45,7 @@ class OneTimePassword
     public function generate()
     {
         $ticket = (string)mt_rand();
-        file_put_contents($this->ticketFile, time() . ' ' . $ticket);
+        file_put_contents($this->ticketFile, $ticket);
         return $ticket;
     }
 
@@ -57,11 +57,9 @@ class OneTimePassword
      */
     public function verify($ticket)
     {
-        list($time, $cached) = preg_split('/ /', file_get_contents($this->ticketFile));
+        $cached = file_get_contents($this->ticketFile);
         file_put_contents($this->ticketFile, '');
-        if ($time + 600 < $time) {
-            return false;
-        } elseif (($ticket != '') && ($ticket == $cached)) {
+        if (($ticket != '') && ($ticket == $cached)) {
             return true;
         } else {
             return false;
