@@ -1,7 +1,7 @@
 <?php
 /* 記事の投稿
  *
- * Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,9 +28,11 @@
 
 require_once('MySmarty.class.php');
 require_once('Blog.class.php');
+require_once('OneTimePassword.class.php');
 require_once('blogconfig.php');
 
 $blog = new Blog();
+$passwordTool = new OneTimePassword();
 $config = blogconfig();
 if ($_SERVER['QUERY_STRING']) {
     $entry = $blog->getEntry($_SERVER['QUERY_STRING']);
@@ -39,6 +41,8 @@ if ($_SERVER['QUERY_STRING']) {
     } else {
         print_edit_html();
     }
+} elseif ((! isset($_REQUEST['ticket'])) || (! $passwordTool->verify($_REQUEST['ticket']))) {
+    print_edit_html();
 } elseif (isset($_REQUEST['data'])) {
     if (isset($_REQUEST['id']) && preg_match("/^\d+$/", $_REQUEST['id'])) {
         save_data($_REQUEST['id'], $_REQUEST['data']);
@@ -59,9 +63,11 @@ exit(0);
 function print_edit_html($entry = null)
 {
     $config = blogconfig();
+    $passwordTool = new OneTimePassword();
     $smarty = new MySmarty();
     $smarty->assign($config);
     $smarty->assign('entry', $entry);
+    $smarty->assign('ticket', $passwordTool->generate());
     $smarty->display('edit_html.tpl');
 }
 

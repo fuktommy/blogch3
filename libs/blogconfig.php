@@ -1,6 +1,6 @@
 <?php
 /* -*- coding: utf-8 -*- */
-/* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. */
+/* Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>. */
 
 setlocale(LC_ALL, 'en_US.UTF-8');
 date_default_timezone_set('Asia/Tokyo');
@@ -18,6 +18,7 @@ function blogconfig()
         'baseuri'        => 'http://blog.fuktommy.com/',
         'domain'         => 'fuktommy.com',
         'data_dir'       => '/srv/data/blog.fuktommy.com/data',
+        'ticket_file'    => '/srv/data/blog.fuktommy.com/data/ticket.txt',
 
         'upload_dir'     => '/srv/www/blog.fuktommy.com/img',
         'adsense_dir'    => '/srv/saku/mobileads',

@@ -1,5 +1,5 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>. *}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -18,6 +18,7 @@
 <h2><a href="{$baseuri}{$entry->id}">{$entry->title}</a></h2>
 {/if}
 <form method="post" action="./edit" id="edit"><p>
+<input type="hidden" name="ticket" value="{$ticket|escape}" />
 <input type="submit" value="SAVE" />
 <input type="submit" value="PREVIEW" onclick="return preview();" />
 {if $entry}
