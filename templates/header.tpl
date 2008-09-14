@@ -1,4 +1,4 @@
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>. *}
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
   <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
   <link rel="alternate" type="application/rss+xml" title="RSS" href="{$rssuri}" />
+  <link rel="alternate" type="application/rss+xml" title="RSS (with ads)" href="http://feedproxy.google.com/blogfuktommycom" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>
 <body>
