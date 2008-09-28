@@ -1,8 +1,8 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>. *}
 {assign var="title" value=$entry->title}
 {include file="mobile_header.tpl"}
-<div style="background-color:#afa;"><h2><span style="font-size:medium;">{$entry->title|escape:"html"}</span></h2></div>
+<div style="background-color:#aaf;"><h2><span style="font-size:medium;">{$entry->title|escape:"html"}</span></h2></div>
 {$entry->body}
 <ul>
 <li>{$entry->id|date_format:'<a href="/blog/%Y-%m">%Y-%m</a>-%d %H:%M:%S'}</li>
