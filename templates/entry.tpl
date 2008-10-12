@@ -1,5 +1,5 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div class="entry">
 <h2 class="entrytitle"><a href="{$baseuri|escape}{$entry->id|escape}">{$entry->title|escape}</a></h2>
 {$entry->body}
@@ -64,6 +64,9 @@ amazon_ad_logo="hide";
 amazon_ad_title="Amazon.co.jp"; //--></script>
 <script type="text/javascript" src="http://www.assoc-amazon.jp/s/asw.js"></script>
 {/if}
+<noscript>
+<iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=fuktommy-22&amp;o=9&amp;p=13&amp;l=ez&amp;f=ifr&amp;f=ifr" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:none;"></iframe>
+</noscript>
 </div>
 {/if}
 </div>
