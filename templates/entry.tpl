@@ -21,7 +21,7 @@
 {if $entry_html_mode}
 {*
 <script type="text/javascript"><!--
-  amazon_ad_tag = "fuktommysstor-22";
+  amazon_ad_tag = "fuktommy-22";
   amazon_ad_width = "468";
   amazon_ad_height = "60";
   amazon_ad_logo = "hide";
@@ -57,11 +57,9 @@ amazon_ad_tag="fuktommy-22";
 amazon_ad_width="468"; 
 amazon_ad_height="60"; 
 amazon_color_background="EFEFEF"; 
-amazon_color_border="808080"; 
+amazon_color_border="000000"; 
 amazon_color_logo="FFFFFF"; 
-amazon_color_link="0000FF"; 
-amazon_ad_logo="hide"; 
-amazon_ad_title="Amazon.co.jp"; //--></script>
+amazon_color_link="0000FF"; //--></script>
 <script type="text/javascript" src="http://www.assoc-amazon.jp/s/asw.js"></script>
 {/if}
 <noscript>
