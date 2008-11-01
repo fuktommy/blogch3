@@ -23,6 +23,7 @@
   <li><a href="http://b.hatena.ne.jp/bookmarklist?url=http://blog.fuktommy.com/">
       コメント
       <img src="http://b.hatena.ne.jp/bc/dg/http://blog.fuktommy.com/" class="bcounter" alt="" /></a></li>
+  <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://blog.fuktommy.com/&amp;scoring=d">このブログへのリンク</a></li>
   <li><a href="/rss">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
       RSS 1.0</a></li>
