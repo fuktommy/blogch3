@@ -19,7 +19,6 @@
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}
 <div class="ads">
 {if $entry_html_mode}
-{*
 <script type="text/javascript"><!--
   amazon_ad_tag = "fuktommy-22";
   amazon_ad_width = "468";
@@ -32,7 +31,7 @@
   amazon_color_logo = "FFFFFF";
 //--></script>
 <script type="text/javascript" src="http://www.assoc-amazon.jp/s/ads.js"></script>
-*}
+{*
 <script type="text/javascript"><!--
 google_ad_client = "pub-0908882948816599";
 google_ad_width = 468;
@@ -51,6 +50,7 @@ google_ui_features = "rc:6";
 <script type="text/javascript"
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
+*}
 {else}
 <script type="text/javascript"><!--
 amazon_ad_tag="fuktommy-22"; 
