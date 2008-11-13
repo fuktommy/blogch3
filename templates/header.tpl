@@ -38,11 +38,9 @@
   <span style="color:#0039b6">m</span>
 </a></h1>
 {/strip}
-<form id="searchbar" method="get" action="http://www.google.co.jp/search"><p>
-  <input type="text" name="q" value="" size="20" maxlength="255" />
-  <input type="hidden" name="ie" value="utf-8" />
-  <input type="hidden" name="hl" value="ja" />
-  <input type="hidden" name="domains" value="{$domain}" />
-  <input type="hidden" name="sitesearch" value="{$domain}" />
+<form action="http://www.google.com/cse" id="searchbar"><p>
+  <input type="text" name="q" size="31" />
+  <input type="hidden" name="cx" value="003570941829906538055:5apetotzz44" />
+  <input type="hidden" name="ie" value="UTF-8" />
 </p></form>
-<script type="text/javascript" src="/searchbar.js"></script>
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbar&amp;lang=ja"></script>

@@ -40,6 +40,10 @@ h1 {
     padding: 0;
 }
 
+form#searchbar {
+    margin-right: 1ex;
+}
+
 form#searchbar input {
     width: 100%;
 }
