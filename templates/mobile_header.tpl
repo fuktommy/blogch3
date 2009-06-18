@@ -1,5 +1,5 @@
 {* -*- coding: UTF-8 -*- *}
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2009 Satoshi Fukutomi <info@fuktommy.com>. *}
 {if $ua.xhtml}
 <?xml version="1.0" encoding="{$ua.encoding}"?>
 {/if}
@@ -16,6 +16,9 @@
   }
   ]]></style>
   {/literal}
+  {if $entry}
+    <link rel="canonical" href="{$baseuri|escape}{$entry->id|escape}" />
+  {/if}
 </head>
 <body style="background-color:#efefef;">
 {strip}
