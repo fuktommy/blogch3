@@ -9,6 +9,7 @@
         RemoveHandler .sh .pl .py
         AddType text/plain sh pl py doc
         AddType text/xml;charset=UTF-8   rdf
+        AddType text/xml;charset=UTF-8   xml
         AddEncoding bzip2 bz2
 
         Options Indexes Multiviews -ExecCGI SymLinksIfOwnerMatch

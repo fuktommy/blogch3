@@ -4,6 +4,7 @@ cd /srv/stage/blogch3
 
 rsync -Cacv --delete \
     --exclude="- /img" \
+    --exclude="- /atom.xml" \
     --exclude="- /rss.rdf" \
     --exclude="- /sitemap.txt" \
     htdocs/ /srv/www/blog.fuktommy.com/

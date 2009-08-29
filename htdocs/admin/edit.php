@@ -1,7 +1,7 @@
 <?php
 /* 記事の投稿
  *
- * Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2009 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -144,10 +144,8 @@ function update_recent()
     $smarty = new MySmarty();
     $smarty->assign($config);
     $smarty->assign('entries', $entries);
-    ob_start();
-    $smarty->display('rss1.tpl');
-    file_put_contents($config['rss_path'], ob_get_contents());
-    ob_end_clean();
+    file_put_contents($config['rss_path'], $smarty->fetch('rss1.tpl'));
+    file_put_contents($config['atom_path'], $smarty->fetch('atom.tpl'));
 }
 
 /**
@@ -170,5 +168,3 @@ function update_sitemap()
     fclose($f);
     fclose($mf);
 }
-
-?>
