@@ -1,5 +1,7 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2009 Satoshi Fukutomi <info@fuktommy.com>. *}
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/atomfeed.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{$blogtitle|escape}</title>
   <subtitle>{$description}</subtitle>
