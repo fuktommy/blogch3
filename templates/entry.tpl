@@ -1,11 +1,11 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007,2008 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div class="entry">
 <h2 class="entrytitle"><a href="{$baseuri|escape}{$entry->id|escape}">{$entry->title|escape}</a></h2>
 {$entry->body}
 <ul class="feedback">
 <li>{$entry->id|date_format:'<a href="/%Y-%m">%Y-%m</a>-%d %H:%M:%S'}</li>
-<li><a href="http://twitter.com/#search?q={$baseuri|escape:"url"}{$entry->id|escape:"url"}">コメント[t]</a></li>
+<li><a href="http://twitter.com/#search?q={$baseuri|escape:"url"}{$entry->id|escape:"url"}" class="comments">コメント</a></li>
 <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$baseuri|escape}{$entry->id|escape}&amp;scoring=d" class="backlink">
     この記事へのリンク</a></li>
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}

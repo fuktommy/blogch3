@@ -9,7 +9,7 @@ WebSite:
 
 SLBは簡易的なブログです。
 コメントやトラックバックの機能はありませんが、
-かわりに「はてなブックマーク」や「Google Blog Search」への
+かわりに「Twitter」や「Google Blog Search」への
 リンクがあり、同様の機能を使うことができます。
 
 ●インストール手順
@@ -45,9 +45,8 @@ SLBは簡易的なブログです。
     http://sonic64.com/2005-03-16.html
 (2) バックリンクには Google Blog Search を利用しています。
     http://blogsearch.google.com/
-(3) コメントには はてなブックマーク を利用しています。
-    [B] アイコンははてなブックマークから借用したものです。
-    http://www.hatena.ne.jp/
+(3) コメントには Twitter を利用しています。
+    http://twitter.com/
 (4) RSS のアイコンは Firefox のアイコンを借用したものです。
     http://www.mozilla.org/
     http://feedicons.com/
