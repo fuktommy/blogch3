@@ -5,7 +5,7 @@
 {$entry->body}
 <ul class="feedback">
 <li>{$entry->id|date_format:'<a href="/%Y-%m">%Y-%m</a>-%d %H:%M:%S'}</li>
-<li><a href="http://twitter.com/#search?q={$baseuri|escape:"url"}{$entry->id|escape:"url"}" class="comments">コメント</a></li>
+<li><a href="http://search.twitter.com/search?q={$baseuri|escape:"url"}{$entry->id|escape:"url"}" class="comments">コメント</a></li>
 <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$baseuri|escape}{$entry->id|escape}&amp;scoring=d" class="backlink">
     この記事へのリンク</a></li>
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}

@@ -18,7 +18,7 @@
 </ul>
 <h2>つながり</h2>
 <ul>
-  <li><a href="http://twitter.com/#search?q=http%3A%2F%2Fblog.fuktommy.com%2F">コメント</a></li>
+  <li><a href="http://search.twitter.com/search?q=http%3A%2F%2Fblog.fuktommy.com%2F">コメント</a></li>
   <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://blog.fuktommy.com/&amp;scoring=d">このブログへのリンク</a></li>
   <li><a href="/rss">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />

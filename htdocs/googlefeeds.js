@@ -30,7 +30,7 @@
 
     function doComments(anchor) {
         var feedUrl = anchor.href.replace(
-                'http://twitter.com/#search?q=',
+                'http://search.twitter.com/search?q=',
                 'http://search.twitter.com/search.atom?q=');
         loadFeed(feedUrl, anchor);
     }
