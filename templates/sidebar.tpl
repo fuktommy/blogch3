@@ -11,14 +11,13 @@
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
-  <li><a href="http://twitter.com/fuktommy/">Twitter</a></li>
+  <li><a href="http://www.google.com/profiles/fuktommy#buzz">Google バズ</a></li>
   <li><a href="http://astore.amazon.co.jp/fuktommy-22">本</a></li>
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>
 </ul>
 <h2>つながり</h2>
 <ul>
-  <li><a href="http://search.twitter.com/search?q=http%3A%2F%2Fblog.fuktommy.com%2F">コメント</a></li>
   <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://blog.fuktommy.com/&amp;scoring=d">このブログへのリンク</a></li>
   <li><a href="/rss">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />

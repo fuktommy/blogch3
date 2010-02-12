@@ -7,46 +7,46 @@ Author(s):
 WebSite:
   http://fuktommy.com/blogch/
 
-SLB�ϴʰ�Ū�ʥ֥����Ǥ���
-�����Ȥ�ȥ�å��Хå��ε�ǽ�Ϥ���ޤ��󤬡�
-�����ˡ�Twitter�פ��Google Blog Search�פؤ�
-��󥯤����ꡢƱ�ͤε�ǽ��Ȥ����Ȥ��Ǥ��ޤ���
+SLBは簡易的なブログです。
+コメントやトラックバックの機能はありませんが、
+かわりに「Twitter」や「Google Blog Search」への
+リンクがあり、同様の機能を使うことができます。
 
-�����󥹥ȡ�����
-(1) PHP(ver5)��Smarty�򥤥󥹥ȡ��뤷�Ƥ���������
-(2) http://blog.fuktommy.com/ ��Ʊ���褦�˥��󥹥ȡ��뤹��ˤϡ�
-    ���Τ褦�ʾ��˥��ԡ����Ƥ���������
+●インストール手順
+(1) PHP(ver5)とSmartyをインストールしてください。
+(2) http://blog.fuktommy.com/ と同じようにインストールするには、
+    次のような場所にコピーしてください。
     htdocs      -> /srv/www/blog.fuktommy.com
     libs        -> /srv/lib/php/blog.fuktommy.com
     templates   -> /srv/templates/blog.fuktommy.com
-(3) img, rss.rdf, sitemap.txt �ˤ�Apache���񤭹����褦�ˤ��Ƥ���������
-(4) ����Ū�ʥǡ����� /srv/data/blog.fuktommy.com/data �˽񤭹��ޤ�ޤ���
-    ������Apache���񤭹����褦�ˤ��Ƥ���������
-(5) ������ѹ����ޤ���
-    libs �� blogconfig.php �Ǥ���
-(6) ���ɤ��䤽�Τۤ��������
-    htdocs �γƼ�ե������
-    templates �γƼ�ƥ�ץ졼�Ȥ��ѹ����Ƥ���������
-    �ǥե���Ȥ���Fuktommy�Ѥι���ʤɤ����äƤ��ޤ���
+(3) img, rss.rdf, sitemap.txt にはApacheが書き込めるようにしてください。
+(4) 内部的なデータは /srv/data/blog.fuktommy.com/data に書き込まれます。
+    ここもApacheが書き込めるようにしてください。
+(5) 設定を変更します。
+    libs の blogconfig.php です。
+(6) 見栄えやそのほかの設定は
+    htdocs の各種ファイルや
+    templates の各種テンプレートを変更してください。
+    デフォルトだとFuktommy用の広告などが入っています。
 
-����������ƤȺ��
-(1) ������ edit.php ��Ȥ���HTML��������Ƥ��ޤ���
-    ���ʸ����<p>�����ǰϤޤ��褦�ʹ��פϤ���ޤ���
-    ������1���ܤϥ����ȥ�ˤʤꡢ<h2>�ǰϤޤ�ޤ���
-(2) ���Ϥ���HTML�����������ɤ����Υ����å��Ϥ��Ƥ��ޤ���
-    PREVIEW�ܥ���򲡤����ƥ����ȥ��ꥢ����ɽ���ǳ�ǧ���Ƥ���������
-    HTML�δְ㤤�˵��դ����Ȥ��Ǥ��뤫�⤷��ޤ���
-(3) /admin/edit?12345 �Τ褦�˵����������ֹ����ꤹ����Խ����Ǥ��ޤ���
-(4) ��ʸ����ˤ���SAVE�ܥ���򲡤��ȵ������������ޤ���
-(5) �Խ��ڡ�����2�ĳ����ȡ����˳����Ƥ����Խ��ڡ����Ǥ���¸�Ǥ��ʤ��ʤ�ޤ���
+●記事の投稿と削除
+(1) 記事は edit.php を使い、HTML形式で投稿します。
+    裸の文字列が<p>タグで囲まれるような工夫はありません。
+    ただし1行目はタイトルになり、<h2>で囲まれます。
+(2) 入力したHTMLが正しいかどうかのチェックはしていません。
+    PREVIEWボタンを押し、テキストエリア下の表示で確認してください。
+    HTMLの間違いに気付くことができるかもしれません。
+(3) /admin/edit?12345 のように記事の日付番号を指定すると編集ができます。
+(4) 本文を空にしてSAVEボタンを押すと記事が削除されます。
+(5) 編集ページを2つ開くと、前に開いていた編集ページでは保存できなくなります。
 
-���ռ�
-(1) XLST�ˤĤ��Ƽ��Υڡ����򻲹ͤˤ��ޤ�����
+●謝辞
+(1) XLSTについて次のページを参考にしました。
     http://sonic64.com/2005-03-16.html
-(2) �Хå���󥯤ˤ� Google Blog Search �����Ѥ��Ƥ��ޤ���
+(2) バックリンクには Google Blog Search を利用しています。
     http://blogsearch.google.com/
-(3) �����Ȥˤ� Twitter �����Ѥ��Ƥ��ޤ���
-    http://twitter.com/
-(4) RSS �Υ�������� Firefox �Υ����������Ѥ�����ΤǤ���
+(3) コメントには Google Reader を利用しています。
+    http://www.google.com/reader/
+(4) RSS のアイコンは Firefox のアイコンを借用したものです。
     http://www.mozilla.org/
     http://feedicons.com/

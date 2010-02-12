@@ -5,7 +5,6 @@
 {$entry->body}
 <ul>
 <li>{$entry->id|date_format:'<a href="/blog/%Y-%m">%Y-%m</a>-%d %H:%M:%S'}</li>
-<li><a href="http://search.twitter.com/search?q={$baseuri|escape:"url"}{$entry->id|escape:"url"}">Comments[t]</a></li>
 </ul>
 {mobileAdsense}
 {include file="mobile_footer.tpl"}

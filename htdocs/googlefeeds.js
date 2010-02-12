@@ -28,20 +28,11 @@
         loadFeed(feedUrl, anchor);
     }
 
-    function doComments(anchor) {
-        var feedUrl = anchor.href.replace(
-                'http://search.twitter.com/search?q=',
-                'http://search.twitter.com/search.atom?q=');
-        loadFeed(feedUrl, anchor);
-    }
-
     function initialize() {
         var anchors = document.getElementsByTagName('a');
         for (var i=0; i<anchors.length; i++) {
             if (anchors[i].className == 'backlink') {
                 doBacklink(anchors[i]);
-            } else if (anchors[i].className == 'comments') {
-                doComments(anchors[i]);
             }
 
         }
