@@ -12,9 +12,9 @@
   <link rel="stylesheet" type="text/css" href="/{$cssname}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
   <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="{$rssuri|escape}" />
-  <link rel="alternate" type="application/rss+xml" title="RSS (with ads)" href="http://feedproxy.google.com/blogfuktommycom" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="{$atomuri|escape}" />
+  <link rel="alternate" type="application/rss+xml" title="RSS (with ads)" href="http://feedproxy.google.com/blogfuktommycom" />
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{$rssuri|escape}" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>
 <body>
