@@ -19,10 +19,10 @@
 <h2>つながり</h2>
 <ul>
   <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://blog.fuktommy.com/&amp;scoring=d">このブログへのリンク</a></li>
-  <li><a href="/rss">
+  <li><a href="/atom">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
-      RSS 1.0</a></li>
-  <li><a href="http://fusion.google.com/add?feedurl=http%3A//blog.fuktommy.com/rss"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
+      Atom Feed</a></li>
+  <li><a href="http://fusion.google.com/add?feedurl=http%3A//blog.fuktommy.com/atom"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
   <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post"><div>
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="7210101" />
