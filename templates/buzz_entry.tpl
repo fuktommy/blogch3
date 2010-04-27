@@ -3,7 +3,7 @@
 {assign var=permalink value=$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"}
 {assign var=title value=$entry->summary|mb_substr:0:30:"utf8"}
 
-<div class="entry"><h2 class="entrytitle"><a href="$permalink|escape}">{$title|escape}</a></h2>
+<div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$title|escape}</a></h2>
 
 {$entry->content|replace:"<wbr>":""|replace:"<b>":""|replace:"</b>":""}
 
