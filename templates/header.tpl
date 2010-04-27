@@ -11,9 +11,8 @@
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
   <link rel="stylesheet" type="text/css" href="/{$cssname}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
-  <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="{$atomuri|escape}" />
-  <link rel="alternate" type="application/atom+xml" title="Atom (buzz)" href="http://feeds.feedburner.com/fuktommy_buzz" />
+  <link rel="alternate" media="handheld" href="{$mobileuri}" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy_buzz" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>
 <body>
@@ -38,7 +37,6 @@
   <span style="color:#0039b6">m</span>
 </a></h1>
 {/strip}
-<div><a href="http://www.google.com/profiles/fuktommy#buzz">Googleバズ</a>に引っ越ししました。</div>
 <form action="http://www.google.com/cse" id="searchbar"><p>
   <input type="text" name="q" size="31" />
   <input type="hidden" name="cx" value="003570941829906538055:5apetotzz44" />

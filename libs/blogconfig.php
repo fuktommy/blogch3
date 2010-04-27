@@ -1,6 +1,6 @@
 <?php
 /* -*- coding: utf-8 -*- */
-/* Copyright (c) 2007-2009 Satoshi Fukutomi <info@fuktommy.com>. */
+/* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. */
 
 setlocale(LC_ALL, 'en_US.UTF-8');
 date_default_timezone_set('Asia/Tokyo');
@@ -34,6 +34,8 @@ function blogconfig()
         'creator'        => 'Fuktommy',
         'rsssize'        => 15,
         'recentsize'     => 5,
+
+        'buzz_atom_path' => '/srv/data/blog.fuktommy.com/buzz/atom.xml',
 
         'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
     );

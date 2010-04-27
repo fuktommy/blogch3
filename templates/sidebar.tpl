@@ -1,13 +1,6 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div id="links">
-<h2>過去記事</h2>
-<ul id="archives">
-{foreach from=$index item="month"}
-<li><a href="{$baseuri}{$month}">{$month}</a></li>
-{/foreach}
-</ul>
-<script type="text/javascript" src="/archives.js"></script>
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
@@ -18,11 +11,11 @@
 </ul>
 <h2>つながり</h2>
 <ul>
-  <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://blog.fuktommy.com/&amp;scoring=d">このブログへのリンク</a></li>
-  <li><a href="/atom">
+  <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://www.google.com/buzz/fuktommy/&amp;scoring=d">このブログへのリンク</a></li>
+  <li><a href="http://feeds.feedburner.com/fuktommy_buzz">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
       Atom Feed</a></li>
-  <li><a href="http://fusion.google.com/add?feedurl=http%3A//blog.fuktommy.com/atom"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
+  <li><a href="http://fusion.google.com/add?feedurl=http://feeds.feedburner.com/fuktommy_buzz"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
   <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post"><div>
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="7210101" />

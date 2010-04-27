@@ -1,8 +1,7 @@
 <?php
-/* Blogch3.
- * とてもシンプルなブログツール。
+/* Buzz整形表示。
  *
- * Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,86 +27,11 @@
  */
 
 require_once('MySmarty.class.php');
-require_once('Blog.class.php');
 require_once('blogconfig.php');
 
-if (array_key_exists('month', $_REQUEST)) {
-    print_month_html($_REQUEST['month']);
-} elseif (array_key_exists('entry', $_REQUEST)) {
-    print_entry_html(intval($_REQUEST['entry']));
-} else {
-    print_top_html();
-}
-exit(0);
-
-
-/**
- * 404 Not Found
- * @param string $resource  見つからならかったファイル
- */
-function print_not_found_html($resource)
-{
-    header("HTTP/1.0 404 Not Found", true, 404);
-    $smarty = new MySmarty();
-    $smarty->assign(blogconfig());
-    $smarty->assign('resource', $resource);
-    $smarty->display('not_found_html.tpl');
-}
-
-
-/**
-  * トップページの表示
-  */
-function print_top_html()
-{
-    $blog = new Blog();
-    $entries = $blog->getRecentEntries();
-    $index = $blog->getIndex();
-    $smarty = new MySmarty();
-    $smarty->assign(blogconfig());
-    $smarty->assign('index', $index);
-    $smarty->assign('entries', $entries);
-    $smarty->assign('entry_html_mode', false);
-    $smarty->display('top_html.tpl');
-}
-
-/**
- * 月のエントリ一覧の表示
- * @param string    $month      年と月(YYYY-MM)
- */
-function print_month_html($month)
-{
-    $blog = new Blog();
-    $entries = $blog->getMonth($month);
-    if ($entries->exists()) {
-        $smarty = new MySmarty();
-        $smarty->assign(blogconfig());
-        $smarty->assign('entries', $entries);
-        $smarty->assign('pathname', $month);
-        $smarty->display('month_html.tpl');
-    } else {
-        print_not_found_html($month);
-    }
-}
-
-/**
-  * エントリの表示
-  * @param int  $id     記事のID
-  */
-function print_entry_html($id)
-{
-    $blog = new Blog();
-    $entry = $blog->getEntry($id);
-    if ($entry->exists()) {
-        $smarty = new MySmarty();
-        $smarty->assign(blogconfig());
-        $smarty->assign('entry', $entry);
-        $smarty->assign('pathname', $id);
-        $smarty->assign('entry_html_mode', true);
-        $smarty->display('entry_html.tpl');
-    } else {
-        print_not_found_html($id);
-    }
-}
-
-?>
+$config = blogconfig();
+$xml = simplexml_load_file($config['buzz_atom_path']);
+$smarty = new MySmarty();
+$smarty->assign($config);
+$smarty->assign('buzz', $xml);
+$smarty->display('buzz_top.tpl');
