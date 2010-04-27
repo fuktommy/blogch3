@@ -33,5 +33,6 @@ $config = blogconfig();
 $xml = simplexml_load_file($config['buzz_atom_path']);
 $smarty = new MySmarty();
 $smarty->assign($config);
+$smarty->assign('ua', array('ads' => 'google'));
 $smarty->assign('buzz', $xml);
 $smarty->display('mobile_buzz.tpl');
