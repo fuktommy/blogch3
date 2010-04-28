@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
   <link rel="stylesheet" type="text/css" href="/{$cssname}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
-  <link rel="alternate" media="handheld" href="{$mobileuri}" />
+  <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy_buzz" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>
