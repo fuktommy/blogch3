@@ -46,9 +46,14 @@ class PuSHSubscriber
     private $topic;
 
     /**
-     * @var string  秘密の文字列。
+     * @var string  フィード送受信用の秘密の文字列。
      */
     private $secret;
+
+    /**
+     * @var string  フィード登録・解除用のワンタイムトークン。
+     */
+    private $verifyToken;
 
     /**
      * コンストラクタ。
@@ -57,13 +62,15 @@ class PuSHSubscriber
     {
         $this->topic = $config['hub.topic'];
         $this->secret = $config['hub.secret'];
+        $this->verifyToken = $config['hub.verify_token'];
     }
 
     /**
      * ファクトリ。
      * @param array $config  中身は
      *      hub.topic: 購読するAtomフィードのURL。
-     *      hub.secret: 秘密の文字列。
+     *      hub.secret: フィード送受信用の秘密の文字列。
+     *      hub.verify_token: フィード登録・解除用のワンタイムトークン。
      */
     public static function factory(array $config)
     {
@@ -105,6 +112,12 @@ class PuSHSubscriber
     {
         if (! isset($_GET['hub_challenge'])) {
             $this->returnFail('No Challenge');
+            return;
+        }
+        $tokenIsValid = isset($_GET['hub_verify_token'])
+                     && ($_GET['hub_verify_token'] === $this->verifyToken);
+        if (! $tokenIsValid) {
+            $this->returnFail('Invalid Verify Token');
             return;
         }
         $topicIsValid = isset($_GET['hub_topic'])

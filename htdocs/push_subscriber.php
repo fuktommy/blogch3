@@ -34,6 +34,7 @@ require_once('pushconfig.php');
 $pushConfig = array(
     'hub.topic' => 'http://example.com/atom.xml',
     'hub.secret' => 'this_is_dummy_secret_string',
+    'hub.verify_token' => 'this_is_dummy_onetime_token',
 );
 $pushConfig = pushconfig();
 
