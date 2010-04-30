@@ -7,6 +7,23 @@
 
 {$entry->content|replace:"<wbr>":""|replace:"<b>":""|replace:"</b>":""}
 
+{foreach from=$entry->link item=link}
+    {if ($link.rel == "enclosure") && $link.title}
+        <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
+    {/if}
+{/foreach}
+
+{* 画像入れてみたけどいまいちだな…
+{assign var=media value=$entry->children($xmlns_media)}
+{foreach from=$media->content item=m}
+    {assign var=content_attr value=$m->attributes()}
+    {assign var=player_attr value=$m->player->attributes()}
+    {if strpos($content_attr.url, "http://astore.amazon.co.jp/") === 0}
+        <p><a href="{$content_attr.url|escape}"><img src="{$player_attr.url|escape}" alt="" /></a></p>
+    {/if}
+{/foreach}
+*}
+
 <ul class="feedback">
     <li>{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</li>
     <li><a href="http://www.google.com/buzz/post?url={$permalink|escape:"url"}" class="comments">コメントする</a></li>

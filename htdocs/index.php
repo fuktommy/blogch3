@@ -34,4 +34,5 @@ $xml = simplexml_load_file($config['buzz_atom_path']);
 $smarty = new MySmarty();
 $smarty->assign($config);
 $smarty->assign('buzz', $xml);
+$smarty->assign('xmlns_media', 'http://search.yahoo.com/mrss/');
 $smarty->display('buzz_top.tpl');
