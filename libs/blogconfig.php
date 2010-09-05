@@ -35,8 +35,11 @@ function blogconfig()
         'rsssize'        => 15,
         'recentsize'     => 5,
 
-        'buzz_atom_path' => '/srv/data/blog.fuktommy.com/buzz/atom.xml',
+        'buzz_atom_path' => '/srv/data/blog.fuktommy.com/buzz/00atom.xml',
 
         'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
+
+        'category_tanuki_path'
+            => '/srv/data/blog.fuktommy.com/category/tanuki.db',
     );
 }

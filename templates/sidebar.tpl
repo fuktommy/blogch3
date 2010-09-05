@@ -1,6 +1,10 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div id="links">
+<h2>カテゴリー</h2>
+<ul>
+  <li><a href="{$baseuri}category/tanuki">タヌキ</a></li>
+</ul>
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>

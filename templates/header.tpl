@@ -35,7 +35,12 @@
   <span style="color:#0039b6">c</span>
   <span style="color:#30a72f">o</span>
   <span style="color:#0039b6">m</span>
-</a></h1>
+</a>
+{if $category_name && $category_id}
+    {* *} / <a href="{$baseuri}category/{$category_id|escape:"url"}">
+    {$category_name|escape}</a>
+{/if}
+</h1>
 {/strip}
 <form action="http://www.google.com/cse" id="searchbar"><p>
   <input type="text" name="q" size="31" />
