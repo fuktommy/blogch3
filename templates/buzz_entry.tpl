@@ -5,7 +5,7 @@
 
 <div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$title|escape}</a></h2>
 
-{$entry->content|replace:"<wbr>":""|replace:"<b>":""|replace:"</b>":""}
+{$entry->content|formatBuzz}
 
 {foreach from=$entry->link item=link}
     {if ($link.rel == "enclosure") && $link.title}

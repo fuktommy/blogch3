@@ -142,7 +142,7 @@ class Category_Tanuki implements Category
      */
     public function match(SimpleXMLElement $entry)
     {
-        return (bool)preg_match('/タヌキ|たぬき|狸|tanuki|racoon/i',
+        return (bool)preg_match('/タヌキ|たぬき|狸/i',
                                 $entry->asXML());
     }
 
