@@ -1,4 +1,4 @@
-<?php
+<?php // -*- coding: utf-8 -*-
 /* Blog Category "Tanuki".
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
@@ -27,7 +27,7 @@
  */
 
 require_once 'Category.php';
-require_once 'Migration.php';
+require_once 'Category/Storage.php';
 
 /**
  * Blog Category "Tanuki".
@@ -35,29 +35,9 @@ require_once 'Migration.php';
 class Category_Tanuki implements Category
 {
     /**
-     * @var PDO
+     * @var Category_Storage
      */
-    private $db;
-
-    /**
-     * @var PDOStatement
-     */
-    private $insertState;
-
-    /**
-     * @var PDOStatement
-     */
-    private $countState;
-
-    /**
-     * @var string
-     */
-    private $xmlHeader;
-
-    /**
-     * @var string
-     */
-    private $xmlFooter = '</feed>';
+    private $storage;
 
     /**
      * Constructor.
@@ -67,50 +47,7 @@ class Category_Tanuki implements Category
      */
     public function __construct(PDO $db, SimpleXMLElement $root)
     {
-        $this->db = $db;
-        $this->setUp($db);
-        $this->countState = $this->getCountState($db);
-        $this->insertState = $this->getInsertState($db);
-        $this->xmlHeader = $this->getHeader($root);
-    }
-
-    private function setUp(PDO $db)
-    {
-        $migration = new Migration($db);
-        $migration->execute(
-            "CREATE TABLE IF NOT EXISTS `tanuki`"
-            . " (`id` CHAR PRIMARY KEY NOT NULL,"
-            . "  `date` CHAR NOT NULL,"
-            . "  `body` TEXT NOT NULL)"
-        );
-        $migration->execute(
-            "CREATE INDEX `date` ON `tanuki` (`date`)"
-        );
-    }
-
-    private function getCountState(PDO $db)
-    {
-        return $db->prepare(
-            "SELECT COUNT(*) FROM `tanuki` WHERE `id` = :id"
-        );
-    }
-
-    private function getInsertState(PDO $db)
-    {
-        return $db->prepare(
-            "INSERT INTO `tanuki` (`id`,`date`, `body`)"
-            . " VALUES (:id, :date, :body)"
-        );
-    }
-
-    private function getHeader(SimpleXMLElement $root)
-    {
-        $header = "<feed";
-        foreach ($root->getDocNamespaces() as $k => $v) {
-            $header .= sprintf(" xmlns%s%s='%s'", ($k ? ':' : ''), $k, $v);
-        }
-        $header .= '>';
-        return $header;
+        $this->storage = new Category_Storage('tanuki', $db, $root);
     }
 
     /**
@@ -122,17 +59,7 @@ class Category_Tanuki implements Category
      */
     public function select($offset, $length)
     {
-        $state = $this->db->query(
-            "SELECT `body` FROM `tanuki` ORDER BY `date` DESC"
-            . sprintf(" LIMIT %d,%d", $offset, $length)
-        );
-        $state->setFetchMode(PDO::FETCH_ASSOC);
-        $ret = array();
-        foreach ($state as $row) {
-            $tmp = simplexml_load_string($row['body']);
-            $ret[] = $tmp->entry;
-        }
-        return $ret;
+        return $this->storage->select($offset, $length);
     }
 
     /**
@@ -149,26 +76,11 @@ class Category_Tanuki implements Category
     /**
      * Append the enrty to the category.
      * @param SimpleXMLElement $entry
-     * @return bool
      * @throws PDOException
      * @throws UnexpectedValueException
      */
     public function append(SimpleXMLElement $entry)
     {
-        $id = (string)$entry->id;
-        $date = (string)$entry->updated;
-        $body = $this->xmlHeader . $entry->asXML() . $this->xmlFooter;
-        if (! simplexml_load_string($body)) {
-            throw new UnexpectedValueException($body . ' is not XML.');
-        }
-        $this->countState->execute(array('id' => $id));
-        if ((int)$this->countState->fetchColumn()) {
-            return;
-        }
-        $this->insertState->execute(array(
-            'id' => $id,
-            'date' => $date,
-            'body' => $body
-        ));
+        return $this->storage->append($entry);
     }
 }

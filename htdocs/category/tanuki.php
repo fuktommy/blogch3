@@ -38,7 +38,7 @@ $xml = simplexml_load_file($config['buzz_atom_path']);
 $tanuki = new Category_Tanuki($db, $xml);
 
 $page = 0;
-if (preg_match('|^/p(\d+)|', $_SERVER['PATH_INFO'], $matches)) {
+if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
     $page = (int)$matches[1];
 }
 
