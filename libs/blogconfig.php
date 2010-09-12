@@ -39,6 +39,8 @@ function blogconfig()
 
         'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
 
+        'category_article_path'
+            => '/srv/data/blog.fuktommy.com/category/article.db',
         'category_tanuki_path'
             => '/srv/data/blog.fuktommy.com/category/tanuki.db',
     );

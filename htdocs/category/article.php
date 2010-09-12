@@ -1,5 +1,5 @@
 <?php
-/* Update Category.
+/* カテゴリ「長文記事」
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,34 +26,30 @@
  * SUCH DAMAGE.
  */
 
-ini_set("include_path",
-        "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com");
-
+require_once 'Category/Article.php';
+require_once 'MySmarty.class.php';
 require_once 'blogconfig.php';
 
-
-function getCategory($name, $dbfile, $xml)
-{
-    require_once sprintf('Category/%s.php', $name);
-    $class = 'Category_' . $name;
-    $db = new PDO('sqlite:' . $dbfile);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return new $class($db, $xml);
-}
-
-
 $config = blogconfig();
-$xml = simplexml_load_file('php://stdin');
+$db = new PDO('sqlite:' . $config['category_article_path']);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$xml = simplexml_load_file($config['buzz_atom_path']);
 
-$categories = array(
-    getCategory('Article', $config['category_article_path'], $xml),
-    getCategory('Tanuki',  $config['category_tanuki_path'],  $xml),
-);
+$article = new Category_Article($db, $xml);
 
-foreach ($xml->entry as $entry) {
-    foreach ($categories as $category) {
-        if ($category->match($entry)) {
-            $category->append($entry);
-        }
-    }
+$page = 0;
+if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
+    $page = (int)$matches[1];
 }
+
+$buzz = new StdClass();
+$buzz->entry = $article->select($page * 10, 10);
+
+$smarty = new MySmarty();
+$smarty->assign($config);
+$smarty->assign('buzz', $buzz);
+$smarty->assign('xmlns_media', 'http://search.yahoo.com/mrss/');
+$smarty->assign('category_id', 'article');
+$smarty->assign('category_name', '長文記事');
+$smarty->assign('page', $page);
+$smarty->display('buzz_top.tpl');
