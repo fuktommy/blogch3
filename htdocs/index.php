@@ -40,7 +40,7 @@ if (is_numeric($_GET['page'])) {
 }
 
 $buzz = new StdClass();
-$buzz->entry = $category->select($page * 10, 10);
+$buzz->entry = $category->select($page * 30, 30);
 
 $smarty = new MySmarty();
 $smarty->assign($config);
