@@ -7,35 +7,57 @@ Author(s):
 WebSite:
   http://fuktommy.com/blogch/
 
-blogch4は(歴史的経緯から)次の3つの機能を持っています。
-(1) Googleバズの更新をPubSubHubbubで受け取ってブログとして表示する機能。
-    index.php
-    category/*.php
-(2) GoogleバズのAtomフィードを整形してブログとして表示する機能。
-    mobile/index.php
-(3) 簡易的なブログとしての機能。
-    blog.php
+blogch3はGoogleバズの更新をPubSubHubbubで受け取って
+ブログとして表示するためのツールです。
+それに歴史的経緯でいくつかの機能がくっついています。
 
-●インストール手順
+●中心となるライブラリ
+libs/buzz: Googleバズを扱うためのライブラリです。
+
+●http://blog.fuktommy.com/ 用の設定(兼サンプル)
+apache: Apacheの設定ファイル
+bin: cronで動かすバッチ
+htdocs/category: カテゴリーのコントローラー
+htdocs/index.php: トップページ
+htdocs/push_subscriber.php: PuSHを受け取るコントローラー
+htdocs以下のCSS等
+libs/Category: カテゴリーの定義
+libs/blogconfig.php: 設定ファイル (バズ以外のものも混ざってます)
+templates: Smartyのテンプレート (バズ以外のものも混ざってます)
+
+●バズのAtomフィードを整形して表示するもの
+mobile/index.php
+
+●バズとは関係ないブログツールとしてのもの
+htdocs/admin: 管理ツール
+htdocs/blog.php: ブログツールのコントローラー
+lib以下の雑多なPHPファイル
+ほかいろいろ
+
+●インストール手順 (共通部分)
 (1) PHP(ver5)とSmartyをインストールしてください。
 (2) http://blog.fuktommy.com/ と同じようにインストールするには、
     次のような場所にコピーしてください。
     htdocs      -> /srv/www/blog.fuktommy.com
     libs        -> /srv/lib/php/blog.fuktommy.com
     templates   -> /srv/templates/blog.fuktommy.com
-(3) img, rss.rdf, sitemap.txt にはApacheが書き込めるようにしてください。
-(4) 内部的なデータは /srv/data/blog.fuktommy.com/data に書き込まれます。
-    ここもApacheが書き込めるようにしてください。
-(5) 設定を変更します。
+(3) 内部的なデータは /srv/data/blog.fuktommy.com/data に書き込まれます。
+    Apacheが書き込めるようにしてください。
+(4) 設定を変更します。
     libs の blogconfig.php です。
-(6) cronの設定をします。
-    buzz_atom_path に定期的にBuzzのAtomフィードを取り込むようにします。
-    buzz_atom_path の中身を bin/update_category.php に処理させるようにします。
-(7) PubSubHubbubでpush_subscriber.phpを叩くように設定します。
-(8) 見栄えやそのほかの設定は
+(5) 見栄えやそのほかの設定は
     htdocs の各種ファイルや
     templates の各種テンプレートを変更してください。
     デフォルトだとFuktommy用の広告などが入っています。
+
+●インストール手順 (バズ機能)
+(1) cronの設定をします。
+    buzz_atom_path に定期的にBuzzのAtomフィードを取り込むようにします。
+    buzz_atom_path の中身を bin/update_category.php に処理させるようにします。
+(2) PubSubHubbubでpush_subscriber.phpを叩くように設定します。
+
+●インストール手順 (ブログ機能)
+(1) img, rss.rdf, sitemap.txt にはApacheが書き込めるようにしてください。
 
 ●記事の投稿と削除
 (1) 記事は edit.php を使い、HTML形式で投稿します。

@@ -26,6 +26,6 @@
         RewriteRule ^([0-9]{4}-[0-9]{2})$ /blog/?month=$1
         RewriteRule ^([0-9]+)$ /blog/?entry=$1
 
-        php_value include_path "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com"
+        php_value include_path "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com:/srv/lib/php/blog.fuktommy.com/buzz"
     </Directory>
 </VirtualHost>

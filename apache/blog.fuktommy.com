@@ -23,7 +23,7 @@
         RewriteRule ^([0-9]+)$ /?entry=$1
         RewriteRule ^xml/rss http://blog.fuktommy.com/rss [R=301,L]
 
-        php_value include_path "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com"
+        php_value include_path "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com:/srv/lib/php/blog.fuktommy.com/buzz"
     </Directory>
 
     <Directory "/srv/www/blog.fuktommy.com/admin">
