@@ -35,7 +35,7 @@ $factory = new Category_Factory();
 $category = $factory->getCategory($config['category']['all']);
 
 $page = 0;
-if (is_numeric($_GET['page'])) {
+if (is_numeric(@$_GET['page'])) {
     $page = (int)$_GET['page'];
 }
 
