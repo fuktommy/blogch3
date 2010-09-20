@@ -26,22 +26,26 @@
  * SUCH DAMAGE.
  */
 
-require_once('PuSHSubscriber.php');
-require_once('blogconfig.php');
-require_once('pushconfig.php');
+require_once 'PuSHSubscriber.php';
+require_once 'blogconfig.php';
+require_once 'pushconfig.php';
+require_once 'Category/Updater.php';
 
 
 $pushConfig = array(
     'hub.topic' => 'http://example.com/atom.xml',
     'hub.secret' => 'this_is_dummy_secret_string',
     'hub.verify_token' => 'this_is_dummy_onetime_token',
+    'allow_unsubscribe' => false,
 );
 $pushConfig = pushconfig();
 
 
 function saveFeed($xml)
 {
-    file_put_contents('/tmp/pushtest.xml', $xml);
+    $config = blogconfig();
+    $updater = new Category_Updater();
+    $updater->execute($config['category'], simplexml_load_string($xml));
 }
 
 PuSHSubscriber::factory($pushConfig)->execute('saveFeed');

@@ -7,10 +7,14 @@ Author(s):
 WebSite:
   http://fuktommy.com/blogch/
 
-SLBは簡易的なブログです。
-コメントやトラックバックの機能はありませんが、
-かわりに「Twitter」や「Google Blog Search」への
-リンクがあり、同様の機能を使うことができます。
+blogch4は(歴史的経緯から)次の3つの機能を持っています。
+(1) Googleバズの更新をPubSubHubbubで受け取ってブログとして表示する機能。
+    index.php
+    category/*.php
+(2) GoogleバズのAtomフィードを整形してブログとして表示する機能。
+    mobile/index.php
+(3) 簡易的なブログとしての機能。
+    blog.php
 
 ●インストール手順
 (1) PHP(ver5)とSmartyをインストールしてください。
@@ -24,7 +28,11 @@ SLBは簡易的なブログです。
     ここもApacheが書き込めるようにしてください。
 (5) 設定を変更します。
     libs の blogconfig.php です。
-(6) 見栄えやそのほかの設定は
+(6) cronの設定をします。
+    buzz_atom_path に定期的にBuzzのAtomフィードを取り込むようにします。
+    buzz_atom_path の中身を bin/update_category.php に処理させるようにします。
+(7) PubSubHubbubでpush_subscriber.phpを叩くように設定します。
+(8) 見栄えやそのほかの設定は
     htdocs の各種ファイルや
     templates の各種テンプレートを変更してください。
     デフォルトだとFuktommy用の広告などが入っています。

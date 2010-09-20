@@ -6,12 +6,7 @@
     {include file="buzz_entry.tpl"}
 {/foreach}
 <p id="footnavi">
-{if isset($page)}
-    {if $page > 0}
-        <a href="{$baseuri}category/{$category_id|escape:"url"}/p{$page-1|escape:"url"}">新しいページ</a> | 
-    {/if}
-    <a href="{$baseuri}category/{$category_id|escape:"url"}/p{$page+1|escape:"url"}">昔のページ</a> |
-{/if}
+{include file="buzz_paging.tpl"}
 <a href="#searchbar" onclick="window.scroll(0,0); return false;">ページの先頭へ</a></p>
 </div>
 {include file="sidebar.tpl"}

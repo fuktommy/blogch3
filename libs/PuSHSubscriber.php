@@ -56,6 +56,11 @@ class PuSHSubscriber
     private $verifyToken;
 
     /**
+     * @var bool  フィード解除を受け付けるか。
+     */
+    private $allowSubscrive;
+
+    /**
      * コンストラクタ。
      */
     private function __construct(array $config)
@@ -63,6 +68,7 @@ class PuSHSubscriber
         $this->topic = $config['hub.topic'];
         $this->secret = $config['hub.secret'];
         $this->verifyToken = $config['hub.verify_token'];
+        $this->allowSubscrive = $config['allow_unsubscribe'];
     }
 
     /**
@@ -124,6 +130,12 @@ class PuSHSubscriber
                      && ($_GET['hub_topic'] === $this->topic);
         if (! $topicIsValid) {
             $this->returnFail('Unknown Feed');
+            return;
+        }
+        $unallowdSubscrive = (! $this->allowSubscrive)
+                           && ($_GET['hub_mode'] === 'unsubscribe');
+        if ($unallowdSubscrive) {
+            $this->returnFail('Unsubscrive Is Not Allowed');
             return;
         }
         $this->returnSuccess($_GET['hub_challenge']);

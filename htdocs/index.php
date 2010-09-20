@@ -1,5 +1,5 @@
 <?php
-/* Buzz整形表示。
+/* バズ全体表示。
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,13 +26,24 @@
  * SUCH DAMAGE.
  */
 
-require_once('MySmarty.class.php');
-require_once('blogconfig.php');
+require_once 'Category/Factory.php';
+require_once 'MySmarty.class.php';
+require_once 'blogconfig.php';
 
 $config = blogconfig();
-$xml = simplexml_load_file($config['buzz_atom_path']);
+$factory = new Category_Factory();
+$category = $factory->getCategory($config['category']['all']);
+
+$page = 0;
+if (is_numeric($_GET['page'])) {
+    $page = (int)$_GET['page'];
+}
+
+$buzz = new StdClass();
+$buzz->entry = $category->select($page * 10, 10);
+
 $smarty = new MySmarty();
 $smarty->assign($config);
-$smarty->assign('buzz', $xml);
-$smarty->assign('xmlns_media', 'http://search.yahoo.com/mrss/');
+$smarty->assign('buzz', $buzz);
+$smarty->assign('page', $page);
 $smarty->display('buzz_top.tpl');
