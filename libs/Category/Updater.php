@@ -1,5 +1,5 @@
 <?php
-/* カテゴリ「タヌキ」
+/* Category Updater.
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -27,25 +27,29 @@
  */
 
 require_once 'Category/Factory.php';
-require_once 'MySmarty.class.php';
-require_once 'blogconfig.php';
 
-$config = blogconfig();
-$factory = new Category_Factory();
-$category = $factory->getCategory($config['category']['tanuki']);
 
-$page = 0;
-if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
-    $page = (int)$matches[1];
+/**
+ * Category Updater.
+ */
+class Category_Updater
+{
+    /**
+     * Execute Updater.
+     * @param array $config  $blogconfig['category']
+     * @param SimpleXMLElement $xml
+     * @throws PDOException
+     */
+    public function execute(array $config, SimpleXMLElement $xml)
+    {
+        $factory = new Category_Factory();
+        foreach ($config as $conf) {
+            $category = $factory->getCategory($conf, $xml);
+            foreach ($xml->entry as $entry) {
+                if ($category->match($entry)) {
+                    $category->append($entry);
+                }
+            }
+        }
+    }
 }
-
-$buzz = new StdClass();
-$buzz->entry = $category->select($page * 50, 50);
-
-$smarty = new MySmarty();
-$smarty->assign($config);
-$smarty->assign('buzz', $buzz);
-$smarty->assign('category_id', 'tanuki');
-$smarty->assign('category_name', 'タヌキ');
-$smarty->assign('page', $page);
-$smarty->display('buzz_top.tpl');

@@ -39,9 +39,19 @@ function blogconfig()
 
         'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
 
-        'category_article_path'
-            => '/srv/data/blog.fuktommy.com/category/article.db',
-        'category_tanuki_path'
-            => '/srv/data/blog.fuktommy.com/category/tanuki.db',
+        'category' => array(
+            'all' => array(
+                'class' => 'All',
+                'path' => '/srv/data/blog.fuktommy.com/category/all.db',
+            ),
+            'article' => array(
+                'class' => 'Article',
+                'path' => '/srv/data/blog.fuktommy.com/category/article.db',
+            ),
+            'tanuki' => array(
+                'class' => 'Tanuki',
+                'path' => '/srv/data/blog.fuktommy.com/category/tanuki.db',
+            ),
+        ),
     );
 }

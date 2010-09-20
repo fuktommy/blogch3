@@ -1,5 +1,5 @@
 <?php
-/* カテゴリ「タヌキ」
+/* Blog Category "All".
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,26 +26,60 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category/Factory.php';
-require_once 'MySmarty.class.php';
-require_once 'blogconfig.php';
+require_once 'Category.php';
+require_once 'Category/Storage.php';
 
-$config = blogconfig();
-$factory = new Category_Factory();
-$category = $factory->getCategory($config['category']['tanuki']);
+/**
+ * Blog Category "All".
+ */
+class Category_All implements Category
+{
+    /**
+     * @var Category_Storage
+     */
+    private $storage;
 
-$page = 0;
-if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
-    $page = (int)$matches[1];
+    /**
+     * Constructor.
+     * @param PDOS $db
+     * @param SimpleXMLElement $root
+     * @throws PDOException
+     */
+    public function __construct(PDO $db, SimpleXMLElement $root)
+    {
+        $this->storage = new Category_Storage('all', $db, $root);
+    }
+
+    /**
+     * Select entries.
+     * @param int $offset
+     * @param int $length
+     * @return array
+     * @throws PDOException
+     */
+    public function select($offset, $length)
+    {
+        return $this->storage->select($offset, $length);
+    }
+
+    /**
+     * The enrty is grouped in the category or not.
+     * @param SimpleXMLElement $entry
+     * @return bool
+     */
+    public function match(SimpleXMLElement $entry)
+    {
+        return true;
+    }
+
+    /**
+     * Append the enrty to the category.
+     * @param SimpleXMLElement $entry
+     * @throws PDOException
+     * @throws UnexpectedValueException
+     */
+    public function append(SimpleXMLElement $entry)
+    {
+        return $this->storage->append($entry);
+    }
 }
-
-$buzz = new StdClass();
-$buzz->entry = $category->select($page * 50, 50);
-
-$smarty = new MySmarty();
-$smarty->assign($config);
-$smarty->assign('buzz', $buzz);
-$smarty->assign('category_id', 'tanuki');
-$smarty->assign('category_name', 'タヌキ');
-$smarty->assign('page', $page);
-$smarty->display('buzz_top.tpl');

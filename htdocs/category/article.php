@@ -26,16 +26,13 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category/Article.php';
+require_once 'Category/Factory.php';
 require_once 'MySmarty.class.php';
 require_once 'blogconfig.php';
 
 $config = blogconfig();
-$db = new PDO('sqlite:' . $config['category_article_path']);
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$xml = simplexml_load_file($config['buzz_atom_path']);
-
-$article = new Category_Article($db, $xml);
+$factory = new Category_Factory();
+$category = $factory->getCategory($config['category']['article']);
 
 $page = 0;
 if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
@@ -43,12 +40,11 @@ if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
 }
 
 $buzz = new StdClass();
-$buzz->entry = $article->select($page * 10, 10);
+$buzz->entry = $category->select($page * 10, 10);
 
 $smarty = new MySmarty();
 $smarty->assign($config);
 $smarty->assign('buzz', $buzz);
-$smarty->assign('xmlns_media', 'http://search.yahoo.com/mrss/');
 $smarty->assign('category_id', 'article');
 $smarty->assign('category_name', '長文記事');
 $smarty->assign('page', $page);

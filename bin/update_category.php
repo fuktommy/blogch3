@@ -26,34 +26,14 @@
  * SUCH DAMAGE.
  */
 
-ini_set("include_path",
-        "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com");
+ini_set('include_path',
+        '/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com');
 
 require_once 'blogconfig.php';
-
-
-function getCategory($name, $dbfile, $xml)
-{
-    require_once sprintf('Category/%s.php', $name);
-    $class = 'Category_' . $name;
-    $db = new PDO('sqlite:' . $dbfile);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return new $class($db, $xml);
-}
-
+require_once 'Category/Updater.php';
 
 $config = blogconfig();
 $xml = simplexml_load_file('php://stdin');
 
-$categories = array(
-    getCategory('Article', $config['category_article_path'], $xml),
-    getCategory('Tanuki',  $config['category_tanuki_path'],  $xml),
-);
-
-foreach ($xml->entry as $entry) {
-    foreach ($categories as $category) {
-        if ($category->match($entry)) {
-            $category->append($entry);
-        }
-    }
-}
+$updater = new Category_Updater();
+$updater->execute($config['category'], $xml);

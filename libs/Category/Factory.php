@@ -1,5 +1,5 @@
 <?php
-/* カテゴリ「タヌキ」
+/* Category Factory.
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,26 +26,30 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category/Factory.php';
-require_once 'MySmarty.class.php';
-require_once 'blogconfig.php';
+/**
+ * Category Factory.
+ */
+class Category_Factory
+{
+    /**
+     * Get category from configuration.
+     * @param array $config  $blogconfig['category']['foo']
+     * @param SimpleXMLElement $xml
+     * @return Category
+     * @throws PDOException
+     */
+    public function getCategory(array $config, SimpleXMLElement $xml = null)
+    {
+        require_once sprintf('Category/%s.php', $config['class']);
+        $class = 'Category_' . $config['class'];
 
-$config = blogconfig();
-$factory = new Category_Factory();
-$category = $factory->getCategory($config['category']['tanuki']);
+        $db = new PDO('sqlite:' . $config['path']);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$page = 0;
-if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
-    $page = (int)$matches[1];
+        if (! $xml instanceof SimpleXMLElement) {
+            $xml = new SimpleXMLElement('<entry/>');
+        }
+
+        return new $class($db, $xml);
+    }
 }
-
-$buzz = new StdClass();
-$buzz->entry = $category->select($page * 50, 50);
-
-$smarty = new MySmarty();
-$smarty->assign($config);
-$smarty->assign('buzz', $buzz);
-$smarty->assign('category_id', 'tanuki');
-$smarty->assign('category_name', 'タヌキ');
-$smarty->assign('page', $page);
-$smarty->display('buzz_top.tpl');
