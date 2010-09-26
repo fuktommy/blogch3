@@ -35,8 +35,8 @@ $factory = new Category_Factory();
 $category = $factory->getCategory($config['category']['article']);
 
 $page = 0;
-if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
-    $page = (int)$matches[1];
+if (is_numeric(@$_GET['page'])) {
+    $page = (int)$_GET['page'];
 }
 
 $buzz = new StdClass();
@@ -47,5 +47,6 @@ $smarty->assign($config);
 $smarty->assign('buzz', $buzz);
 $smarty->assign('category_id', 'article');
 $smarty->assign('category_name', '長文記事');
+$smarty->assign('title', $config['blogtitle'] . ' / 長文記事');
 $smarty->assign('page', $page);
 $smarty->display('buzz_top.tpl');

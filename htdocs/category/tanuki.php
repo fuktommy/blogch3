@@ -35,8 +35,8 @@ $factory = new Category_Factory();
 $category = $factory->getCategory($config['category']['tanuki']);
 
 $page = 0;
-if (preg_match('|^/p(\d+)|', @$_SERVER['PATH_INFO'], $matches)) {
-    $page = (int)$matches[1];
+if (is_numeric(@$_GET['page'])) {
+    $page = (int)$_GET['page'];
 }
 
 $buzz = new StdClass();
@@ -47,5 +47,6 @@ $smarty->assign($config);
 $smarty->assign('buzz', $buzz);
 $smarty->assign('category_id', 'tanuki');
 $smarty->assign('category_name', 'タヌキ');
+$smarty->assign('title', $config['blogtitle'] . ' / タヌキ');
 $smarty->assign('page', $page);
 $smarty->display('buzz_top.tpl');

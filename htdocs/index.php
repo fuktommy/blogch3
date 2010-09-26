@@ -46,4 +46,5 @@ $smarty = new MySmarty();
 $smarty->assign($config);
 $smarty->assign('buzz', $buzz);
 $smarty->assign('page', $page);
+$smarty->assign('title', $config['blogtitle']);
 $smarty->display('buzz_top.tpl');
