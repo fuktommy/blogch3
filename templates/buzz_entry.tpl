@@ -31,10 +31,16 @@
     <li><span class="hatenastar"><a href="{$permalink|escape}" style="display:none;">{$title|escape}</a></span></li>
 </ul>
 
-{if $smarty.foreach.entries.iteration == 1}
-    {include file="ads_entry_amazon.tpl"}
-{elseif ($smarty.foreach.entries.iteration == 2) && ($category_id == "tanuki")}
-    {include file="ads_entry_google.tpl"}
+{if $category_id == "tanuki"}
+    {if $smarty.foreach.entries.iteration == 1}
+        {include file="ads_entry_amazon_tanuki.tpl"}
+    {elseif $smarty.foreach.entries.iteration == 2}
+        {include file="ads_entry_google.tpl"}
+    {/if}
+{else}
+    {if $smarty.foreach.entries.iteration == 1}
+        {include file="ads_entry_amazon.tpl"}
+    {/if}
 {/if}
 
 </div>
