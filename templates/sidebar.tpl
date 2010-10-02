@@ -14,6 +14,9 @@
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>
 </ul>
+{if $category_id == "tanuki"}
+    {include file="ads_sidebar_google.tpl"}
+{/if}
 <h2>つながり</h2>
 <ul>
   <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://www.google.com/buzz/fuktommy/&amp;scoring=d">このブログへのリンク</a></li>
@@ -30,5 +33,10 @@
   <li><a href="http://mobile.fuktommy.com/"><img src="/mobileqrcode.gif" width="132" height="132" alt="for Mobile" title="for Mobile" /></a></li>
   <li style="margin-bottom: 1ex;"><script type="text/javascript" src="http://pub.mybloglog.com/stats.php?mblID=2006121501312191&amp;width=180&amp;max_chars=20&amp;color_heading_bg=808080&amp;color_heading=FFFFFF&amp;color_link_bg=EFEFEF&amp;color_link=0000FF&amp;color_bottom_bg=EFEFEF"></script></li>
 </ul>
-Powered by <a href="http://fuktommy.com/blogch/">blogch3</a>.
+
+{if $category_id == "tanuki"}
+    {include file="ads_sidebar_amazon.tpl"}
+{/if}
+
+<p>Powered by <a href="http://fuktommy.com/blogch/">blogch3</a>.</p>
 </div>

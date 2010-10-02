@@ -32,23 +32,9 @@
 </ul>
 
 {if $smarty.foreach.entries.iteration == 1}
-<div class="ads">
-<script type="text/javascript"><!--
-  amazon_ad_tag = "fuktommy-22";
-  amazon_ad_width = "468";
-  amazon_ad_height = "60";
-  amazon_ad_logo = "hide";
-  amazon_color_border = "808080";
-  amazon_color_background = "EFEFEF";
-  amazon_color_link = "0000FF";
-  amazon_color_price = "000000";
-  amazon_color_logo = "FFFFFF";
-//--></script>
-<script type="text/javascript" src="http://www.assoc-amazon.jp/s/ads.js"></script>
-<noscript>
-<iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=fuktommy-22&amp;o=9&amp;p=13&amp;l=ez&amp;f=ifr&amp;f=ifr" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:none;"></iframe>
-</noscript>
-</div>
+    {include file="ads_entry_amazon.tpl"}
+{elseif ($smarty.foreach.entries.iteration == 2) && ($category_id == "tanuki")}
+    {include file="ads_entry_google.tpl"}
 {/if}
 
 </div>
