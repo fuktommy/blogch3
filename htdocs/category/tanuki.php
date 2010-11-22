@@ -48,5 +48,7 @@ $smarty->assign('buzz', $buzz);
 $smarty->assign('category_id', 'tanuki');
 $smarty->assign('category_name', 'タヌキ');
 $smarty->assign('title', $config['blogtitle'] . ' / タヌキ');
+$smarty->assign('meta_description', 'タヌキ情報まとめサイト');
+$smarty->assign('meta_keywords', 'タヌキ,たぬき,狸,tanuki,racoond dog,タヌキ情報まとめ,タヌキニュース');
 $smarty->assign('page', $page);
 $smarty->display('buzz_top.tpl');

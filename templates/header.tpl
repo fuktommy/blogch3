@@ -6,6 +6,12 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <title>{$title}</title>
+  {if $meta_description}
+    <meta name="description" content="{$meta_description|escape}" />
+  {/if}
+  {if $meta_keywords}
+    <meta name="keywords" content="{$meta_keywords|escape}" />
+  {/if}
   <link rev="made" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
