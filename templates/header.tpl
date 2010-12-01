@@ -12,10 +12,12 @@
   {if $meta_keywords}
     <meta name="keywords" content="{$meta_keywords|escape}" />
   {/if}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10.0, user-scalable=yes;" />
   <link rev="made" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
   <link rel="stylesheet" type="text/css" href="/{$cssname}.css" media="screen,tv" />
+  <link rel="stylesheet" type="text/css" href="/touch.css" media="screen and (max-width: 500px)" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
   <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
   <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy_buzz" />

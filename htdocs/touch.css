@@ -1,0 +1,23 @@
+body {
+    padding: 0 0;
+}
+
+div#entries {
+    width: 100%;
+    overflow-x: auto;
+}
+
+div#links {
+    float: none;
+    width: 100%;
+}
+
+h1 {
+    font-size: 150%;
+}
+
+div.entry {
+    border: 1px solid gray;
+    margin-bottom: 1em;
+    padding: 0;
+}
