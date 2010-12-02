@@ -26,27 +26,43 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category/Factory.php';
-require_once 'MySmarty.class.php';
+require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 
-$config = blogconfig();
-$factory = new Category_Factory();
-$category = $factory->getCategory($config['category']['article']);
 
-$page = 0;
-if (is_numeric(@$_GET['page'])) {
-    $page = (int)$_GET['page'];
+/**
+ * カテゴリ「長文記事」
+ * @package Blog
+ */
+class Blog_Action_Article implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        $factory = new Category_Factory();
+        $category = $factory->getCategory($context->config['category']['article']);
+
+        $page = (int)$context->get('get', 'page');
+
+        $buzz = new StdClass();
+        $buzz->entry = $category->select($page * 10, 10);
+
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('buzz', $buzz);
+        $smarty->assign('category_id', 'article');
+        $smarty->assign('category_name', '長文記事');
+        $smarty->assign('title', $context->config['blogtitle'] . ' / 長文記事');
+        $smarty->assign('page', $page);
+        $smarty->display('buzz_top.tpl');
+    }
 }
 
-$buzz = new StdClass();
-$buzz->entry = $category->select($page * 10, 10);
 
-$smarty = new MySmarty();
-$smarty->assign($config);
-$smarty->assign('buzz', $buzz);
-$smarty->assign('category_id', 'article');
-$smarty->assign('category_name', '長文記事');
-$smarty->assign('title', $config['blogtitle'] . ' / 長文記事');
-$smarty->assign('page', $page);
-$smarty->display('buzz_top.tpl');
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_Article(), $context);
+}

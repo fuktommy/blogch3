@@ -1,5 +1,5 @@
 <?php
-/* カテゴリ「タヌキ」
+/* ブログのコントローラ。
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,45 +26,32 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
-
 /**
- * カテゴリ「タヌキ」
+ * ブログのコントローラ。
  * @package Blog
  */
-class Blog_Action_Tanuki implements Blog_Action
+class Blog_Controller
 {
     /**
-     * 実行。
-     * @param Web_Context $context
+     * コンストラクタ。
      */
-    public function execute(Web_Context $context)
+    private function __construct()
     {
-        $factory = new Category_Factory();
-        $category = $factory->getCategory($context->config['category']['tanuki']);
-
-        $page = (int)$context->get('get', 'page');
-
-        $buzz = new StdClass();
-        $buzz->entry = $category->select($page * 50, 50);
-
-        $smarty = $context->getSmarty();
-        $smarty->assign($context->config);
-        $smarty->assign('buzz', $buzz);
-        $smarty->assign('category_id', 'tanuki');
-        $smarty->assign('category_name', 'タヌキ');
-        $smarty->assign('title', $config['blogtitle'] . ' / タヌキ');
-        $smarty->assign('meta_description', 'タヌキ情報まとめサイト');
-        $smarty->assign('meta_keywords',
-            'タヌキ,たぬき,狸,tanuki,racoond dog,タヌキ情報まとめ,タヌキニュース');
-        $smarty->assign('page', $page);
-        $smarty->display('buzz_top.tpl');
     }
-}
+     
+    /**
+     * ファクトリ。
+     */
+    public static function factory()
+    {
+        return new self();
+    }
 
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Tanuki(), $context);
+    /**
+     * アクション
+     */
+    public function run(Blog_Action $action, Web_Context $context)
+    {
+        $action->execute($context);
+    }
 }
