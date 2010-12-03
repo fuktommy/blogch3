@@ -26,6 +26,7 @@
  * SUCH DAMAGE.
  */
 
+require_once 'bootstrap.php';
 require_once('MySmarty.class.php');
 require_once('Blog.class.php');
 require_once('blogconfig.php');

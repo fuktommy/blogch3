@@ -25,17 +25,21 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-require_once('blogconfig.php');
 
 class OneTimePassword
 {
     /**
-     * コンストラクタ
+     * @var string
      */
-    public function __construct()
+    private $ticketFile;
+
+    /**
+     * コンストラクタ
+     * @param string $ticketFile
+     */
+    public function __construct($ticketFile)
     {
-        $this->config     = blogconfig();
-        $this->ticketFile = $this->config['ticket_file'];
+        $this->ticketFile = $ticketFile;
     }
 
     /**

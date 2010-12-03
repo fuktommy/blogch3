@@ -32,7 +32,7 @@ require_once('OneTimePassword.class.php');
 require_once('blogconfig.php');
 
 $blog = new Blog();
-$passwordTool = new OneTimePassword();
+$passwordTool = new OneTimePassword($config['ticket_file']);
 $config = blogconfig();
 if ($_SERVER['QUERY_STRING']) {
     $entry = $blog->getEntry($_SERVER['QUERY_STRING']);
@@ -63,7 +63,7 @@ exit(0);
 function print_edit_html($entry = null)
 {
     $config = blogconfig();
-    $passwordTool = new OneTimePassword();
+    $passwordTool = new OneTimePassword($config['ticket_file']);
     $smarty = new MySmarty();
     $smarty->assign($config);
     $smarty->assign('entry', $entry);

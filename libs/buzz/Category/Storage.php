@@ -26,10 +26,10 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Migration.php';
 
 /**
  * Blog Category Storage.
+ * @package Category
  */
 class Category_Storage
 {

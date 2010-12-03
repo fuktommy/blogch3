@@ -26,13 +26,34 @@
  * SUCH DAMAGE.
  */
 
-require_once('MySmarty.class.php');
-require_once('blogconfig.php');
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
 
-$config = blogconfig();
-$xml = simplexml_load_file($config['buzz_atom_path']);
-$smarty = new MySmarty();
-$smarty->assign($config);
-$smarty->assign('ua', array('xhtml' => true, 'encoding' => 'UTF-8', 'ads' => 'google'));
-$smarty->assign('buzz', $xml);
-$smarty->display('mobile_buzz.tpl');
+/**
+ * モバイル用Buzz整形表示。
+ * @package Blog
+ */
+class Blog_Action_MobileIndex implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        $xml = simplexml_load_file($context->config['buzz_atom_path']);
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('ua', array('xhtml' => true,
+                                    'encoding' => 'UTF-8',
+                                    'ads' => 'google'));
+        $smarty->assign('buzz', $xml);
+        $smarty->display('mobile_buzz.tpl');
+    }
+}
+
+
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_MobileIndex(), $context);
+}

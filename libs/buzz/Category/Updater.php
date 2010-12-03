@@ -26,11 +26,10 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category/Factory.php';
-
 
 /**
  * Category Updater.
+ * @package Category
  */
 class Category_Updater
 {

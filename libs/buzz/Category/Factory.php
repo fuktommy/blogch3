@@ -28,6 +28,7 @@
 
 /**
  * Category Factory.
+ * @package Category
  */
 class Category_Factory
 {
@@ -40,7 +41,6 @@ class Category_Factory
      */
     public function getCategory(array $config, SimpleXMLElement $xml = null)
     {
-        require_once sprintf('Category/%s.php', $config['class']);
         $class = 'Category_' . $config['class'];
 
         $db = new PDO('sqlite:' . $config['path']);

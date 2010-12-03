@@ -31,10 +31,9 @@ ini_set('include_path',
         . ':/srv/lib/php/blog.fuktommy.com'
         . ':/srv/lib/php/blog.fuktommy.com/buzz');
 
+require_once 'bootstrap.php';
 require_once 'blogconfig.php';
-require_once 'Category/Updater.php';
 
-$config = blogconfig();
 $xml = simplexml_load_file('php://stdin');
 
 $updater = new Category_Updater();

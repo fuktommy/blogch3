@@ -25,20 +25,37 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-require_once('blogconfig.php');
 
-class Index implements IteratorAggregate
+
+/**
+ * 月の一覧
+ * @package Blog
+ */
+class Blog_Index implements IteratorAggregate
 {
     /**
-     * コンストラクタ
+     * @var array
      */
-    public function Index()
+    private $config;
+
+    /**
+     * @var string
+     */
+    private $dataDir;
+
+    /**
+     * @var array
+     */
+    private $months = array();
+
+    /**
+     * コンストラクタ
+     * @param $config
+     */
+    public function __construct(array $config)
     {
-        global $config;
-        $this->config   = $config;
-        $this->data_dir = $config['data_dir'];
-        $this->months   = array();
-        $this->load();
+        $this->config = $config;
+        $this->dataDir = $config['data_dir'];
     }
 
     /**
@@ -55,7 +72,7 @@ class Index implements IteratorAggregate
      */
     public function load()
     {
-        $d = dir($this->data_dir);
+        $d = dir($this->dataDir);
         while (($entry = $d->read()) !== false) {
             if (preg_match("/^\d{4}-\d{2}$/", $entry)) {
                 $this->months[] = $entry;

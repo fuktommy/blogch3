@@ -28,14 +28,18 @@
 require_once('blogconfig.php');
 require_once('Entry.class.php');
 require_once('Month.class.php');
-require_once('Index.class.php');
 
+
+/**
+ * ブログのデータの抽象化。
+ * @package Blog
+ */
 class Blog
 {
     /**
      * コンストラクタ
      */
-    public function Blog()
+    public function __construct()
     {
         $this->config   = blogconfig();
         $this->data_dir = $this->config['data_dir'];
@@ -47,7 +51,9 @@ class Blog
      */
     public function getIndex()
     {
-        return new Index();
+        $index = new Blog_Index($this->config);
+        $index->load();
+        return $index;
     }
 
     /**
