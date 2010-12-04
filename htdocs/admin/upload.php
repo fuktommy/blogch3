@@ -1,7 +1,7 @@
 <?php
 /* ファイルアップロード
  *
- * Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,43 +26,85 @@
  * SUCH DAMAGE.
  */
 
-require_once('MySmarty.class.php');
-require_once('blogconfig.php');
-
-if (isset($_FILES['file'])) {
-    save_file($_FILES['file']['tmp_name'], $_FILES['file']['name']);
-}
-print_upload_html();
-exit(0);
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
 
 
 /**
-  * 設定ページの表示
-  */
-function print_upload_html()
+ * 振り分けアクション。
+ * @package Blog
+ */
+class Blog_Action_UploadDispatcher implements Blog_Action
 {
-    $config = blogconfig();
-    $smarty = new MySmarty();
-    $smarty->assign(blogconfig());
-    $smarty->display('upload_html.tpl');
-}
-
-/**
-  * ファイルの保存
-  * @param string   $tmp_name     サーバ上の現在の名前
-  * @param string   $orig_name    もともとの名前
-  */
-function save_file($tmp_name, $orig_name)
-{
-    $config = blogconfig();
-    if (preg_match("/([-_0-9A-Za-z][-_.0-9A-Za-z]*)$/", $orig_name, $match)) {
-        $orig_name = $match[0];
-    } else {
-        $orig_name = sprintf('%d.txt', time());
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        if ($context->get('get', 'files')) {
+            $action = new Blog_Action_Upload();
+        } else {
+            $action = new Blog_Action_UploadForm();
+        }
+        $action->execute($context);
     }
-    $dst_path = sprintf('%s/%s', $config['upload_dir'], $orig_name);
-    move_uploaded_file($tmp_name, $dst_path);
-    chmod($dst_path, 0644);
 }
 
-?>
+
+/**
+ * 設定ページの表示
+ * @package Blog
+ */
+class Blog_Action_UploadForm implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->display('upload_html.tpl');
+    }
+}
+
+
+/**
+ * アップロードファイルの受け付け。
+ * @package Blog
+ */
+class Blog_Action_Upload implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        // サーバ上の現在の名前
+        $tmpName = $context->files['file']['tmp_name'];
+
+        // もともとの名前
+        $origName = $context->files['file']['name'];
+
+        if (preg_match("/([-_0-9A-Za-z][-_.0-9A-Za-z]*)$/", $origName, $match)) {
+            $origName = $match[0];
+        } else {
+            $origName = sprintf('%d.txt', time());
+        }
+        $dstPath = sprintf('%s/%s', $context->config['upload_dir'], $origName);
+        move_uploaded_file($tmpName, $dstPath);
+        chmod($dstPath, 0644);
+
+        $next = new Blog_Action_UploadForm();
+        $next->execute($context);
+    }
+}
+
+
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_UploadDispatcher(), $context);
+}

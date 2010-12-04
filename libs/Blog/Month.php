@@ -60,6 +60,7 @@ class Blog_Month implements IteratorAggregate
      */
     public function __construct(array $config, $month)
     {
+        $this->config = $config;
         $this->dataDir = $config['data_dir'];
         $this->month = $month;
         $this->entries = array();
@@ -163,12 +164,13 @@ class Blog_Month implements IteratorAggregate
      */
     public function update()
     {
+        $blog = new Blog($this->config);
         $this->entries = array();
         $d = dir($this->dirname());
         while (($entry = $d->read()) !== false) {
             if (preg_match("/^(\d+)\.txt$/", $entry, $match)) {
                 $id = $match[1];
-                $entry = new Entry($id);
+                $entry = $blog->getEntry($id);
                 $this->append(array($entry->id, $entry->title));
             }
         }

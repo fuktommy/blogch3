@@ -1,7 +1,7 @@
 <?php
 /* 記事の投稿
  *
- * Copyright (c) 2007-2009 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,145 +26,105 @@
  * SUCH DAMAGE.
  */
 
-require_once('MySmarty.class.php');
-require_once('Blog.class.php');
-require_once('OneTimePassword.class.php');
-require_once('blogconfig.php');
-
-$blog = new Blog();
-$passwordTool = new OneTimePassword($config['ticket_file']);
-$config = blogconfig();
-if ($_SERVER['QUERY_STRING']) {
-    $entry = $blog->getEntry($_SERVER['QUERY_STRING']);
-    if ($entry->exists()) {
-        print_edit_html($entry);
-    } else {
-        print_edit_html();
-    }
-} elseif ((! isset($_REQUEST['ticket'])) || (! $passwordTool->verify($_REQUEST['ticket']))) {
-    print_edit_html();
-} elseif (isset($_REQUEST['data'])) {
-    if (isset($_REQUEST['id']) && preg_match("/^\d+$/", $_REQUEST['id'])) {
-        save_data($_REQUEST['id'], $_REQUEST['data']);
-    } else {
-        save_data('', $_REQUEST['data']);
-    }
-    header('Location: ' . $config['baseuri']);
-} else {
-    print_edit_html();
-}
-exit(0);
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
 
 
 /**
-  * 設定ページの表示
-  * @param Entry    $entry  記事(任意)
-  */
-function print_edit_html($entry = null)
+ * ページの振り分け
+ * @package Blog
+ */
+class Blog_Action_EditDispatcher implements Blog_Action
 {
-    $config = blogconfig();
-    $passwordTool = new OneTimePassword($config['ticket_file']);
-    $smarty = new MySmarty();
-    $smarty->assign($config);
-    $smarty->assign('entry', $entry);
-    $smarty->assign('ticket', $passwordTool->generate());
-    $smarty->display('edit_html.tpl');
+    /**
+     * 実行。
+     */
+    public function execute(Web_Context $context)
+    {
+        $blog = new Blog($context->config);
+        if ($context->get('server', 'QUERY_STRING')) {
+            $entry = $blog->getEntry($context->get('server', 'QUERY_STRING'));
+            if ($entry->exists()) {
+                $context->vars['entry'] = $entry;
+                Blog_Action_EditForm::factory()->execute($context);
+                return;
+            }
+        }
+
+        if ((! $context->get('post', 'id')) && (! $context->get('post', 'data'))) {
+            Blog_Action_EditForm::factory()->execute($context);
+            return;
+        }
+
+        $passwordTool = new OneTimePassword($context->config['ticket_file']);
+        if (! $passwordTool->verify($context->get('post', 'ticket'))) {
+            Blog_Action_EditForm::factory()->execute($context);
+            return;
+        }
+
+        $next = new Blog_Action_Edit();
+        $next->execute($context);
+    }
 }
+
+
+/**
+ * 設定ページの表示
+ * @package Blog
+ */
+class Blog_Action_EditForm implements Blog_Action
+{
+    /**
+     * ファクトリ。
+     * @return Blog_Action_EditForm
+     */
+    public static function factory()
+    {
+        return new self();
+    }
+
+    /**
+     * 実行。
+     * @param Web_Context $context $context->vars['entry']
+     *                             に記事のオブジェクトを入れる。
+     */
+    public function execute(Web_Context $context)
+    {
+        $passwordTool = new OneTimePassword($context->config['ticket_file']);
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('entry', $context->get('vars', 'entry'));
+        $smarty->assign('ticket', $passwordTool->generate());
+        $smarty->display('edit_html.tpl');
+    }
+}
+
 
 /**
  * 記事の保存
- * @param int       $id     記事のID。''の場合は現在時刻で置き換える
- * @param string    $data   記事のタイトルと本文。1行目がタイトル
+ * @package Blog
  */
-function save_data($id, $data)
+class Blog_Action_Edit implements Blog_Action
 {
-    if (! $id) {
-        $id = time();
-    }
-    $blog = new Blog();
-    $entry = $blog->getEntry($id);
-    $month = $blog->getMonth($entry->month());
-    if ((! $data) && $entry->exists()) {
-        $entry->remove();
-        $month->update();
-        if ($month->size() == 0) {
-            $month->remove();
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        if (preg_match('/^\d+$/', $context->get('post', 'id'))) {
+            $id = $context->get('post', 'id');
+        } else {
+            $id = '';
         }
-    } else {
-        $lines = preg_split("/\n/", $data);
-        $entry->title = trim(array_shift($lines));
-        $entry->body  = trim(implode('', $lines)) . "\n";
-        $entry->sync();
-        $month->update();
-    }
-    update_recent();
-    update_sitemap();
-}
-
-/**
- * 記事のソートに用いる比較関数
- * @param Entry $a    記事
- * @param Entry $b    記事
- * @return int        大小
- */
-function cmp_entries($a, $b)
-{
-    if ($a->id < $b->id) {
-        return 1;
-    } elseif ($a->id == $b->id) {
-        return 0;
-    } else {
-        return -1;
+        $updater = new Blog_Updater($context->config);
+        $updater->update($id, $context->get('post', 'data'), $context->getSmarty());
+        $context->putHeader('Location', $context->config['baseuri']);
     }
 }
 
-/**
- * 最新の記事とRSSの更新
- */
-function update_recent()
-{
-    $config = blogconfig();
-    $blog = new Blog();
-    $entries = array();
-    foreach ($blog->getIndex() as $m) {
-        foreach ($blog->getMonth($m) as $row) {
-            $entries[] = $blog->getEntry($row[0]);
-            if ($config['rsssize'] < count($entries)) {
-                break;
-            }
-        }
-        if ($config['rsssize'] < count($entries)) {
-            break;
-        }
-    }
-    usort($entries, 'cmp_entries');
-    $blog->setRecentEntries(array_slice($entries, 0, $config['recentsize']));
 
-    // RSS の更新
-    $smarty = new MySmarty();
-    $smarty->assign($config);
-    $smarty->assign('entries', $entries);
-    file_put_contents($config['rss_path'], $smarty->fetch('rss1.tpl'));
-    file_put_contents($config['atom_path'], $smarty->fetch('atom.tpl'));
-}
-
-/**
- * サイトマップの更新
- */
-function update_sitemap()
-{
-    $config = blogconfig();
-    $blog = new Blog();
-    $f = fopen($config['sitemap'], 'wb');
-    $mf = fopen($config['mobile_sitemap'], 'wb');
-    fwrite($f, $config['baseuri'] . "\n");
-    fwrite($mf, $config['mobile_baseuri'] . "\n");
-    foreach ($blog->getIndex() as $m) {
-        foreach ($blog->getMonth($m) as $row) {
-            fprintf($f, "%s%d\n", $config['baseuri'], $row[0]);
-            fprintf($mf, "%s%d\n", $config['mobile_baseuri'], $row[0]);
-        }
-    }
-    fclose($f);
-    fclose($mf);
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_EditDispatcher(), $context);
 }

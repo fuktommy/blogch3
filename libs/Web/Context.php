@@ -68,6 +68,11 @@ class Web_Context
     public $server = array();
 
     /**
+     * @var array $_FILES
+     */
+    public $files = array();
+
+    /**
      * @var array プログラム内で作ったデータの引き回し用
      */
     public $vars = array();
@@ -93,6 +98,7 @@ class Web_Context
         $instance->request = $_REQUEST;
         $instance->header = getallheaders();
         $instance->server = $_SERVER;
+        $instance->files = $_FILES;
         return $instance;
     }
 

@@ -33,12 +33,22 @@
 class Blog
 {
     /**
+     * @var array
+     */
+    private $config;
+
+    /**
+     * @var string
+     */
+    private $dataDir;
+
+    /**
      * コンストラクタ
      */
-    public function __construct()
+    public function __construct(array $config)
     {
-        $this->config   = blogconfig();
-        $this->data_dir = $this->config['data_dir'];
+        $this->config = $config;
+        $this->dataDir = $this->config['data_dir'];
     }
 
     /**
@@ -86,7 +96,7 @@ class Blog
      */
     public function getRecentEntries()
     {
-        $path = sprintf('%s/new.txt', $this->data_dir);
+        $path = sprintf('%s/new.txt', $this->dataDir);
         $ids = explode("\n", file_get_contents($path));
         array_pop($ids);
         $entries = array();
@@ -102,7 +112,7 @@ class Blog
      */
     public function setRecentEntries($entries)
     {
-        $path = sprintf('%s/new.txt', $this->data_dir);
+        $path = sprintf('%s/new.txt', $this->dataDir);
         $ids = '';
         foreach ($entries as $entry) {
             $ids .= $entry->id . "\n";
