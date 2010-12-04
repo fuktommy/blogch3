@@ -65,6 +65,12 @@ class Blog_Action_Month implements Blog_Action
         $smarty->assign($context->config);
         $smarty->assign('entries', $entries);
         $smarty->assign('pathname', $entries->month);
-        $smarty->display('month_html.tpl');
+
+        if ($context->get('vars', 'mobile')) {
+            $smarty->assign('ua', $context->get('vars', 'ua'));
+            $smarty->display('mobile_month_html.tpl');
+        } else {
+            $smarty->display('month_html.tpl');
+        }
     }
 }

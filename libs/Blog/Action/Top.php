@@ -40,13 +40,18 @@ class Blog_Action_Top implements Blog_Action
     public function execute(Web_Context $context)
     {
         $blog = new Blog($context->config);
-        $entries = $blog->getRecentEntries();
         $index = $blog->getIndex();
         $smarty = $context->getSmarty();
         $smarty->assign($context->config);
         $smarty->assign('index', $index);
-        $smarty->assign('entries', $entries);
         $smarty->assign('entry_html_mode', false);
-        $smarty->display('top_html.tpl');
+
+        if ($context->get('vars', 'mobile')) {
+            $smarty->assign('ua', $context->get('vars', 'ua'));
+            $smarty->display('mobile_top_html.tpl');
+        } else {
+            $smarty->assign('entries', $blog->getRecentEntries());
+            $smarty->display('top_html.tpl');
+        }
     }
 }

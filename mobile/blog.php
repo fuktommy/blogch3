@@ -1,7 +1,7 @@
 <?php
 /* モバイル版
  *
- * Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,106 +28,89 @@
 
 require_once 'bootstrap.php';
 require_once 'blogconfig.php';
-require_once('MySmarty.class.php');
-
-if (array_key_exists('month', $_REQUEST)) {
-    print_month_html($_REQUEST['month']);
-} elseif (array_key_exists('entry', $_REQUEST)) {
-    print_entry_html(intval($_REQUEST['entry']));
-} else {
-    print_top_html();
-}
-exit(0);
 
 
 /**
- * 404 Not Found
- * @param string $resource  見つからならかったファイル
+ * 携帯端末向けの表示オプションを作る
+ * @return array UserAgentの性質
  */
-function print_not_found_html($resource)
+function getMobileAgentOptions(Web_Context $context)
 {
-    header("HTTP/1.0 404 Not Found", true, 404);
-    $smarty = new MySmarty();
-    $smarty->assign(blogconfig());
-    $smarty->assign('resource', $resource);
-    $smarty->display('mobile_not_found_html.tpl');
-}
-
-/**
- * HTTPヘッダの出力
- * @return array    UserAgentの性質
- */
-function print_http_header()
-{
-    $ua = $_SERVER['HTTP_USER_AGENT'];
-    if (preg_match("/DoCoMo\/2\.0/", $ua)) {
-        header('Content-Type: application/xhtml+xml; charset=UTF-8');
-        return array('xhtml' => true, 'encoding' => 'UTF-8', 'ads' => 'google');
-    } elseif (preg_match("/DoCoMo\/1\.0/", $ua)) {
-        mb_http_output('sjis-win');
-        mb_internal_encoding('UTF-8');
-        ob_start('mb_output_handler');
-        header('Content-Type: text/html; charset=Shift_JIS');
-        return array('xhtml' => false, 'encoding' => 'Shift_JIS', 'ads' => null);
+    $ua = $context->get('server', 'HTTP_USER_AGENT');
+    if (preg_match('|^DoCoMo/2[.]0|', $ua)) {
+        return array(
+            'content' => 'application/xhtml+xml',
+            'xhtml' => true,
+            'encoding' => 'UTF-8',
+            'ads' => 'google',
+        );
+    } elseif (preg_match('|^DoCoMo/1[.]0|', $ua)) {
+        return array(
+            'content' => 'text/html',
+            'xhtml' => false,
+            'encoding' => 'Shift_JIS',
+            'ads' => null,
+        );
     } else {
-        header('Content-Type: text/html; charset=UTF-8');
-        return array('xhtml' => true, 'encoding' => 'UTF-8', 'ads' => 'google');
+        return array(
+            'content' => 'text/html',
+            'xhtml' => true,
+            'encoding' => 'UTF-8',
+            'ads' => 'google',
+        );
     }
 }
 
-/**
-  * トップページの表示
-  */
-function print_top_html()
-{
-    $blog = new Blog();
-    $index = $blog->getIndex();
-    $ua = print_http_header();
-    $smarty = new MySmarty();
-    $smarty->assign(blogconfig());
-    $smarty->assign('ua', $ua);
-    $smarty->assign('index', $index);
-    $smarty->display('mobile_top_html.tpl');
-}
 
 /**
- * 月のエントリ一覧の表示
- * @param string    $month      年と月(YYYY-MM)
+ * 携帯電話向けのヘッダーを出力する。
+ * @package Blog
  */
-function print_month_html($month)
+class Blog_Action_MobileHeader implements Blog_Action
 {
-    $blog = new Blog();
-    $entries = $blog->getMonth($month);
-    $ua = print_http_header();
-    if ($entries->exists()) {
-        $smarty = new MySmarty();
-        $smarty->assign(blogconfig());
-        $smarty->assign('ua', $ua);
-        $smarty->assign('entries', $entries);
-        $smarty->display('mobile_month_html.tpl');
-    } else {
-        print_not_found_html($month);
+    /**
+     * 実行。
+     * @param Web_Context $context
+     *              $context->vars['ua'] に携帯電話の表示オプションを入れる。
+     */
+    public function execute(Web_Context $context)
+    {
+        $ua = $context->get('vars', 'ua');
+        $contentType = sprintf('%s; charset=%s',
+                               $ua['content'], $ua['encoding']);
+        $context->putHeader('Content-Type', $contentType);
+        if ($ua['encoding'] === 'Shift_JIS') {
+            $context->switchEncoding('sjis-win');
+        }
     }
 }
+
 
 /**
-  * エントリの表示
-  * @param int  $id     記事のID
-  */
-function print_entry_html($id)
+ * モバイル用の振り分けアクション。
+ * @package Blog
+ */
+class Blog_Action_MobileDispatch implements Blog_Action
 {
-    $blog = new Blog();
-    $entry = $blog->getEntry($id);
-    $ua = print_http_header();
-    if ($entry->exists()) {
-        $smarty = new MySmarty();
-        $smarty->assign(blogconfig());
-        $smarty->assign('ua', $ua);
-        $smarty->assign('entry', $entry);
-        $smarty->display('mobile_entry_html.tpl');
-    } else {
-        print_not_found_html($id);
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        $context->vars['mobile'] = true;
+        $context->vars['ua'] = getMobileAgentOptions($context);
+
+        $headerAction = new Blog_Action_MobileHeader();
+        $headerAction->execute($context);
+
+        $dispatchAction = new Blog_Action_Dispatch();
+        $dispatchAction->execute($context);
     }
 }
 
-?>
+
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_MobileDispatch(), $context);
+}

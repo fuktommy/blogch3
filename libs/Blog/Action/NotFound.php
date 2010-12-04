@@ -43,6 +43,7 @@ class Blog_Action_NotFound implements Blog_Action
         $context->putHeader('HTTP/1.0 404 Not Found');
         $smarty = $context->getSmarty();
         $smarty->assign($context->config);
+        $smarty->assign('ua', $context->get('vars', 'ua'));
         $smarty->assign('resource', $context->vars['resource']);
         $smarty->display('not_found_html.tpl');
     }

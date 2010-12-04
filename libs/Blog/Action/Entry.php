@@ -66,6 +66,12 @@ class Blog_Action_Entry implements Blog_Action
         $smarty->assign('entry', $entry);
         $smarty->assign('pathname', $entry->id);
         $smarty->assign('entry_html_mode', true);
-        $smarty->display('entry_html.tpl');
+
+        if ($context->get('vars', 'mobile')) {
+            $smarty->assign('ua', $context->get('vars', 'ua'));
+            $smarty->display('mobile_entry_html.tpl');
+        } else {
+            $smarty->display('entry_html.tpl');
+        }
     }
 }
