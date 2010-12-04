@@ -1,7 +1,7 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
 {assign var=permalink value=$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"}
-{assign var=title value=$entry->summary|mb_substr:0:30:"utf8"}
+{assign var=title value=$entry->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}
 
 <div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$title|escape}</a></h2>
 
