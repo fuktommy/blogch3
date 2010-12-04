@@ -6,8 +6,8 @@ cd "/srv/data/blog.fuktommy.com/buzz" || exit 1
 
 DATE=`date +%Y-%m-%d_%H-%M-%S`
 OUTFILE=$DATE.xml
-mget -O $OUTFILE http://buzz.googleapis.com/feeds/104787602969620799839/public/posted
+mget -O $OUTFILE https://www.googleapis.com/buzz/v1/activities/104787602969620799839/@public
 cp $OUTFILE 00atom.xml
 
 export TERM=dumb
-cat 00atom.xml | sudo -u apache php /srv/stage/blogch3/bin/update_category.php
+cat 00atom.xml | php /srv/stage/blogch3/bin/update_category.php
