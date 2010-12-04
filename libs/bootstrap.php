@@ -42,4 +42,4 @@ function myHandleError($errno, $errstr, $errfile, $errline)
     throw new RuntimeException("{$errstr} in {$errfile} on line {$errline}", $errno);
 }
 
-set_error_handler('myHandleError', E_ERROR | E_WARNING | E_PARSE);
+set_error_handler('myHandleError', E_ERROR | E_WARNING | E_PARSE | E_RECOVERABLE_ERROR);

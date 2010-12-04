@@ -44,9 +44,9 @@ class Blog_Month implements IteratorAggregate
     private $dataDir;
 
     /**
-     * @var array
+     * @var string
      */
-    private $months;
+    public $months;
 
     /**
      * @var array
@@ -61,7 +61,7 @@ class Blog_Month implements IteratorAggregate
     public function __construct(array $config, $month)
     {
         $this->dataDir = $config['data_dir'];
-        $this->month   = $month;
+        $this->month = $month;
         $this->entries = array();
     }
 

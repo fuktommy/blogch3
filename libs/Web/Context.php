@@ -68,6 +68,11 @@ class Web_Context
     public $server = array();
 
     /**
+     * @var array プログラム内で作ったデータの引き回し用
+     */
+    public $vars = array();
+
+    /**
      * コンストラクタ。
      */
     private function __construct()
@@ -115,9 +120,24 @@ class Web_Context
      * @param string $key
      * @param string $value
      */
-    public function putHeader($key, $value)
+    public function putHeader($key, $value = null)
     {
-        header("{$key}: {$value}");
+        if (is_null($value)) {
+            header($key);
+        } else {
+            header("{$key}: {$value}");
+        }
+    }
+
+    /**
+     * 出力エンコーディングを切り替える。
+     * @param string $encoding
+     */
+    public function switchEncoding($encoding)
+    {
+        mb_http_output($encoding);
+        mb_internal_encoding('UTF-8');
+        ob_start('mb_output_handler');
     }
 
     /**

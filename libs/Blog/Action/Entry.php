@@ -27,10 +27,45 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
+/**
+ * エントリの表示
+ * @package Blog
+ */
+class Blog_Action_Entry implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        // 記事のID
+        $id = $context->get('get', 'entry');
 
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Dispatch(), $context);
+        $blog = new Blog($context->config);
+        $entry = $blog->getEntry($id);
+
+        if (! $entry->exists()) {
+            $this->_printNotFound($context, $id);
+        } else {
+            $this->_printEntry($context, $entry);
+        }
+    }
+
+    private function _printNotFound(Web_Context $context, $id)
+    {
+        $context->vars['resource'] = $id;
+        $notFound = new Blog_Action_NotFound();
+        $notFound->execute($context);
+    }
+
+    private function _printEntry(Web_Context $context, $entry)
+    {
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('entry', $entry);
+        $smarty->assign('pathname', $entry->id);
+        $smarty->assign('entry_html_mode', true);
+        $smarty->display('entry_html.tpl');
+    }
 }

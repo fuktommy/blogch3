@@ -27,10 +27,26 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Dispatch(), $context);
+/**
+ * トップページの表示
+ * @package Blog
+ */
+class Blog_Action_Top implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        $blog = new Blog($context->config);
+        $entries = $blog->getRecentEntries();
+        $index = $blog->getIndex();
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('index', $index);
+        $smarty->assign('entries', $entries);
+        $smarty->assign('entry_html_mode', false);
+        $smarty->display('top_html.tpl');
+    }
 }

@@ -27,10 +27,23 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Dispatch(), $context);
+/**
+ * 404 Not Found を表示する
+ * @package Blog
+ */
+class Blog_Action_NotFound implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     *              $context->vars['resource'] に見つからなかったファイル名を入れる。
+     */
+    public function execute(Web_Context $context)
+    {
+        $context->putHeader('HTTP/1.0 404 Not Found');
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('resource', $context->vars['resource']);
+        $smarty->display('not_found_html.tpl');
+    }
 }

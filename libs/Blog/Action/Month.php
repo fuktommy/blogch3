@@ -27,10 +27,44 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
+/**
+ * 月のエントリ一覧の表示
+ * @package Blog
+ */
+class Blog_Action_Month implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        // 年と月(YYYY-MM)
+        $month = $context->get('get', 'month');
 
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Dispatch(), $context);
+        $blog = new Blog($context->config);
+        $entries = $blog->getMonth($month);
+
+        if (! $entries->exists()) {
+            $this->_printNotFound($context, $month);
+        } else {
+            $this->_printMonth($context, $entries);
+        }
+    }
+
+    private function _printNotFound(Web_Context $context, $month)
+    {
+        $context->vars['resource'] = $month;
+        $notFound = new Blog_Action_NotFound();
+        $notFound->execute($context);
+    }
+
+    private function _printMonth(Web_Context $context, $entries)
+    {
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('entries', $entries);
+        $smarty->assign('pathname', $entries->month);
+        $smarty->display('month_html.tpl');
+    }
 }

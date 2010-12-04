@@ -27,10 +27,25 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Dispatch(), $context);
+/**
+ * 振り分けアクション。
+ * @package Blog
+ */
+class Blog_Action_Dispatch implements Blog_Action
+{
+    /**
+     * 実行。
+     * @param Web_Context $context
+     */
+    public function execute(Web_Context $context)
+    {
+        if ($context->get('get', 'month')) {
+            $action = new Blog_Action_Month();
+        } elseif ($context->get('get', 'entry')) {
+            $action = new Blog_Action_Entry();
+        } else {
+            $action = new Blog_Action_Top();
+        }
+        $action->execute($context);
+    }
 }
