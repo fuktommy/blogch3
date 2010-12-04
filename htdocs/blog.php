@@ -2,7 +2,7 @@
 /* Blogch3.
  * とてもシンプルなブログツール。
  *
- * Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,9 +27,10 @@
  * SUCH DAMAGE.
  */
 
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
+
 require_once('MySmarty.class.php');
-require_once('Blog.class.php');
-require_once('blogconfig.php');
 
 if (array_key_exists('month', $_REQUEST)) {
     print_month_html($_REQUEST['month']);

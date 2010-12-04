@@ -1,7 +1,7 @@
 <?php
 /* ブログの1記事
  *
- * Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,28 +25,52 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-require_once('blogconfig.php');
 
-$config = blogconfig();
-
-class Entry
+/**
+ * ブログの1記事
+ * @package Blog
+ */
+class Blog_Entry
 {
     /**
+     * @var array
+     */
+    private $config;
+
+    /**
+     * @var string
+     */
+    private $dataDir;
+
+    /**
+     * @var int
+     */
+    public $id;
+
+    /**
+     * @var string
+     */
+    public $title;
+
+    /**
+     * @var string
+     */
+    public $body;
+
+    /**
      * コンストラクタ
+     * @param array     $config
      * @param int       $id     記事のID
      * @param string    $title  記事のタイトル(任意)
      * @param string    $body   記事の本文(任意)
      */
-    public function Entry($id, $title = '', $body = '')
+    public function __construct(array $config, $id, $title = '', $body = '')
     {
-        $this->config   = blogconfig();
-        $this->data_dir = $this->config['data_dir'];
+        $this->config = $config;
+        $this->dataDir = $config['data_dir'];
         $this->id    = $id;
         $this->title = $title;
         $this->body  = $body;
-        if (! ($title && $body)) {
-            $this->load();
-        }
     }
 
     /**
@@ -73,7 +97,7 @@ class Entry
      */
     protected function dirname()
     {
-        return sprintf('%s/%s', $this->data_dir, $this->month());
+        return sprintf('%s/%s', $this->dataDir, $this->month());
     }
 
     /**
@@ -90,11 +114,12 @@ class Entry
      */
     public function load()
     {
-        if ($this->exists()) {
-            $data = file($this->path());
-            $this->title = trim(array_shift($data));
-            $this->body  = trim(implode('', $data));
+        if (! $this->exists()) {
+            return;
         }
+        $data = file($this->path());
+        $this->title = trim(array_shift($data));
+        $this->body  = trim(implode('', $data));
     }
 
     /**
@@ -116,5 +141,3 @@ class Entry
         unlink($this->path());
     }
 }
-
-?>

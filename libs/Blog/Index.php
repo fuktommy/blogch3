@@ -50,7 +50,7 @@ class Blog_Index implements IteratorAggregate
 
     /**
      * コンストラクタ
-     * @param $config
+     * @param array $config
      */
     public function __construct(array $config)
     {
@@ -82,5 +82,3 @@ class Blog_Index implements IteratorAggregate
         rsort($this->months);
     }
 }
-
-?>

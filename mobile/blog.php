@@ -27,9 +27,8 @@
  */
 
 require_once 'bootstrap.php';
+require_once 'blogconfig.php';
 require_once('MySmarty.class.php');
-require_once('Blog.class.php');
-require_once('blogconfig.php');
 
 if (array_key_exists('month', $_REQUEST)) {
     print_month_html($_REQUEST['month']);

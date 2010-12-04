@@ -26,22 +26,43 @@
  * SUCH DAMAGE.
  */
 
-require_once('blogconfig.php');
 
-class Month implements IteratorAggregate
+/**
+ * 1ヶ月の記事一覧
+ * @package Blog
+ */
+class Blog_Month implements IteratorAggregate
 {
     /**
-     * コンストラクタ
-     * @param string    $month  年と月(YYYY-MM)
+     * @var array
      */
-    public function Month($month)
+    private $config;
+
+    /**
+     * @var string
+     */
+    private $dataDir;
+
+    /**
+     * @var array
+     */
+    private $months;
+
+    /**
+     * @var array
+     */
+    private $entries = array();
+
+    /**
+     * コンストラクタ
+     * @param array $config
+     * @param string $month  年と月(YYYY-MM)
+     */
+    public function __construct(array $config, $month)
     {
-        global $config;
-        $this->config   = $config;
-        $this->data_dir = $config['data_dir'];
+        $this->dataDir = $config['data_dir'];
         $this->month   = $month;
         $this->entries = array();
-        $this->load();
     }
 
     /**
@@ -68,7 +89,7 @@ class Month implements IteratorAggregate
      */
     protected function dirname()
     {
-        return sprintf('%s/%s', $this->data_dir, $this->month);
+        return sprintf('%s/%s', $this->dataDir, $this->month);
     }
 
     /**
@@ -101,7 +122,7 @@ class Month implements IteratorAggregate
             }
             fclose($f);
         }
-        usort($this->entries, array('Month', '_cmp_entries'));
+        usort($this->entries, array('Blog_Month', '_cmp_entries'));
     }
 
     /**
@@ -172,5 +193,3 @@ class Month implements IteratorAggregate
         }
     }
 }
-
-?>

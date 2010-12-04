@@ -115,7 +115,7 @@ class Web_Context
      * @param string $key
      * @param string $value
      */
-    public function printHeader($key, $value)
+    public function putHeader($key, $value)
     {
         header("{$key}: {$value}");
     }
