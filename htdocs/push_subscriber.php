@@ -26,19 +26,18 @@
  * SUCH DAMAGE.
  */
 
-require_once 'PuSHSubscriber.php';
+require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 require_once 'pushconfig.php';
-require_once 'Category/Updater.php';
 
 
-$pushConfig = array(
-    'hub.topic' => 'http://example.com/atom.xml',
-    'hub.secret' => 'this_is_dummy_secret_string',
-    'hub.verify_token' => 'this_is_dummy_onetime_token',
-    'allow_unsubscribe' => false,
-);
-$pushConfig = pushconfig();
+// Sample Config
+// $pushConfig = array(
+//     'hub.topic' => 'http://example.com/atom.xml',
+//     'hub.secret' => 'this_is_dummy_secret_string',
+//     'hub.verify_token' => 'this_is_dummy_onetime_token',
+//     'allow_unsubscribe' => false,
+// );
 
 
 function saveFeed($xml)
