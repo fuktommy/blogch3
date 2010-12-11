@@ -16,10 +16,14 @@
   <link rev="made" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
-  <link rel="stylesheet" type="text/css" href="/{$cssname}.css" media="screen,tv" />
+  <link rel="stylesheet" type="text/css" href="/{$cssname|default:"pc"}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/touch.css" media="screen and (max-width: 500px)" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
-  <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
+  {if $mobile_permalink}
+    <link rel="alternate" media="handheld" href="{$mobile_permalink|escape}" />
+  {else}
+    <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
+  {/if}
   <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy_buzz" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>

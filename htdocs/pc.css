@@ -2,7 +2,7 @@ body {
     background-color: #efefef;
 }
 
-h1 a, h2.entrytitle a, ul.feedback a {
+h1 a, h2.entrytitle a {
     text-decoration: none;
     color: #000;
 }
@@ -99,4 +99,37 @@ div.amazonitem, p.amazonitem {
 p.photo {
     clear: both;
     text-align: center;
+}
+
+/* for 2 columns */
+
+div#entries {
+    float: left;
+    width: 75%;
+    overflow-x: auto;
+}
+
+div#links {
+    float: right;
+    width: 20%;
+    padding: 0;
+}
+
+div#links h2 {
+    margin-bottom: 0;
+}
+
+div#links ul {
+    margin-top: 0;
+    margin-left: 0;
+    padding-left: 1em;
+}
+
+div#links li {
+    list-style: none;
+}
+
+p#footnavi {
+    margin-top: -1em;
+    text-align: right;
 }

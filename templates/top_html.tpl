@@ -1,8 +1,6 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
-{assign var="cssname" value="toppc"}
-{assign var="title" value="blog.fuktommy.com"}
-{include file="header.tpl"}
+{* Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>. *}
+{include file="header.tpl" title="blog.fuktommy.com"}
 <div id="entries">
 {foreach name="entries" from=$entries item="entry"}
 {include file="entry.tpl"}

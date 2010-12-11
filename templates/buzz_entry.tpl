@@ -38,7 +38,7 @@
 {/foreach}
 
 <ul class="feedback">
-    <li><a href="{$mirrorlink|escape}" title="オリジナル記事">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
+    <li><a href="{$mirrorlink|escape}">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
     <li><a href="http://www.google.com/buzz/post?url={$permalink|escape:"url"}" class="comments">コメントする</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
     <li><span class="hatenastar"><a href="{$permalink|escape}" style="display:none;">{$title|escape}</a></span></li>

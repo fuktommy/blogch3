@@ -1,6 +1,6 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>. *}
-{include file="header.tpl" title=$title cssname="toppc"}
+{include file="header.tpl" title=$title}
 <div id="entries">
 {foreach name="entries" from=$buzz->entry item="entry"}
     {include file="buzz_entry.tpl"}
