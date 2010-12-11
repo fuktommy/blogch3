@@ -1,5 +1,5 @@
 <?php
-/* Blog Category "All".
+/* バズ1記事表示。
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,70 +26,44 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category.php';
-require_once 'Category/Storage.php';
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
+
 
 /**
- * Blog Category "All".
+ * バズ1記事表示。
+ * @package Blog
  */
-class Category_All implements Category
+class Blog_Action_Buzz implements Blog_Action
 {
     /**
-     * @var Category_Storage
+     * 実行。
+     * @param Web_Context $context
      */
-    private $storage;
-
-    /**
-     * Constructor.
-     * @param PDOS $db
-     * @param SimpleXMLElement $root
-     * @throws PDOException
-     */
-    public function __construct(PDO $db, SimpleXMLElement $root)
+    public function execute(Web_Context $context)
     {
-        $this->storage = new Category_Storage('all', $db, $root);
-    }
+        $factory = new Category_Factory();
+        $category = $factory->getCategory($context->config['category']['all']);
 
-    /**
-     * Select entry by shortid.
-     * @param string $shortid
-     * @return array
-     */
-    public function getEntry($shortid)
-    {
-        return $this->storage->getEntry($shortid);
-    }
+        $pathinfo = $context->get('server', 'PATH_INFO', '/');
+        if (! preg_match('|^/([-_0-9A-Za-z]{22})$|', $pathinfo, $matches)) {
+            $context->putHeader('Location', '/');
+            return;
+        }
+        $id = $matches[1];
 
-    /**
-     * Select entries.
-     * @param int $offset
-     * @param int $length
-     * @return array
-     * @throws PDOException
-     */
-    public function select($offset, $length)
-    {
-        return $this->storage->select($offset, $length);
-    }
+        $buzz = new StdClass();
+        $buzz->entry = $category->getEntry($id);
 
-    /**
-     * The enrty is grouped in the category or not.
-     * @param SimpleXMLElement $entry
-     * @return bool
-     */
-    public function match(SimpleXMLElement $entry)
-    {
-        return true;
+        $smarty = $context->getSmarty();
+        $smarty->assign($context->config);
+        $smarty->assign('buzz', $buzz);
+        $smarty->display('buzz_entry_html.tpl');
     }
+}
 
-    /**
-     * Append the enrty to the category.
-     * @param SimpleXMLElement $entry
-     * @throws PDOException
-     * @throws UnexpectedValueException
-     */
-    public function append(SimpleXMLElement $entry)
-    {
-        return $this->storage->append($entry);
-    }
+
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_Buzz(), $context);
 }

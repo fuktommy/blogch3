@@ -51,6 +51,16 @@ class Category_Article implements Category
     }
 
     /**
+     * Select entry by shortid.
+     * @param string $shortid
+     * @return array
+     */
+    public function getEntry($shortid)
+    {
+        return $this->storage->getEntry($shortid);
+    }
+
+    /**
      * Select entries.
      * @param int $offset
      * @param int $length

@@ -32,6 +32,13 @@
 interface Category
 {
     /**
+     * Select entry by od.
+     * @param string $id
+     * @return array|Traversable
+     */
+    public function getEntry($id);
+
+    /**
      * Select entries.
      * @param int $offset
      * @param int $length
