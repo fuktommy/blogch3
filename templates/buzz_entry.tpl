@@ -1,9 +1,9 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
-{assign var=origlink value=$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"}
+{assign var=permalink value=$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"}
 {assign var=title value=$entry->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}
 {assign var=entry_id value=$entry->id|buzzid}
-{assign var=permalink value=$baseuri|cat:"buzz/"|cat:$entry_id}
+{assign var=mirrorlink value=$baseuri|cat:"buzz/"|cat:$entry_id}
 
 <div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$title|escape}</a></h2>
 
@@ -38,7 +38,7 @@
 {/foreach}
 
 <ul class="feedback">
-    <li><a href="{$origlink|escape}" title="オリジナル記事">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
+    <li><a href="{$mirrorlink|escape}" title="オリジナル記事">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
     <li><a href="http://www.google.com/buzz/post?url={$permalink|escape:"url"}" class="comments">コメントする</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
     <li><span class="hatenastar"><a href="{$permalink|escape}" style="display:none;">{$title|escape}</a></span></li>
