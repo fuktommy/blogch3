@@ -42,10 +42,13 @@ class Blog_Action_MobileBuzz implements Blog_Action
      */
     public function execute(Web_Context $context)
     {
+        $mobileUtls = new Blog_MobileUtils();
         $context->vars['mobile'] = true;
-        $context->vars['ua'] = array('xhtml' => true,
-                                     'encoding' => 'UTF-8',
-                                     'ads' => 'amazon');
+        $context->vars['ua'] = $mobileUtls->getMobileAgentOptions($context);
+        $context->vars['ua']['ads'] = 'amazon';
+
+        $headerAction = new Blog_Action_MobileHeader();
+        $headerAction->execute($context);
 
         $next = new Blog_Action_Buzz();
         $next->execute($context);

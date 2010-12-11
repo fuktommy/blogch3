@@ -6,6 +6,10 @@
 
 {include file="mobile_header.tpl" title=$title}
 
+{if ! $buzz->entry}
+    <p>記事がありません。</p>
+{/if}
+
 <div style="background-color:#aaf;"><h2><span style="font-size:medium;">{$title|escape}</span></h2></div>
 
 {$entry->content|formatBuzz}

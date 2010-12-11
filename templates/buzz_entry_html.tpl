@@ -8,6 +8,8 @@
 <div id="entries">
 {foreach name="entries" from=$buzz->entry item="entry"}
     {include file="buzz_entry.tpl"}
+{foreachelse}
+    <p>記事がありません。</p>
 {/foreach}
 </div>
 {include file="sidebar.tpl"}

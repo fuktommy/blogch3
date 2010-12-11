@@ -49,11 +49,16 @@ class Blog_Action_MobileIndex implements Blog_Action
         $buzz = new StdClass();
         $buzz->entry = $category->select($page * 30, 30);
 
+        $mobileUtls = new Blog_MobileUtils();
+        $context->vars['mobile'] = true;
+        $context->vars['ua'] = $mobileUtls->getMobileAgentOptions($context);
+
+        $headerAction = new Blog_Action_MobileHeader();
+        $headerAction->execute($context);
+
         $smarty = $context->getSmarty();
         $smarty->assign($context->config);
-        $smarty->assign('ua', array('xhtml' => true,
-                                    'encoding' => 'UTF-8',
-                                    'ads' => 'google'));
+        $smarty->assign('ua', $context->vars['ua']);
         $smarty->assign('buzz', $buzz);
         $smarty->assign('page', $page);
         $smarty->assign('title', $context->config['blogtitle']);

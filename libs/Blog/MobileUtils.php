@@ -1,5 +1,5 @@
 <?php
-/* モバイル版
+/* モバイル用便利関数。
  *
  * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,36 +26,41 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
-
-
 /**
- * モバイル用の振り分けアクション。
+ * モバイル用便利関数。
  * @package Blog
  */
-class Blog_Action_MobileDispatch implements Blog_Action
+class Blog_MobileUtils
 {
+
     /**
-     * 実行。
-     * @param Web_Context $context
+     * 携帯端末向けの表示オプションを作る
+     * @return array UserAgentの性質
      */
-    public function execute(Web_Context $context)
+    function getMobileAgentOptions(Web_Context $context)
     {
-        $mobileUtls = new Blog_MobileUtils();
-        $context->vars['mobile'] = true;
-        $context->vars['ua'] = $mobileUtls->getMobileAgentOptions($context);
-
-        $headerAction = new Blog_Action_MobileHeader();
-        $headerAction->execute($context);
-
-        $dispatchAction = new Blog_Action_Dispatch();
-        $dispatchAction->execute($context);
+        $ua = $context->get('server', 'HTTP_USER_AGENT');
+        if (preg_match('|^DoCoMo/2[.]0|', $ua)) {
+            return array(
+                'content' => 'application/xhtml+xml',
+                'xhtml' => true,
+                'encoding' => 'UTF-8',
+                'ads' => 'google',
+            );
+        } elseif (preg_match('|^DoCoMo/1[.]0|', $ua)) {
+            return array(
+                'content' => 'text/html',
+                'xhtml' => false,
+                'encoding' => 'Shift_JIS',
+                'ads' => null,
+            );
+        } else {
+            return array(
+                'content' => 'text/html',
+                'xhtml' => true,
+                'encoding' => 'UTF-8',
+                'ads' => 'google',
+            );
+        }
     }
-}
-
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_MobileDispatch(), $context);
 }

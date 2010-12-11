@@ -1,5 +1,5 @@
 <?php
-/* モバイル版
+/* 携帯電話向けのヘッダーを出力する。
  *
  * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,36 +26,25 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
-
-
 /**
- * モバイル用の振り分けアクション。
+ * 携帯電話向けのヘッダーを出力する。
  * @package Blog
  */
-class Blog_Action_MobileDispatch implements Blog_Action
+class Blog_Action_MobileHeader implements Blog_Action
 {
     /**
      * 実行。
      * @param Web_Context $context
+     *              $context->vars['ua'] に携帯電話の表示オプションを入れる。
      */
     public function execute(Web_Context $context)
     {
-        $mobileUtls = new Blog_MobileUtils();
-        $context->vars['mobile'] = true;
-        $context->vars['ua'] = $mobileUtls->getMobileAgentOptions($context);
-
-        $headerAction = new Blog_Action_MobileHeader();
-        $headerAction->execute($context);
-
-        $dispatchAction = new Blog_Action_Dispatch();
-        $dispatchAction->execute($context);
+        $ua = $context->get('vars', 'ua');
+        $contentType = sprintf('%s; charset=%s',
+                               $ua['content'], $ua['encoding']);
+        $context->putHeader('Content-Type', $contentType);
+        if ($ua['encoding'] === 'Shift_JIS') {
+            $context->switchEncoding('sjis-win');
+        }
     }
-}
-
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_MobileDispatch(), $context);
 }

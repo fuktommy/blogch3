@@ -52,6 +52,10 @@ class Blog_Action_Buzz implements Blog_Action
         $buzz = new StdClass();
         $buzz->entry = $category->getEntry($id);
 
+        if (! $buzz->entry) {
+            $context->putHeader('HTTP/1.0 404 Not Found');
+        }
+
         $smarty = $context->getSmarty();
         $smarty->assign($context->config);
         $smarty->assign('buzz', $buzz);
