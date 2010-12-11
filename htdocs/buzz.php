@@ -29,40 +29,6 @@
 require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 
-
-/**
- * バズ1記事表示。
- * @package Blog
- */
-class Blog_Action_Buzz implements Blog_Action
-{
-    /**
-     * 実行。
-     * @param Web_Context $context
-     */
-    public function execute(Web_Context $context)
-    {
-        $factory = new Category_Factory();
-        $category = $factory->getCategory($context->config['category']['all']);
-
-        $pathinfo = $context->get('server', 'PATH_INFO', '/');
-        if (! preg_match('|^/([-_0-9A-Za-z]{22})$|', $pathinfo, $matches)) {
-            $context->putHeader('Location', '/');
-            return;
-        }
-        $id = $matches[1];
-
-        $buzz = new StdClass();
-        $buzz->entry = $category->getEntry($id);
-
-        $smarty = $context->getSmarty();
-        $smarty->assign($context->config);
-        $smarty->assign('buzz', $buzz);
-        $smarty->display('buzz_entry_html.tpl');
-    }
-}
-
-
 $context = Web_Context::factory($config);
 if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
     Blog_Controller::factory()->run(new Blog_Action_Buzz(), $context);

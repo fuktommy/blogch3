@@ -7,6 +7,7 @@
 
     <Directory "/srv/www/mobile.fuktommy.com">
         AddCharset Shift_JIS .html
+	AddType text/xml .rdf
 
         Options Multiviews ExecCGI FollowSymLinks
         AllowOverride None
@@ -20,11 +21,10 @@
     </Directory>
 
     <Directory "/srv/www/mobile.fuktommy.com/blog">
-        Options -Multiviews
-        DirectoryIndex index.php
+        AddHandler php5-script .php
         RewriteEngine on
-        RewriteRule ^([0-9]{4}-[0-9]{2})$ /blog/?month=$1
-        RewriteRule ^([0-9]+)$ /blog/?entry=$1
+        RewriteRule ^([0-9]{4}-[0-9]{2})$ /blog/blog.php?month=$1
+        RewriteRule ^([0-9]+)$ /blog/blog.php?entry=$1
 
         php_value include_path "/usr/share/php:/srv/lib/php:/srv/lib/php/blog.fuktommy.com:/srv/lib/php/blog.fuktommy.com/buzz"
     </Directory>

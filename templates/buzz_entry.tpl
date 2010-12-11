@@ -16,7 +16,9 @@
 {/foreach}
 
 {* 画像 *}
-{assign var=media value=$entry->children($xmlns_media)}
+{if $entry}
+    {assign var=media value=$entry->children($xmlns_media)}
+{/if}
 {foreach from=$media->content item=m name=media}
     {assign var=content_attr value=$m->attributes()}
     {assign var=player_attr value=$m->player->attributes()}

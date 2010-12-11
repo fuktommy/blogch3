@@ -4,7 +4,19 @@
 {mobileAdsense}
 <ul>
 {foreach from=$buzz->entry item="entry"}
-    <li><a href="http://www.google.co.jp/gwt/x?source=wax&amp;ie=UTF-8&amp;oe=UTF-8&amp;u={$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"|escape:"url"}">{$entry->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}</a></li>
+    {assign var=entry_id value=$entry->id|buzzid}
+    <li><a href="{$mobileuri}buzz/{$entry_id|escape}">{$entry->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}</a></li>
 {/foreach}
 </ul>
+
+{if isset($page)}
+<ul>
+    {if $page > 0}
+        <li><a href="{$mobileuri}?page={$page-1|escape:"url"}" accesskey="*">
+        新しいページ (*)</a></li>
+    {/if}
+    <li><a href="{$mobileuri}?page={$page+1|escape:"url"}" accesskey="#">昔のページ (#)</a></li>
+</ul>
+{/if}
+
 {include file="mobile_footer.tpl"}

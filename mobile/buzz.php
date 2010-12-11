@@ -1,5 +1,5 @@
 <?php
-/* モバイル用Buzz整形表示。
+/* バズ1記事表示。
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -29,11 +29,12 @@
 require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 
+
 /**
- * モバイル用Buzz整形表示。
+ * バズ1記事表示。
  * @package Blog
  */
-class Blog_Action_MobileIndex implements Blog_Action
+class Blog_Action_MobileBuzz implements Blog_Action
 {
     /**
      * 実行。
@@ -41,28 +42,18 @@ class Blog_Action_MobileIndex implements Blog_Action
      */
     public function execute(Web_Context $context)
     {
-        $factory = new Category_Factory();
-        $category = $factory->getCategory($context->config['category']['all']);
+        $context->vars['mobile'] = true;
+        $context->vars['ua'] = array('xhtml' => true,
+                                     'encoding' => 'UTF-8',
+                                     'ads' => 'amazon');
 
-        $page = (int)$context->get('get', 'page');
-
-        $buzz = new StdClass();
-        $buzz->entry = $category->select($page * 30, 30);
-
-        $smarty = $context->getSmarty();
-        $smarty->assign($context->config);
-        $smarty->assign('ua', array('xhtml' => true,
-                                    'encoding' => 'UTF-8',
-                                    'ads' => 'google'));
-        $smarty->assign('buzz', $buzz);
-        $smarty->assign('page', $page);
-        $smarty->assign('title', $context->config['blogtitle']);
-        $smarty->display('mobile_buzz.tpl');
+        $next = new Blog_Action_Buzz();
+        $next->execute($context);
     }
 }
 
 
 $context = Web_Context::factory($config);
 if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_MobileIndex(), $context);
+    Blog_Controller::factory()->run(new Blog_Action_MobileBuzz(), $context);
 }
