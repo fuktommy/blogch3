@@ -16,27 +16,27 @@
 {/foreach}
 
 {* 画像 *}
-{if $entry}
-    {assign var=media value=$entry->children($xmlns_media)}
-{/if}
-{foreach from=$media->content item=m name=media}
-    {assign var=content_attr value=$m->attributes()}
-    {assign var=player_attr value=$m->player->attributes()}
-    {if $smarty.foreach.media.iteration == 1}
+{buzzImage entry=$entry var=images}
+{foreach from=$images item=img name=images}
+    {if $smarty.foreach.images.iteration == 1}
         <br />
     {/if}
-    {if ($content_attr.medium == "image") && ($content_attr.url == "")}
-        {strip}
-        <a href="{$player_attr.url|escape}">
-        {if $entry_html_mode}
-            {assign var=height value=$player_attr.height/$player_attr.width*256}
-            <img src="{$player_attr.url|escape}" alt="" width="256" height="{$height|escape}" />
-        {else}
-            【画像】
-        {/if}
-        </a>
-        {/strip}
+    {strip}
+    <a href="{$img.href|escape}">
+    {if $entry_html_mode}
+        {assign var=height value=$img.height/$img.width*256}
+        <img src="{$img.src|escape}" alt="" width="256" height="{$height|escape}" />
+    {else}
+        【画像】
     {/if}
+    </a>
+    {/strip}
+{/foreach}
+
+{* ブクマ先リンク *}
+{buzzLink entry=$entry var=links}
+{foreach from=$links item=link}
+    <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
 {/foreach}
 
 <ul class="feedback">

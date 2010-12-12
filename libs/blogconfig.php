@@ -56,8 +56,6 @@ $config = array(
             'path' => '/srv/data/blog.fuktommy.com/category/tanuki.db',
         ),
     ),
-
-    'xmlns_media' => 'http://search.yahoo.com/mrss/',
 );
 
 

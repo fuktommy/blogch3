@@ -7,7 +7,7 @@ function smarty_function_mobileAdsense($params, $smarty)
         include('googleMobileAdsense.php');
 
     } elseif ($ua['ads'] == 'amazon') {
-        // $files ¤Ë¥Ç¥£¥ì¥¯¥È¥êÆâ¤Î¥Õ¥¡¥¤¥ë°ìÍ÷¤òÀÑ¤à
+        // $files ã«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªå†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ã‚’ç©ã‚€
         $conf = blogconfig();
         $d = dir($conf['adsense_dir']);
         $files = array();
@@ -19,7 +19,7 @@ function smarty_function_mobileAdsense($params, $smarty)
         }
         $d->close();
 
-        // HTML¥³¡¼¥ÉÀ¸À®
+        // HTMLã‚³ãƒ¼ãƒ‰ç”Ÿæˆ
         $html = '';
         shuffle($files);
         foreach (array_slice($files, 0, 2) as $f) {
@@ -34,5 +34,3 @@ function smarty_function_mobileAdsense($params, $smarty)
         echo '</p>';
     }
 }
-
-?>
