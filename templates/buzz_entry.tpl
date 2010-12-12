@@ -19,13 +19,15 @@
 {buzzImage entry=$entry var=images}
 {foreach from=$images item=img name=images}
     {if $smarty.foreach.images.iteration == 1}
-        <br />
+        <br /><br />
     {/if}
     {strip}
     <a href="{$img.href|escape}">
     {if $entry_html_mode}
         {assign var=height value=$img.height/$img.width*256}
-        <img src="{$img.src|escape}" alt="" width="256" height="{$height|escape}" />
+        <img src="{$img.src|escape}" alt="" width="256" height="{$height|escape}" alt="" />
+    {elseif $img.preview}
+        <img src="{$img.preview.src|escape}" alt="" width="{$img.preview.width}" height="{$img.preview.height}" alt="" />
     {else}
         【画像】
     {/if}

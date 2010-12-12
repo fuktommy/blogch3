@@ -28,14 +28,16 @@
 
 function smarty_function_buzzImage($params, $smarty)
 {
-    try {
-        $entry = $params['entry'];
-        $varName = $params['var'];
-        $images = array();
+    $entry = $params['entry'];
+    $varName = $params['var'];
+    $images = array();
 
-        if (! is_callable(array($entry, 'xpath'))) {
-            return;
-        }
+    if (! is_callable(array($entry, 'xpath'))) {
+        return;
+    }
+
+    // 2010-11頃までの形式
+    try {
         $xpath = '//media:player[../@url=""][../@medium="image"]';
         foreach ($entry->xpath($xpath) as $player) {
             $images[] = array(
@@ -45,8 +47,43 @@ function smarty_function_buzzImage($params, $smarty)
                 'width' => $player['width'],
             );
         }
-
-        $smarty->assign($varName, $images);
     } catch (Exception $e) {
     }
+
+    // 2010-12頃からの形式
+    try {
+        foreach ($entry->xpath('//buzz:attachment') as $attach) {
+            $img = array();
+            foreach ($attach->link as $link) {
+                if ($link['rel'] == 'enclosure') {
+                    $media = $attach->link->attributes('media', true);
+                    $img['href'] = (string)$link['href'];
+                    $img['src'] = (string)$link['href'];
+                    $img['height'] = (int)$media['height'];
+                    $img['width'] = (int)$media['width'];
+                } elseif ($link['rel'] == 'alternate') {
+                    if ($link['href'] != '') {
+                        $img = array();
+                        break;
+                    }
+                } elseif ($link['rel'] == 'preview') {
+                    $img['preview'] = array(
+                        'src' => (string)$link['href'],
+                    );
+                    if (preg_match('/resize_h=(\d+)/', $link['href'], $matches)
+                        && isset($img['height']) && isset($img['width'])) {
+                        $img['preview']['height'] = $matches[1];
+                        $img['preview']['width']
+                            = intval($img['width'] * $matches[1] / $img['height']);
+                    }
+                }
+            }
+            if ($img) {
+                $images[] = $img;
+            }
+        }
+    } catch (Exception $e) {
+    }
+
+    $smarty->assign($varName, $images);
 }

@@ -24,9 +24,17 @@
 {buzzImage entry=$entry var=images}
 {foreach from=$images item=img name=images}
     {if $smarty.foreach.images.iteration == 1}
-        <br />
+        <br /><br />
     {/if}
-    <a href="{$img.href|escape}">【画像】</a>
+    {strip}
+    <a href="{$img.href|escape}">
+    {if $img.preview}
+        <img src="{$img.preview.src|escape}" alt="" width="{$img.preview.width}" height="{$img.preview.height}" alt="" /><br />
+    {else}
+        【画像】
+    {/if}
+    </a>
+    {/strip}
 {/foreach}
 
 {* ブクマ先リンク *}
