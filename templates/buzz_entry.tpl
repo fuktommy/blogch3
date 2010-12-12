@@ -41,6 +41,13 @@
     <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
 {/foreach}
 
+{* 住所 *}
+{buzzMap entry=$entry var=map}
+{if $map}
+    <p>{if $map.featureName}{$map.featureName}<br />{/if}
+    <a href="{$map.href|escape}">{$map.address|escape}</a></p>
+{/if}
+
 <ul class="feedback">
     <li><a href="{$mirrorlink|escape}">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
     <li><a href="http://www.google.com/buzz/post?url={$permalink|escape:"url"}" class="comments">コメントする</a></li>

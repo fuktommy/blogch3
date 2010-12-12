@@ -52,6 +52,13 @@ function smarty_function_buzzImage($params, $smarty)
 
     // 2010-12頃からの形式
     try {
+        $entry->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
+        foreach ($entry->xpath('//activity:service/atom:title') as $postFrom) {
+            if ($postFrom == 'Google Reader') {
+                return;
+            }
+        }
+
         foreach ($entry->xpath('//buzz:attachment') as $attach) {
             $img = array();
             foreach ($attach->link as $link) {
