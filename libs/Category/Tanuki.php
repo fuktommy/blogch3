@@ -26,52 +26,12 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category.php';
-require_once 'Category/Storage.php';
 
 /**
  * Blog Category "Tanuki".
  */
 class Category_Tanuki implements Category
 {
-    /**
-     * @var Category_Storage
-     */
-    private $storage;
-
-    /**
-     * Constructor.
-     * @param PDOS $db
-     * @param SimpleXMLElement $root
-     * @throws PDOException
-     */
-    public function __construct(PDO $db, SimpleXMLElement $root)
-    {
-        $this->storage = new Category_Storage('tanuki', $db, $root);
-    }
-
-    /**
-     * Select entry by shortid.
-     * @param string $shortid
-     * @return array
-     */
-    public function getEntry($shortid)
-    {
-        return $this->storage->getEntry($shortid);
-    }
-
-    /**
-     * Select entries.
-     * @param int $offset
-     * @param int $length
-     * @return array
-     * @throws PDOException
-     */
-    public function select($offset, $length)
-    {
-        return $this->storage->select($offset, $length);
-    }
-
     /**
      * The enrty is grouped in the category or not.
      * @param SimpleXMLElement $entry
@@ -81,16 +41,5 @@ class Category_Tanuki implements Category
     {
         return (bool)preg_match('/タヌキ|たぬき|狸|yosshisgarden/i',
                                 $entry->asXML());
-    }
-
-    /**
-     * Append the enrty to the category.
-     * @param SimpleXMLElement $entry
-     * @throws PDOException
-     * @throws UnexpectedValueException
-     */
-    public function append(SimpleXMLElement $entry)
-    {
-        return $this->storage->append($entry);
     }
 }

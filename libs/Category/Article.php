@@ -1,4 +1,4 @@
-<?php // -*- coding: utf-8 -*-
+<?php
 /* Blog Category "Long Article".
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
@@ -26,52 +26,12 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category.php';
-require_once 'Category/Storage.php';
 
 /**
  * Blog Category "Long Article".
  */
 class Category_Article implements Category
 {
-    /**
-     * @var Category_Storage
-     */
-    private $storage;
-
-    /**
-     * Constructor.
-     * @param PDOS $db
-     * @param SimpleXMLElement $root
-     * @throws PDOException
-     */
-    public function __construct(PDO $db, SimpleXMLElement $root)
-    {
-        $this->storage = new Category_Storage('article', $db, $root);
-    }
-
-    /**
-     * Select entry by shortid.
-     * @param string $shortid
-     * @return array
-     */
-    public function getEntry($shortid)
-    {
-        return $this->storage->getEntry($shortid);
-    }
-
-    /**
-     * Select entries.
-     * @param int $offset
-     * @param int $length
-     * @return array
-     * @throws PDOException
-     */
-    public function select($offset, $length)
-    {
-        return $this->storage->select($offset, $length);
-    }
-
     /**
      * The enrty is grouped in the category or not.
      * @param SimpleXMLElement $entry
@@ -83,16 +43,5 @@ class Category_Article implements Category
         $content = preg_replace('|<b>.*?</b>|', '', $content);
         $content = strip_tags($content);
         return mb_strlen($content, 'utf-8') >= 150;
-    }
-
-    /**
-     * Append the enrty to the category.
-     * @param SimpleXMLElement $entry
-     * @throws PDOException
-     * @throws UnexpectedValueException
-     */
-    public function append(SimpleXMLElement $entry)
-    {
-        return $this->storage->append($entry);
     }
 }

@@ -9,5 +9,11 @@ OUTFILE=$DATE.xml
 mget -O $OUTFILE https://www.googleapis.com/buzz/v1/activities/104787602969620799839/@public
 cp $OUTFILE 00atom.xml
 
+BATCH=/srv/stage/blogch3/bin/
 export TERM=dumb
-cat 00atom.xml | php /srv/stage/blogch3/bin/update_category.php
+cat 00atom.xml | php $BATCH/update_category.php
+
+php $BATCH/make_sitemap.php -b http://blog.fuktommy.com/buzz/ \
+    > /srv/www/blog.fuktommy.com/sitemap_buzz.txt
+php $BATCH/make_sitemap.php -b http://mobile.fuktommy.com/blog/buzz/ \
+    > /srv/www/mobile.fuktommy.com/sitemap_buzz.txt

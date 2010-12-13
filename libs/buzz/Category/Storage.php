@@ -175,6 +175,21 @@ class Category_Storage
     }
 
     /**
+     * Select all short ids.
+     * @return array
+     * @throws PDOException
+     */
+    public function getAllShortIds()
+    {
+        $state = $this->db->query(
+            "SELECT `shortid` FROM `{$this->table}`"
+            . " WHERE `visible` <> 0"
+        );
+        $state->setFetchMode(PDO::FETCH_COLUMN, 0);
+        return $state;
+    }
+
+    /**
      * Append the enrty to the category.
      * @param SimpleXMLElement $entry
      * @throws PDOException

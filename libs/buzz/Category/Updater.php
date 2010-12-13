@@ -42,8 +42,8 @@ class Category_Updater
     public function execute(array $config, SimpleXMLElement $xml)
     {
         $factory = new Category_Factory();
-        foreach ($config as $conf) {
-            $category = $factory->getCategory($conf, $xml);
+        foreach ($config as $name => $conf) {
+            $category = $factory->getCategory($name, $conf, $xml);
             foreach ($xml->entry as $entry) {
                 if ($category->match($entry)) {
                     $category->append($entry);

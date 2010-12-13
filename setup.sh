@@ -7,6 +7,7 @@ rsync -Cacv --delete \
     --exclude="- /atom.xml" \
     --exclude="- /rss.rdf" \
     --exclude="- /sitemap.txt" \
+    --exclude="- /sitemap_buzz.txt" \
     htdocs/ /srv/www/blog.fuktommy.com/
 
 rsync -Cacv --delete libs/ /srv/lib/php/blog.fuktommy.com/

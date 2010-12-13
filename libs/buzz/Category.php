@@ -32,31 +32,9 @@
 interface Category
 {
     /**
-     * Select entry by od.
-     * @param string $id
-     * @return array|Traversable
-     */
-    public function getEntry($id);
-
-    /**
-     * Select entries.
-     * @param int $offset
-     * @param int $length
-     * @return array|Traversable
-     */
-    public function select($offset, $length);
-
-    /**
      * The enrty is grouped in the category or not.
      * @param SimpleXMLElement $entry
      * @return bool
      */
     public function match(SimpleXMLElement $entry);
-
-    /**
-     * Append the enrty to the category.
-     * @param SimpleXMLElement $entry
-     * @return bool
-     */
-    public function append(SimpleXMLElement $entry);
 }

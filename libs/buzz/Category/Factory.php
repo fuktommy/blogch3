@@ -34,12 +34,13 @@ class Category_Factory
 {
     /**
      * Get category from configuration.
+     * @param string $name category name
      * @param array $config  $blogconfig['category']['foo']
      * @param SimpleXMLElement $xml
-     * @return Category
+     * @return Category_Container
      * @throws PDOException
      */
-    public function getCategory(array $config, SimpleXMLElement $xml = null)
+    public function getCategory($name, array $config, SimpleXMLElement $xml = null)
     {
         $class = 'Category_' . $config['class'];
 
@@ -50,6 +51,7 @@ class Category_Factory
             $xml = new SimpleXMLElement('<entry/>');
         }
 
-        return new $class($db, $xml);
+        return new Category_Container(new $class(),
+                                      new Category_Storage($name, $db, $xml));
     }
 }

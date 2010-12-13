@@ -1,5 +1,5 @@
 <?php
-/* カテゴリ「長文記事」
+/* Make sitemap.txt.
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,44 +26,16 @@
  * SUCH DAMAGE.
  */
 
+require_once dirname(__FILE__) . '/env.php';
 require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 
+$options = getopt('b:');
+$baseurl = $options['b'];
 
-/**
- * カテゴリ「長文記事」
- * @package Blog
- */
-class Blog_Action_Article implements Blog_Action
-{
-    /**
-     * 実行。
-     * @param Web_Context $context
-     */
-    public function execute(Web_Context $context)
-    {
-        $factory = new Category_Factory();
-        $category = $factory->getCategory('article',
-                                          $context->config['category']['article']);
+$factory = new Category_Factory();
+$category = $factory->getCategory('all', $config['category']['all']);
 
-        $page = (int)$context->get('get', 'page');
-
-        $buzz = new StdClass();
-        $buzz->entry = $category->select($page * 10, 10);
-
-        $smarty = $context->getSmarty();
-        $smarty->assign($context->config);
-        $smarty->assign('buzz', $buzz);
-        $smarty->assign('category_id', 'article');
-        $smarty->assign('category_name', '長文記事');
-        $smarty->assign('title', $context->config['blogtitle'] . ' / 長文記事');
-        $smarty->assign('page', $page);
-        $smarty->display('buzz_top.tpl');
-    }
-}
-
-
-$context = Web_Context::factory($config);
-if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Article(), $context);
+foreach ($category->getAllShortIds() as $id) {
+    printf("%s%s\n", $baseurl, urlencode($id));
 }

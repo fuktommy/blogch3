@@ -26,11 +26,7 @@
  * SUCH DAMAGE.
  */
 
-ini_set('include_path',
-        '/usr/share/php:/srv/lib/php'
-        . ':/srv/lib/php/blog.fuktommy.com'
-        . ':/srv/lib/php/blog.fuktommy.com/buzz');
-
+require_once dirname(__FILE__) . '/env.php';
 require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 
