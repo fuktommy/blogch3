@@ -31,6 +31,7 @@ function smarty_function_buzzImage($params, $smarty)
     $entry = $params['entry'];
     $varName = $params['var'];
     $images = array();
+    $smarty->assign($varName, $images);
 
     if (! is_callable(array($entry, 'xpath'))) {
         return;

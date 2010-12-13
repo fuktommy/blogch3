@@ -32,6 +32,7 @@ function smarty_function_buzzMap($params, $smarty)
         $entry = $params['entry'];
         $varName = $params['var'];
         $map = array();
+        $smarty->assign($varName, $map);
 
         if (! is_callable(array($entry, 'xpath'))) {
             return;

@@ -32,6 +32,7 @@ function smarty_function_buzzLink($params, $smarty)
         $entry = $params['entry'];
         $varName = $params['var'];
         $links = array();
+        $smarty->assign($varName, $links);
 
         if (! is_callable(array($entry, 'xpath'))) {
             return;
