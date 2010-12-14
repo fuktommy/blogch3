@@ -46,14 +46,17 @@ $config = array(
         'all' => array(
             'class' => 'All',
             'path' => '/srv/data/blog.fuktommy.com/category/all.db',
+            'table' => 'entries',
         ),
         'article' => array(
             'class' => 'Article',
             'path' => '/srv/data/blog.fuktommy.com/category/article.db',
+            'table' => 'entries',
         ),
         'tanuki' => array(
             'class' => 'Tanuki',
             'path' => '/srv/data/blog.fuktommy.com/category/tanuki.db',
+            'table' => 'entries',
         ),
     ),
 );

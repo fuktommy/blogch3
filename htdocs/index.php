@@ -43,7 +43,7 @@ class Blog_Action_Index implements Blog_Action
     public function execute(Web_Context $context)
     {
         $factory = new Category_Factory();
-        $category = $factory->getCategory('all', $context->config['category']['all']);
+        $category = $factory->getCategory($context->config['category']['all']);
 
         $page = (int)$context->get('get', 'page');
 
