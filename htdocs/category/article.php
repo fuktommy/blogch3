@@ -43,7 +43,7 @@ class Blog_Action_Article implements Blog_Action
     public function execute(Web_Context $context)
     {
         $factory = new Category_Factory();
-        $category = $factory->getCategory($context->config['category']['article']);
+        $category = $factory->getStorage($context->config['category']['article']);
 
         $page = (int)$context->get('get', 'page');
 

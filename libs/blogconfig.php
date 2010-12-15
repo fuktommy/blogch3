@@ -44,17 +44,17 @@ $config = array(
 
     'category' => array(
         'all' => array(
-            'class' => 'All',
+            'rule' => 'Category_Rule_All',
             'path' => '/srv/data/blog.fuktommy.com/category/all.db',
             'table' => 'entries',
         ),
         'article' => array(
-            'class' => 'Article',
+            'rule' => 'Category_Rule_Article',
             'path' => '/srv/data/blog.fuktommy.com/category/article.db',
             'table' => 'entries',
         ),
         'tanuki' => array(
-            'class' => 'Tanuki',
+            'rule' => 'Category_Rule_Tanuki',
             'path' => '/srv/data/blog.fuktommy.com/category/tanuki.db',
             'table' => 'entries',
         ),

@@ -1,5 +1,5 @@
-<?php // -*- coding: utf-8 -*-
-/* Blog Category "Tanuki".
+<?php
+/* Blog Category.
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,20 +26,15 @@
  * SUCH DAMAGE.
  */
 
-
 /**
- * Blog Category "Tanuki".
+ * Blog Category Definition.
  */
-class Category_Tanuki implements Category
+interface Category_Rule
 {
     /**
      * The enrty is grouped in the category or not.
      * @param SimpleXMLElement $entry
      * @return bool
      */
-    public function match(SimpleXMLElement $entry)
-    {
-        return (bool)preg_match('/タヌキ|たぬき|狸|yosshisgarden/i',
-                                $entry->asXML());
-    }
+    public function match(SimpleXMLElement $entry);
 }

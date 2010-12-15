@@ -34,7 +34,7 @@ $options = getopt('b:');
 $baseurl = $options['b'];
 
 $factory = new Category_Factory();
-$category = $factory->getCategory($config['category']['all']);
+$category = $factory->getStorage($config['category']['all']);
 
 foreach ($category->getAllShortIds() as $id) {
     printf("%s%s\n", $baseurl, urlencode($id));

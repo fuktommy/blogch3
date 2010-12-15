@@ -1,5 +1,5 @@
 <?php
-/* Blog Category.
+/* Blog Category "Long Article".
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,15 +26,22 @@
  * SUCH DAMAGE.
  */
 
+
 /**
- * Blog Category.
+ * Blog Category "Long Article".
  */
-interface Category
+class Category_Rule_Article implements Category_Rule
 {
     /**
      * The enrty is grouped in the category or not.
      * @param SimpleXMLElement $entry
      * @return bool
      */
-    public function match(SimpleXMLElement $entry);
+    public function match(SimpleXMLElement $entry)
+    {
+        $content = (string)$entry->content;
+        $content = preg_replace('|<b>.*?</b>|', '', $content);
+        $content = strip_tags($content);
+        return mb_strlen($content, 'utf-8') >= 150;
+    }
 }

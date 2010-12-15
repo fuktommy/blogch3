@@ -43,10 +43,11 @@ class Category_Updater
     {
         $factory = new Category_Factory();
         foreach ($config as $name => $conf) {
-            $category = $factory->getCategory($conf, $xml);
+            $rule = $factory->getRule($conf);
+            $storage = $factory->getStorage($conf, $xml);
             foreach ($xml->entry as $entry) {
-                if ($category->match($entry)) {
-                    $category->append($entry);
+                if ($rule->match($entry)) {
+                    $storage->append($entry);
                 }
             }
         }

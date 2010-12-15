@@ -1,5 +1,5 @@
 <?php
-/* Category Container.
+/* Blog Category "All".
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,58 +26,11 @@
  * SUCH DAMAGE.
  */
 
-require_once 'Category.php';
-require_once 'Category/Storage.php';
-
 /**
- * Category Container.
+ * Blog Category "All".
  */
-class Category_Container implements Category
+class Category_Rule_All implements Category_Rule
 {
-    /**
-     * @var Category
-     */
-    private $category;
-
-    /**
-     * @var Category_Storage
-     */
-    private $storage;
-
-    /**
-     * Constructor.
-     * @param PDOS $db
-     * @param SimpleXMLElement $root
-     * @throws PDOException
-     */
-    public function __construct(Category $category, Category_Storage $storage)
-    {
-        $this->category = $category;
-        $this->storage = $storage;
-    }
-
-    /**
-     * Select entry by shortid.
-     * @param string $shortid
-     * @return array|Traversable
-     */
-    public function getEntry($shortid)
-    {
-        return $this->storage->getEntry($shortid);
-    }
-
-    /**
-     * Select entries.
-     * @param int $offset
-     * @param int $length
-     * @return array|Traversable
-     * @throws PDOException
-     */
-    public function select($offset, $length)
-    {
-        return $this->storage->select($offset, $length);
-    }
-
     /**
      * The enrty is grouped in the category or not.
      * @param SimpleXMLElement $entry
@@ -85,27 +38,6 @@ class Category_Container implements Category
      */
     public function match(SimpleXMLElement $entry)
     {
-        return $this->category->match($entry);
-    }
-
-    /**
-     * Select all short ids.
-     * @return array|Traversable
-     * @throws PDOException
-     */
-    public function getAllShortIds()
-    {
-        return $this->storage->getAllShortIds();
-    }
-
-    /**
-     * Append the enrty to the category.
-     * @param SimpleXMLElement $entry
-     * @throws PDOException
-     * @throws UnexpectedValueException
-     */
-    public function append(SimpleXMLElement $entry)
-    {
-        return $this->storage->append($entry);
+        return true;
     }
 }

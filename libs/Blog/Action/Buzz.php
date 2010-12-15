@@ -40,7 +40,7 @@ class Blog_Action_Buzz implements Blog_Action
     public function execute(Web_Context $context)
     {
         $factory = new Category_Factory();
-        $category = $factory->getCategory($context->config['category']['all']);
+        $category = $factory->getStorage($context->config['category']['all']);
 
         $pathinfo = $context->get('server', 'PATH_INFO', '/');
         if (! preg_match('|^/([-_0-9A-Za-z]{22})$|', $pathinfo, $matches)) {

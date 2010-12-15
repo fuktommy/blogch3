@@ -42,7 +42,7 @@ class Blog_Action_Tanuki implements Blog_Action
     public function execute(Web_Context $context)
     {
         $factory = new Category_Factory();
-        $category = $factory->getCategory($context->config['category']['tanuki']);
+        $category = $factory->getStorage($context->config['category']['tanuki']);
 
         $page = (int)$context->get('get', 'page');
 

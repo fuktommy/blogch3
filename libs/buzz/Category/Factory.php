@@ -33,15 +33,26 @@
 class Category_Factory
 {
     /**
-     * Get category from configuration.
+     * Get category definition from configuration.
+     * @param array $config  $blogconfig['category']['foo']
+     * @return Category_Rule
+     * @throws PDOException
+     */
+    public function getRule(array $config)
+    {
+        $class = $config['rule'];
+        return new $class();
+    }
+
+    /**
+     * Get category storage from configuration.
      * @param array $config  $blogconfig['category']['foo']
      * @param SimpleXMLElement $xml
      * @return Category_Container
      * @throws PDOException
      */
-    public function getCategory(array $config, SimpleXMLElement $xml = null)
+    public function getStorage(array $config, SimpleXMLElement $xml = null)
     {
-        $class = 'Category_' . $config['class'];
         $table = $config['table'];
 
         $db = new PDO('sqlite:' . $config['path']);
@@ -51,7 +62,6 @@ class Category_Factory
             $xml = new SimpleXMLElement('<entry/>');
         }
 
-        return new Category_Container(new $class(),
-                                      new Category_Storage($table, $db, $xml));
+        return new Category_Storage($table, $db, $xml);
     }
 }
