@@ -31,7 +31,6 @@
         <img alt="" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1" />
       </div></form></li>
   <li><a href="http://mobile.fuktommy.com/"><img src="/mobileqrcode.gif" width="132" height="132" alt="for Mobile" title="for Mobile" /></a></li>
-  <li style="margin-bottom: 1ex;"><script type="text/javascript" src="http://pub.mybloglog.com/stats.php?mblID=2006121501312191&amp;width=180&amp;max_chars=20&amp;color_heading_bg=808080&amp;color_heading=FFFFFF&amp;color_link_bg=EFEFEF&amp;color_link=0000FF&amp;color_bottom_bg=EFEFEF"></script></li>
 </ul>
 
 {if $category_id == "tanuki"}

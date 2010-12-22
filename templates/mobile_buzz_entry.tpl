@@ -43,6 +43,13 @@
     <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
 {/foreach}
 
+{* 住所 *}
+{buzzMap entry=$entry var=map}
+{if $map}
+    <p>{if $map.featureName}{$map.featureName}<br />{/if}
+    <a href="{$map.href|escape}">{$map.address|escape}</a></p>
+{/if}
+
 <ul>
     <li>{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</li>
 </ul>
