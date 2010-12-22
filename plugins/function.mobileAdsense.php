@@ -24,7 +24,7 @@ function smarty_function_mobileAdsense($params, $smarty)
         shuffle($files);
         foreach (array_slice($files, 0, 2) as $f) {
             $buf = file_get_contents($f);
-            $buf = mb_convert_encoding($buf, 'UTF-8', 'EUC-JP');
+            $buf = mb_convert_encoding($buf, 'UTF-8', 'UTF-8,EUC-JP');
             $buf = str_replace('&amp;', '&', $buf);
             $buf = str_replace('&', '&amp;', $buf);
             $html .= $buf;
