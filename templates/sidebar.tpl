@@ -5,6 +5,7 @@
 <ul>
   <li><a href="{$baseuri}category/tanuki">タヌキ</a></li>
   <li><a href="{$baseuri}category/article">長文記事</a></li>
+  <li><a href="{$baseuri}category/photo">写真</a></li>
 </ul>
 <h2>リンク</h2>
 <ul>

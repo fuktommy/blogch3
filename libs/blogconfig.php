@@ -58,6 +58,11 @@ $config = array(
             'path' => '/srv/data/blog.fuktommy.com/category/tanuki.db',
             'table' => 'entries',
         ),
+        'photo' => array(
+            'rule' => 'Category_Rule_Photo',
+            'path' => '/srv/data/blog.fuktommy.com/category/photo.db',
+            'table' => 'entries',
+        ),
     ),
 );
 
