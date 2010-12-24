@@ -38,42 +38,22 @@ class Category_Rule_Photo implements Category_Rule
      */
     public function match(SimpleXMLElement $entry)
     {
-       // 2010-11頃までの形式
         try {
-            $xpath = '//media:player[../@url=""][../@medium="image"]';
-            foreach ($entry->xpath($xpath) as $player) {
-                if (strpos($entry->asXML(), $player->asXML()) !== false) {
-                    return true;
-                }
-            }
-        } catch (Exception $e) {
-        }
-
-        // 2010-12頃からの形式
-        try {
-            $entry->registerXPathNamespace('atom',
-                                           'http://www.w3.org/2005/Atom');
-            foreach ($entry->xpath('//activity:service/atom:title')
-                     as $from) {
-                if (($from == 'Google Reader')
-                    && (strpos($entry->asXML(), $from->asXML()) !== false)) {
+            $entry->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
+            foreach ($entry->xpath('.//activity:service/atom:title') as $postFrom) {
+                if ((string)$postFrom == 'Google Reader') {
                     return false;
                 }
             }
-            foreach ($entry->xpath('//buzz:attachment') as $attach) {
-                $ret = false;
+            foreach ($entry->xpath('.//buzz:attachment') as $attach) {
                 foreach ($attach->link as $link) {
-                    if (strpos($entry->asXML(), $link['href']->asXML()) === false) {
+                    if ((string)$link['rel'] != 'enclosure') {
                         continue;
-                    } elseif ($link['rel'] == 'enclosure') {
-                        $ret = true;
-                    } elseif (($link['rel'] == 'alternate') && ($link['href'] != '')) {
-                        $ret = false;
-                        break;
                     }
-                }
-                if ($ret) {
-                    return $ret;
+                    $host = parse_url($link['href'], PHP_URL_HOST);
+                    if (strpos($host, 'ggpht.com') !== false) {
+                        return true;
+                    }
                 }
             }
         } catch (Exception $e) {

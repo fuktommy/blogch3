@@ -38,13 +38,13 @@ function smarty_function_buzzMap($params, $smarty)
             return;
         }
 
-        foreach ($entry->xpath('//georss:point') as $point) {
+        foreach ($entry->xpath('.//georss:point') as $point) {
             list($map['lat'], $map['long']) = explode(' ', $point);
         }
-        foreach ($entry->xpath('//georss:featureName') as $featureName) {
+        foreach ($entry->xpath('.//georss:featureName') as $featureName) {
             $map['featureName'] = (string)$featureName;
         }
-        foreach ($entry->xpath('//poco:address/poco:formatted') as $address) {
+        foreach ($entry->xpath('.//poco:address/poco:formatted') as $address) {
             $map['address'] = (string)$address;
         }
         if (isset($map['lat']) && isset($map['long'])) {

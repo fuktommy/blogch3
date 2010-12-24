@@ -46,8 +46,8 @@
 {* 住所 *}
 {buzzMap entry=$entry var=map}
 {if $map}
-    <p>{if $map.featureName}{$map.featureName}<br />{/if}
-    <a href="{$map.href|escape}">{$map.address|escape}</a></p>
+   <p><a href="{$map.href|escape}">{$map.featureName|default:"地図"}</a><br />
+      {if $map.address}{$map.address|escape}{/if}</p>
 {/if}
 
 <ul>

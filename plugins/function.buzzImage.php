@@ -37,43 +37,29 @@ function smarty_function_buzzImage($params, $smarty)
         return;
     }
 
-    // 2010-11頃までの形式
-    try {
-        $xpath = '//media:player[../@url=""][../@medium="image"]';
-        foreach ($entry->xpath($xpath) as $player) {
-            $images[] = array(
-                'src' => $player['url'],
-                'href' => $player['url'],
-                'height' => $player['height'],
-                'width' => $player['width'],
-            );
-        }
-    } catch (Exception $e) {
-    }
-
-    // 2010-12頃からの形式
     try {
         $entry->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
-        foreach ($entry->xpath('//activity:service/atom:title') as $postFrom) {
+        foreach ($entry->xpath('.//activity:service/atom:title') as $postFrom) {
             if ($postFrom == 'Google Reader') {
                 return;
             }
         }
 
-        foreach ($entry->xpath('//buzz:attachment') as $attach) {
+        foreach ($entry->xpath('.//buzz:attachment') as $attach) {
             $img = array();
             foreach ($attach->link as $link) {
                 if ($link['rel'] == 'enclosure') {
-                    $media = $attach->link->attributes('media', true);
-                    $img['href'] = (string)$link['href'];
-                    $img['src'] = (string)$link['href'];
-                    $img['height'] = (int)$media['height'];
-                    $img['width'] = (int)$media['width'];
-                } elseif ($link['rel'] == 'alternate') {
-                    if ($link['href'] != '') {
+                    $host = parse_url($link['href'], PHP_URL_HOST);
+                    if ((strpos($host, 'ggpht.com') === false)
+                        && (strpos($host, 'images-amazon.com') === false)) {
                         $img = array();
                         break;
                     }
+                    $media = $attach->link->attributes('media', true);
+                    $img['href'] = (string)$link['href'];
+                    $img['src'] = (string)$link['href'];
+                    $img['height'] = isset($media['height']) ? (int)$media['height'] : '';
+                    $img['width'] = isset($media['width']) ? (int)$media['width'] : '';
                 } elseif ($link['rel'] == 'preview') {
                     $img['preview'] = array(
                         'src' => (string)$link['href'],
@@ -82,7 +68,7 @@ function smarty_function_buzzImage($params, $smarty)
                         && isset($img['height']) && isset($img['width'])) {
                         $img['preview']['height'] = $matches[1];
                         $img['preview']['width']
-                            = intval($img['width'] * $matches[1] / $img['height']);
+                            = $img['height'] ? intval($img['width'] * $matches[1] / $img['height']) : '';
                     }
                 }
             }

@@ -1,5 +1,9 @@
 <?php
-/* バズをwebから投稿したときのリンク先を読み込む。
+/* 全てのバズのフィードを取得する。
+ *
+ * usage: php get_all_buzz.php \
+ *          -d ~/tmp/buzzfeeds \
+ *          -f "https://www.googleapis.com/buzz/v1/activities/104787602969620799839/@public?alt=atom&max-results=100"
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -26,25 +30,36 @@
  * SUCH DAMAGE.
  */
 
-function smarty_function_buzzLink($params, $smarty)
-{
-    try {
-        $entry = $params['entry'];
-        $varName = $params['var'];
-        $links = array();
-        $smarty->assign($varName, $links);
+require_once dirname(__FILE__) . '/env.php';
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
 
-        if (! is_callable(array($entry, 'xpath'))) {
-            return;
-        }
-        foreach ($entry->xpath('.//buzz:attachment') as $attach) {
-            $links[] = array(
-                'title' => $attach->title,
-                'href' => $attach->link['href'],
-            );
-        }
+$httpOptions = array(
+    'header' => "User-Agent: Buzz-Reader/2010-12-25\r\n",
+    'timeout' => 60,
+);
 
-        $smarty->assign($varName, $links);
-    } catch (Exception $e) {
+$options = getopt('d:f:');
+$outputDir = $options['d'];
+$feedUrl = $options['f'];
+
+if (! is_dir($outputDir)) {
+    mkdir($outputDir, 0777, true);
+}
+
+$count = 0;
+while (true) {
+    printf("%4d %s\n", $count, $feedUrl);
+    $xml = file_get_contents(
+                $feedUrl, false,
+                stream_context_create(array('http' => $httpOptions)));
+    file_put_contents(sprintf('%s/atom%04d.xml', $outputDir, $count++), $xml);
+    $xmlobj = simplexml_load_string($xml);
+    $xmlobj->registerXPathNamespace('atom', 'http://www.w3.org/2005/Atom');
+    $next = $xmlobj->xpath('atom:link[@rel="next"]');
+    if (! $next) {
+        break;
     }
+    $feedUrl = (string)$next[0]['href'];
+    usleep(1.0 * 1000 * 1000);
 }

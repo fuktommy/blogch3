@@ -24,8 +24,14 @@
     {strip}
     <a href="{$img.href|escape}">
     {if $entry_html_mode}
-        {assign var=height value=$img.height/$img.width*256}
-        <img src="{$img.src|escape}" alt="" width="256" height="{$height|escape}" alt="" />
+        {if $img.width}
+            {assign var=width value=256}
+            {assign var=height value=$img.height/$img.width*256}
+        {else}
+            {assign var=width value=""}
+            {assign var=height value=""}
+        {/if}
+        <img src="{$img.src|escape}" alt="" width="{$width|escape}" height="{$height|escape}" alt="" />
     {elseif $img.preview}
         <img src="{$img.preview.src|escape}" alt="" width="{$img.preview.width}" height="{$img.preview.height}" alt="" />
     {else}
@@ -44,8 +50,8 @@
 {* 住所 *}
 {buzzMap entry=$entry var=map}
 {if $map}
-    <p>{if $map.featureName}{$map.featureName}<br />{/if}
-    <a href="{$map.href|escape}">{$map.address|escape}</a></p>
+   <p><a href="{$map.href|escape}">{$map.featureName|default:"地図"}</a><br />
+      {if $map.address}{$map.address|escape}{/if}</p>
 {/if}
 
 <ul class="feedback">
