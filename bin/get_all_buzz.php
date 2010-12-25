@@ -4,6 +4,7 @@
  * usage: php get_all_buzz.php \
  *          -d ~/tmp/buzzfeeds \
  *          -f "https://www.googleapis.com/buzz/v1/activities/104787602969620799839/@public?alt=atom&max-results=100"
+ *          [-e 2010-12-01]
  *
  * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
@@ -39,16 +40,18 @@ $httpOptions = array(
     'timeout' => 60,
 );
 
-$options = getopt('d:f:');
+$options = getopt('d:e:f:');
 $outputDir = $options['d'];
 $feedUrl = $options['f'];
+$endDate = isset($options['e']) ? $options['e'] : null;
 
 if (! is_dir($outputDir)) {
     mkdir($outputDir, 0777, true);
 }
 
 $count = 0;
-while (true) {
+$done = false;
+while (! $done) {
     printf("%4d %s\n", $count, $feedUrl);
     $xml = file_get_contents(
                 $feedUrl, false,
@@ -59,6 +62,14 @@ while (true) {
     $next = $xmlobj->xpath('atom:link[@rel="next"]');
     if (! $next) {
         break;
+    }
+    if ($endDate) {
+        foreach ($xmlobj->xpath('//atom:published') as $date) {
+            if ((string)$date < $endDate) {
+                $done = true;
+                break;
+            }
+        }
     }
     $feedUrl = (string)$next[0]['href'];
     usleep(1.0 * 1000 * 1000);
