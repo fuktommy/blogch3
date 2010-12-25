@@ -50,8 +50,11 @@ function smarty_function_buzzImage($params, $smarty)
             foreach ($attach->link as $link) {
                 if ($link['rel'] == 'enclosure') {
                     $host = parse_url($link['href'], PHP_URL_HOST);
-                    if ((strpos($host, 'ggpht.com') === false)
-                        && (strpos($host, 'images-amazon.com') === false)) {
+                    if (preg_match('/[.]images-amazon[.]com$/', $host)) {
+                        $img['is_amazon'] = true;
+                    } elseif (preg_match('/[.]ggpht[.]com$/', $host)) {
+                        $img['is_buzz'] = true;
+                    } else {
                         $img = array();
                         break;
                     }

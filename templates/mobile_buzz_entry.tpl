@@ -20,14 +20,24 @@
     {/if}
 {/foreach}
 
+{* ブクマ先リンク *}
+{buzzLink entry=$entry var=links}
+{foreach from=$links item=link}
+    <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
+{/foreach}
+
 {* 画像 *}
 {buzzImage entry=$entry var=images}
 {foreach from=$images item=img name=images}
     {if $smarty.foreach.images.iteration == 1}
-        <br /><br />
+        <br />
     {/if}
     {strip}
-    <a href="{$img.href|escape}">
+    {if $img.is_amazon && $link.href}
+        <a href="{$link.href|escape}">
+    {else}
+        <a href="{$img.href|escape}">
+    {/if}
     {if $img.preview}
         <img src="{$img.preview.src|escape}" alt="" width="{$img.preview.width}" height="{$img.preview.height}" alt="" /><br />
     {else}
@@ -35,12 +45,6 @@
     {/if}
     </a>
     {/strip}
-{/foreach}
-
-{* ブクマ先リンク *}
-{buzzLink entry=$entry var=links}
-{foreach from=$links item=link}
-    <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
 {/foreach}
 
 {* 住所 *}
