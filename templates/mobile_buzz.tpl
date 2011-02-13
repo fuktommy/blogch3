@@ -1,11 +1,11 @@
 {* -*- coding: UTF-8 -*- *}
-{* Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2010,2011 Satoshi Fukutomi <info@fuktommy.com>. *}
 {include file="mobile_header.tpl" title="blog.fuktommy.com"}
 {mobileAdsense}
 <ul>
 {foreach from=$buzz->entry item="entry"}
     {assign var=entry_id value=$entry->id|buzzid}
-    <li><a href="{$mobileuri}buzz/{$entry_id|escape}">{$entry->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}</a></li>
+    <li><a href="{$mobileuri}buzz/{$entry_id|escape}">{$entry->title}</a></li>
 {/foreach}
 </ul>
 

@@ -1,8 +1,7 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2010,2011 Satoshi Fukutomi <info@fuktommy.com>. *}
 {assign var=entry value=$buzz->entry[0]}
 {assign var=permalink value=$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"}
-{assign var=title value=$entry->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}
 
 {include file="mobile_header.tpl" title=$title}
 
@@ -10,7 +9,7 @@
     <p>記事がありません。</p>
 {/if}
 
-<div style="background-color:#aaf;"><h2><span style="font-size:medium;">{$title}</span></h2></div>
+<div style="background-color:#aaf;"><h2><span style="font-size:medium;">{$entry->title}</span></h2></div>
 
 {$entry->content|formatBuzz}
 
