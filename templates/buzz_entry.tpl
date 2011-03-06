@@ -1,6 +1,6 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2011 Satoshi Fukutomi <info@fuktommy.com>. *}
-{assign var=permalink value=$entry->link.href|replace:"/buzz/104787602969620799839/":"/buzz/fuktommy/"}
+{assign var=permalink value=$entry->link.href|buzzPermalink}
 {assign var=entry_id value=$entry->id|buzzid}
 {assign var=mirrorlink value=$baseuri|cat:"buzz/"|cat:$entry_id}
 
@@ -8,7 +8,7 @@
 
 {$entry->content|formatBuzz}
 
-{foreach from=$entry->lin1 item=link}
+{foreach from=$entry->link item=link}
     {if ($link.rel == "enclosure") && $link.title}
         <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
     {/if}
