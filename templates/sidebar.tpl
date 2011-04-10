@@ -10,7 +10,7 @@
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
-  <li><a href="http://www.google.com/profiles/fuktommy#buzz">Google バズ</a></li>
+  <li><a href="https://profiles.google.com/fuktommy/about">Google バズ</a></li>
   <li><a href="http://astore.amazon.co.jp/fuktommy-22">本</a></li>
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>

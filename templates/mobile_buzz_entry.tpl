@@ -3,7 +3,7 @@
 {assign var=entry value=$buzz->entry[0]}
 {assign var=permalink value=$entry->link.href|buzzPermalink}
 
-{include file="mobile_header.tpl" title=$title}
+{include file="mobile_header.tpl" title=$entry->title}
 
 {if ! $buzz->entry}
     <p>記事がありません。</p>

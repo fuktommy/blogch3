@@ -4,7 +4,7 @@
 {assign var=entry_id value=$entry->id|buzzid}
 {assign var=mirrorlink value=$baseuri|cat:"buzz/"|cat:$entry_id}
 
-<div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$entry->title}</a></h2>
+<div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$entry->title|strval|default:"(タイトルなし)"}</a></h2>
 
 {$entry->content|formatBuzz}
 
@@ -40,9 +40,9 @@
             {assign var=width value=""}
             {assign var=height value=""}
         {/if}
-        <img src="{$img.src|escape}" alt="" width="{$width|escape}" height="{$height|escape}" alt="" />
+        <img src="{$img.src|escape}" width="{$width|escape}" height="{$height|escape}" alt="" />
     {elseif $img.preview}
-        <img src="{$img.preview.src|escape}" alt="" width="{$img.preview.width}" height="{$img.preview.height}" alt="" />
+        <img src="{$img.preview.src|escape}" width="{$img.preview.width}" height="{$img.preview.height}" alt="" />
     {else}
         【画像】
     {/if}
@@ -59,7 +59,7 @@
 
 <ul class="feedback">
     <li><a href="{$mirrorlink|escape}">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
-    <li><a href="{$permalink|escape}" class="comments">コメントする</a></li>
+    <li><a href="{$permalink|escape}" class="comments">コメント</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
     <li><span class="hatenastar"><a href="{$permalink|escape}" style="display:none;">{$title|escape}</a></span></li>
 </ul>
