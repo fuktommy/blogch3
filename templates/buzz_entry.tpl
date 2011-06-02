@@ -62,6 +62,7 @@
     <li><a href="{$permalink|escape}" class="comments">コメント</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
     <li><span class="hatenastar"><a href="{$permalink|escape}" style="display:none;">{$title|escape}</a></span></li>
+    <li><g:plusone href="{$permalink|escape}"></g:plusone></li>
 </ul>
 
 {if $entry_html_mode}
