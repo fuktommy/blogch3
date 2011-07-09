@@ -41,6 +41,7 @@ class Category_Rule_Tanuki implements Category_Rule
     {
 	$pattern = '/タヌキ|たぬき|狸'
 		 . '|yosshisgarden|satoyamabe|kobajiro'
+		 . '|sikadeer'
 		 . '|sensorcamera|abe[.]gg-blog[.]com/';
         return (bool)preg_match($pattern, $entry->asXML());
     }

@@ -24,7 +24,7 @@
   {else}
     <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
   {/if}
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy_buzz" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>
 <body>

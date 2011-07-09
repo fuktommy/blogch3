@@ -10,7 +10,7 @@
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
-  <li><a href="https://profiles.google.com/fuktommy/about">Google バズ</a></li>
+  <li><a href="http://gplus.to/fuktommy">Google+</a></li>
   <li><a href="http://astore.amazon.co.jp/fuktommy-22">本</a></li>
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>
@@ -21,10 +21,10 @@
 <h2>つながり</h2>
 <ul>
   <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://www.google.com/buzz/fuktommy/&amp;scoring=d">このブログへのリンク</a></li>
-  <li><a href="http://feeds.feedburner.com/fuktommy_buzz">
+  <li><a href="http://feeds.feedburner.com/fuktommy">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
       Atom Feed</a></li>
-  <li><a href="http://fusion.google.com/add?feedurl=http://feeds.feedburner.com/fuktommy_buzz"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
+  <li><a href="http://fusion.google.com/add?feedurl=http://feeds.feedburner.com/fuktommy"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
   <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post"><div>
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="7210101" />

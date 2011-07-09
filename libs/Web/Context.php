@@ -152,7 +152,7 @@ class Web_Context
      */
     public function getSmarty()
     {
-        require_once 'Smarty/Smarty.class.php';
+        require_once 'Smarty.class.php';
         $smarty = new Smarty();
         $smarty->template_dir = $this->config['smarty_template_dir'];
         $smarty->plugins_dir += $this->config['smarty_plugins_dir'];

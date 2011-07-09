@@ -72,5 +72,5 @@ while (! $done) {
         }
     }
     $feedUrl = (string)$next[0]['href'];
-    usleep(1.0 * 1000 * 1000);
+    usleep(10.0 * 1000 * 1000);
 }
