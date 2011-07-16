@@ -29,13 +29,7 @@ if (location.hash.search('#e') == 0) {ldelim}
 <script type="text/javascript" src="http://track3.mybloglog.com/js/jsserv.php?mblID=2006121501312191"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAcT4JfTS5r4-x6NBUXA9gwhTJ_TUiYtYbdm5mHFlqmiw_P_Bz5RRyqafKMMt9dPebrS_lDDq5Joa14g"></script>
 <script type="text/javascript" src="/googlefeeds.js"></script>
-  <script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
-  <script type="text/javascript">
-    Hatena.Star.Token = '547d8e2840db975c26e678cd2c1eaf2d1becc25e';
-    Hatena.Star.EntryLoader.headerTagAndClassName = ['span', 'hatenastar'];
-  </script>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
 <script type="text/javascript">
 _uacct = "UA-61877-8";
 urchinTracker();

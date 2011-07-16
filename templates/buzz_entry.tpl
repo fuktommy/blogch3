@@ -6,7 +6,7 @@
 
 <div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$entry->title|strval|default:"(タイトルなし)"}</a></h2>
 
-{$entry->content|formatBuzz}
+{$entry->content|strval|default:$entry->summary|formatBuzz}
 
 {foreach from=$entry->link item=link}
     {if ($link.rel == "enclosure") && $link.title}
@@ -61,8 +61,7 @@
     <li><a href="{$mirrorlink|escape}">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
     <li><a href="{$permalink|escape}" class="comments">コメント</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
-    <li><span class="hatenastar"><a href="{$permalink|escape}" style="display:none;">{$title|escape}</a></span></li>
-    <li><g:plusone href="{$permalink|escape}"></g:plusone></li>
+    <li><g:plusone href="{$permalink|escape}" size="small"></g:plusone></li>
 </ul>
 
 {if $entry_html_mode}

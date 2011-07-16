@@ -11,8 +11,7 @@
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}
 <li>[[<a href="http://bbs.shingetsu.info/" id="shingetsu_link">新月</a>]]</li>
 {/if}
-<li><span class="hatenastar"><a href="{$baseuri|escape}{$entry->id|escape}" style="display:none;">{$entry->title|escape}</a></span></li>
-<li><g:plusone href="{$baseuri|escape}{$entry->id|escape}"></g:plusone></li>
+<li><g:plusone href="{$baseuri|escape}{$entry->id|escape}" size="small"></g:plusone></li>
 </ul>
 <script type="text/javascript" src="http://bbs.shingetsu.info/suggest.js"></script>
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}
