@@ -96,7 +96,8 @@ class Web_Context
         $instance->post = $_POST;
         $instance->cookie = $_COOKIE;
         $instance->request = $_REQUEST;
-        $instance->header = getallheaders();
+        $instance->header = is_callable('getallheaders')
+                          ? getallheaders() : array();
         $instance->server = $_SERVER;
         $instance->files = $_FILES;
         return $instance;

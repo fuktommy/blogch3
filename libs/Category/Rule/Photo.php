@@ -51,7 +51,10 @@ class Category_Rule_Photo implements Category_Rule
                         continue;
                     }
                     $host = parse_url($link['href'], PHP_URL_HOST);
-                    if (strpos($host, 'ggpht.com') !== false) {
+                    if (strpos($host, '.ggpht.com') !== false) {
+                        return true;
+                    }
+                    if (strpos($host, '.googleusercontent.com') !== false) {
                         return true;
                     }
                 }
