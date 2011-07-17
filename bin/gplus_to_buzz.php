@@ -110,7 +110,7 @@ foreach ($xml->xpath('//xhtml:div[@class="permalink"]/xhtml:a') as $e) {
     $entry['link'] = (string)$e['href'];
 }
 foreach ($xml->xpath('//xhtml:div[@class="entry-content"]') as $e) {
-    $entry['content'] = (string)$e;
+    $entry['content'] = $e->asXml();
 }
 foreach ($xml->xpath('//xhtml:span[@class="id"]') as $e) {
     $entry['id'] = 'tag:google.com,2011:plus:' . (string)$e;
