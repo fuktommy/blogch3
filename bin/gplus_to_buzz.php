@@ -29,8 +29,6 @@ require_once dirname(__FILE__) . '/env.php';
 require_once 'bootstrap.php';
 require_once 'blogconfig.php';
 
-set_error_handler('myHandleError', E_ERROR | E_PARSE | E_RECOVERABLE_ERROR);
-
 
 /**
  * リンク情報
@@ -94,8 +92,31 @@ function getImages(SimpleXMLElement $xml)
 }
 
 
-$rawxml = file_get_contents('php://stdin');
-$xml = @simplexml_load_string($rawxml);
+/**
+ * 何もしない
+ */
+function myNop()
+{
+}
+
+
+/**
+ * ファイルからXMLを読み込む。
+ * XMLの警告を無視する。
+ * @param string $file
+ * @return SimpleXMLElement
+ */
+function mySimpleXmlLoadFile($file)
+{
+    $rawxml = file_get_contents($file);
+    set_error_handler('myNop', E_WARNING);
+    $xml = simplexml_load_string($rawxml);
+    set_error_handler('myHandleError', E_WARNING);
+    return $xml;
+}
+
+
+$xml = mySimpleXmlLoadFile('php://stdin');
 $xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
 $entry = array();
 
