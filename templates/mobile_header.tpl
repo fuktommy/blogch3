@@ -16,8 +16,8 @@
   }
   ]]></style>
   {/literal}
-  {if $entry}
-    <link rel="canonical" href="{$baseuri|escape}buzz/{$entry->id|buzzid|escape}" />
+  {if $permalink}
+    <link rel="canonical" href="{$permalink|escape}" />
   {/if}
 </head>
 <body style="background-color:#efefef;">

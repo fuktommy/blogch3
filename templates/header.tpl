@@ -24,6 +24,9 @@
   {else}
     <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
   {/if}
+  {if $permalink}
+    <link rel="canonical" href="{$permalink|escape}" />
+  {/if}
   <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy" />
   <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
 </head>
