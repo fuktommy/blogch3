@@ -1,7 +1,7 @@
 <?php
 /* Blog Category Storage.
  *
- * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2010,2011 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -126,6 +126,28 @@ class Category_Storage
         }
         $header .= '>';
         return $header;
+    }
+
+    /**
+     * Select entry by id(longid).
+     * @param string $id
+     * @return array
+     * @throws PDOException
+     */
+    public function getEntryById($id)
+    {
+        $state = $this->db->prepare(
+            "SELECT `body` FROM `{$this->table}`"
+            . " WHERE `id` = :id AND `visible` <> 0"
+        );
+        $state->execute(array('id' => $id));
+        $state->setFetchMode(PDO::FETCH_ASSOC);
+        $ret = array();
+        foreach ($state as $row) {
+            $tmp = simplexml_load_string($row['body']);
+            $ret[] = $tmp->entry;
+        }
+        return $ret;
     }
 
     /**

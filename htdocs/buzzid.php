@@ -1,7 +1,7 @@
 <?php
-/* バズ1記事表示。
+/* バズの誤ったURL指定に対応する。
  *
- * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2011 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,12 +26,15 @@
  * SUCH DAMAGE.
  */
 
+require_once 'bootstrap.php';
+require_once 'blogconfig.php';
+
 
 /**
- * バズ1記事表示。
+/* バズの誤ったURL指定に対応する。
  * @package Blog
  */
-class Blog_Action_Buzz implements Blog_Action
+class Blog_Action_BuzzId implements Blog_Action
 {
     /**
      * 実行。
@@ -42,15 +45,18 @@ class Blog_Action_Buzz implements Blog_Action
         $factory = new Category_Factory();
         $category = $factory->getStorage($context->config['category']['all']);
 
-        $pathinfo = $context->get('server', 'PATH_INFO', '/');
-        if (! preg_match('|^/([-_0-9A-Za-z]{22})$|', $pathinfo, $matches)) {
+        $id = $context->get('get', 'id');
+        if (! preg_match('|^tag:google.com,\d+|', $id)) {
             $context->putHeader('HTTP/1.0 404 Not Found');
             return;
         }
-        $id = $matches[1];
 
         $buzz = new StdClass();
-        $buzz->entry = $category->getEntry($id);
+        $buzz->entry = $category->getEntryById($id);
+
+        if (! $buzz->entry) {
+            $context->putHeader('HTTP/1.0 404 Not Found');
+        }
 
         if (! $buzz->entry) {
             $context->putHeader('HTTP/1.0 404 Not Found');
@@ -59,12 +65,11 @@ class Blog_Action_Buzz implements Blog_Action
         $smarty = $context->getSmarty();
         $smarty->assign($context->config);
         $smarty->assign('buzz', $buzz);
-
-        if ($context->get('vars', 'mobile')) {
-            $smarty->assign('ua', $context->get('vars', 'ua'));
-            $smarty->display('mobile_buzz_entry.tpl');
-        } else {
-            $smarty->display('buzz_entry_html.tpl');
-        }
+        $smarty->display('buzz_entry_html.tpl');
     }
+}
+
+$context = Web_Context::factory($config);
+if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
+    Blog_Controller::factory()->run(new Blog_Action_BuzzId(), $context);
 }
