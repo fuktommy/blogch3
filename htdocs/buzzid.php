@@ -52,11 +52,7 @@ class Blog_Action_BuzzId implements Blog_Action
         }
 
         $buzz = new StdClass();
-        $buzz->entry = $category->getEntryById($id);
-
-        if (! $buzz->entry) {
-            $context->putHeader('HTTP/1.0 404 Not Found');
-        }
+        $buzz->entry = $this->_getEntryById($category, $id);
 
         if (! $buzz->entry) {
             $context->putHeader('HTTP/1.0 404 Not Found');
@@ -66,6 +62,17 @@ class Blog_Action_BuzzId implements Blog_Action
         $smarty->assign($context->config);
         $smarty->assign('buzz', $buzz);
         $smarty->display('buzz_entry_html.tpl');
+    }
+
+    private function _getEntryById(Category_Storage $category, $id)
+    {
+        $entry = $category->getEntryById($id);
+        if ($entry) {
+            return $entry;
+        }
+
+        $id2 = str_replace('tag:google.com,2009:buzz', 'tag:google.com,2010:buzz', $id);
+        return $category->getEntryById($id2);
     }
 }
 

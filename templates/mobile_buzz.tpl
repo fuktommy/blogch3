@@ -5,7 +5,7 @@
 <ul>
 {foreach from=$buzz->entry item="entry"}
     {assign var=entry_id value=$entry->id|buzzid}
-    <li><a href="{$mobileuri}buzz/{$entry_id|escape}">{$entry->title|strval|default:"(タイトルなし)"}</a></li>
+    <li><a href="{$mobileuri}buzz/{$entry_id|escape}">{$entry|buzzTitle|default:"(タイトルなし)"}</a></li>
 {/foreach}
 </ul>
 

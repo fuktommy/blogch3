@@ -4,7 +4,7 @@
 {assign var=entry_id value=$entry->id|buzzid}
 {assign var=mirrorlink value=$baseuri|cat:"buzz/"|cat:$entry_id}
 
-<div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$entry->title|strval|default:"(タイトルなし)"}</a></h2>
+<div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$entry|buzzTitle|default:"(タイトルなし)"}</a></h2>
 
 {$entry->content|strval|default:$entry->summary|formatBuzz}
 

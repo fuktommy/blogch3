@@ -3,13 +3,13 @@
 {assign var=entry value=$buzz->entry[0]}
 {assign var=permalink value=$entry->link.href|buzzPermalink}
 
-{include file="mobile_header.tpl" title=$entry->title}
+{include file="mobile_header.tpl" title=$entry|buzzTitle}
 
 {if ! $buzz->entry}
     <p>記事がありません。</p>
 {/if}
 
-<div style="background-color:#aaf;"><h2><span style="font-size:medium;">{$entry->title}</span></h2></div>
+<div style="background-color:#aaf;"><h2><span style="font-size:medium;">{$entry|buzzTitle}</span></h2></div>
 
 {$entry->content|formatBuzz}
 

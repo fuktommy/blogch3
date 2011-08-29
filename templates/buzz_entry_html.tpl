@@ -1,6 +1,6 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>. *}
-{assign var=title value=$buzz->entry[0]->content|formatBuzz|strip_tags|mb_substr:0:30:"utf8"}
+{assign var=title value=$buzz->entry[0]|buzzTitle}
 {assign var=entry_id value=$buzz->entry[0]->id|buzzid}
 {assign var=permalink value=$buzz->entry[0]->link.href|buzzPermalink}
 {assign var=mobile_permalink value="`$mobileuri`buzz/`$entry_id`"}
