@@ -4,6 +4,7 @@
 
 setlocale(LC_ALL, 'en_US.UTF-8');
 date_default_timezone_set('Asia/Tokyo');
+ini_set('user_agent', 'User-Agent: http://fuktommy.com/'); 
 
 /**
  * 設定。
@@ -21,6 +22,7 @@ $config = array(
 
     'upload_dir'     => '/srv/www/blog.fuktommy.com/img',
     'adsense_dir'    => '/srv/saku/mobileads',
+    'log_dir'        => '/var/local/log/blog',
 
     'blogtitle'      => 'blog.fuktommy.com',
     'rss_path'       => '/srv/www/blog.fuktommy.com/rss.rdf',
@@ -36,6 +38,8 @@ $config = array(
     'buzz_atom_path' => '/srv/data/blog.fuktommy.com/buzz/00atom.xml',
 
     'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
+
+    'gplus_cache_dir' => '/var/local/cache/gplusfeed',
 
     'smarty_template_dir' => '/srv/templates/blog.fuktommy.com',
     'smarty_plugins_dir' => array('/srv/lib/php/plugins'),

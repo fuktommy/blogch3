@@ -161,4 +161,15 @@ class Web_Context
         $smarty->cache_dir = $this->config['smarty_cache_dir'];
         return $smarty;
     }
+
+    /**
+     * ログのファクトリ。
+     * @param string $ident
+     * @return Log
+     */
+    public function getLog($ident = '')
+    {
+        $logfile = $this->config['log_dir'] . strftime('/debug.%Y%m%d.log');
+        return Log::singleton('file', $logfile, $ident);
+    }
 }
