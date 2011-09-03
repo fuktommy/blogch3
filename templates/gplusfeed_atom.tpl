@@ -11,20 +11,15 @@
   <generator>GooglePlusFeedMaker</generator>
   <id>tag:fuktommy.com,2011:google/plusfeed</id>
   <author><name>{$feed[1][0][0][3]|escape}</name></author>
+  <icon>https://ssl.gstatic.com/s2/oz/images/favicon.ico</icon>
 {foreach from=$feed[1][0] item="entry"}
   <entry>
-    <title>{$entry[4]|default:$entry[11][0][3]|strip_tags|mb_substr:0:90:"utf-8"|default:"untitled"|escape}</title>
+    <title>{$entry[47]|default:$entry[4]|default:$entry[11][0][3]|strip_tags|mb_substr:0:90:"utf-8"|default:"untitled"}</title>
     <link rel="alternate" href="https://plus.google.com/{$entry[21]|escape}"/>
-    {if $entry[4]}<summary type="text">{$entry[47]|default:$entry[4]|strip_tags|escape}</summary>{/if}
+    {if $entry[4]}<summary type="text">{$entry[47]|default:$entry[4]|strip_tags}</summary>{/if}
     <content type="html"><![CDATA[
-        {$entry[47]|default:$entry[4]}
-        {foreach from=$entry[11] item="link"}
-            <br /><a href="{$link[24][1]|escape}">{$link[3]|escape}</a>
-            <blockquote cite="{$link[24][1]|escape}"><div>{$link[21]}</div></blockquote>
-        {/foreach}
-        {if $entry[27]}
-            <br /><a href="{$entry[27][9]|default:$entry[27][8]|escape}">{$entry[27][2]|default:$entry[27][3]|escape}</a>
-        {/if}
+        {include assign="content" file="gplusfeed_atom_content.tpl" entry=$entry}
+        {$content|replace:"]]>":""}
     ]]></content>
     <published>{$entry[5]|substr:0:-3|date_format:"%Y-%m-%dT%H:%M:%S"}{$w3ctimezone}</published>
     <updated>{$entry[5]|substr:0:-3|date_format:"%Y-%m-%dT%H:%M:%S"}{$w3ctimezone}</updated>

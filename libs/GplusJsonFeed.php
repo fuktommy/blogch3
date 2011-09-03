@@ -68,7 +68,7 @@ class GplusJsonFeed
      */
     public function getFeed($userId, $length = 30)
     {
-        if (! is_numeric($userId)) {
+        if (! preg_match('/^\d+$/D', $userId)) {
             throw new RuntimeException("{$userId} is not numeric");
         }
         $json = $this->_getJsonUsingCache($userId, $length);
@@ -88,12 +88,33 @@ class GplusJsonFeed
         if ($readFromCache) {
             return file_get_contents($cacheFile);
         }
+
+        $lock = fopen("{$this->_cacheDir}/lock", 'w');
+        $lockSuccess = flock($lock, LOCK_EX|LOCK_NB);
+        if ($lockSuccess) {
+            // go next
+        } elseif (is_file($cacheFile)) {
+            fclose($lock);
+            $this->_log->warning("lock failed for {$userId}");
+            return file_get_contents($cacheFile);
+        } else {
+            fclose($lock);
+            $this->_log->warning("lock failed for {$userId} and not cached");
+            return '';
+        }
+
+        touch($cacheFile);
         $jsonUrl = sprintf('https://plus.google.com/_/stream/getactivities/'
                            . '?sp=[1,2,"%s",null,null,%d,null,"social.google.com",[]]',
                            $userId, $length);
         $this->_log->info("accessing {$jsonUrl}");
-        $json = file_get_contents($jsonUrl);
+        $json = @file_get_contents($jsonUrl);
+        if (empty($json)) {
+            $this->_log->warning("empty {$jsonUrl}");
+        }
         file_put_contents($cacheFile, $json);
+        flock($lock, LOCK_UN);
+        fclose($lock);
         return $json;
     }
 }
