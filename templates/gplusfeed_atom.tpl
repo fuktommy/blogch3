@@ -13,12 +13,12 @@
   <author><name>{$feed[1][0][0][3]|escape}</name></author>
   <icon>https://ssl.gstatic.com/s2/oz/images/favicon.ico</icon>
 {foreach from=$feed[1][0] item="entry"}
+  {include assign="content" file="gplusfeed_atom_content.tpl" entry=$entry}
   <entry>
-    <title>{$entry[47]|default:$entry[4]|default:$entry[11][0][3]|strip_tags|mb_substr:0:90:"utf-8"|default:"untitled"}</title>
+    <title>{$content|strip_tags|regex_replace:'/\s+/':' '|mb_substr:0:90:"utf-8"|default:"untitled"}</title>
     <link rel="alternate" href="https://plus.google.com/{$entry[21]|escape}"/>
-    {if $entry[4]}<summary type="text">{$entry[47]|default:$entry[4]|strip_tags}</summary>{/if}
+    <summary type="text">{$content|strip_tags|regex_replace:'/\s+/':' '}</summary>
     <content type="html"><![CDATA[
-        {include assign="content" file="gplusfeed_atom_content.tpl" entry=$entry}
         {$content|replace:"]]>":""}
     ]]></content>
     <published>{$entry[5]|substr:0:-3|date_format:"%Y-%m-%dT%H:%M:%S"}{$w3ctimezone}</published>
