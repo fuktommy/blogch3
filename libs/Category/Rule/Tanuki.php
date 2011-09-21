@@ -39,10 +39,10 @@ class Category_Rule_Tanuki implements Category_Rule
      */
     public function match(SimpleXMLElement $entry)
     {
-	$pattern = '/タヌキ|たぬき|狸'
+	$pattern = '/[たタだダ][ぬヌ][きキ]|狸'
 		 . '|yosshisgarden|satoyamabe|kobajiro'
 		 . '|sikadeer'
-		 . '|sensorcamera|abe[.]gg-blog[.]com/';
+		 . '|sensorcamera|abe[.]gg-blog[.]com/u';
         return (bool)preg_match($pattern, $entry->asXML());
     }
 }

@@ -42,27 +42,14 @@ class Blog_Action_GplusFeed implements Blog_Action
      */
     public function execute(Web_Context $context)
     {
-        $allowdUserIds = array(
-            '104787602969620799839',    // Fuktommy
-            '100890200991479840634',    // Tomoe Fukutomi
-            '105684442055166146866',    // Hikaru Shimasaki
-            '107002572043873162468',    // Masaki Yamada
-            '100744457182417235204',    // Naoya ISHIKAWA
-            '101341483406792705086',    // ssig33
-            '100234116023959363815',    // Shin Iwata
-            '114835769462966948273',    // skame
-            '110399375715564974173',    // ひろしにしざわ
-            '108007043574812149024',    // 井原健紘
-            '102183698010783593298',    // 横田真俊
-            '102354460982682319775',    // 赤井猫
-        );
-
+        $allowedUserIds = $context->config['gplusfeed_userids'];
         if (! array_key_exists('PATH_INFO', $context->server)) {
-            $userId = '104787602969620799839';
+            // Fuktommy
+            $userId = $context->config['gplusfeed_default_userid'];
         } else {
             $userId = substr($context->server['PATH_INFO'], 1);
         }
-        if ((! is_numeric($userId)) || (! in_array($userId, $allowdUserIds))) {
+        if ((! is_numeric($userId)) || (! in_array($userId, $allowedUserIds))) {
             $context->putHeader('HTTP/1.0 404 Not Found');
             $context->putHeader('Content-Type', 'text/html; charset=utf-8');
             $smarty = $context->getSmarty();
