@@ -24,7 +24,7 @@ $config = array(
     'adsense_dir'    => '/srv/saku/mobileads',
     'log_dir'        => '/var/local/log/blog',
 
-    'blogtitle'      => 'blog.fuktommy.com',
+    'blogtitle'      => '福冨諭の福冨論',
     'rss_path'       => '/srv/www/blog.fuktommy.com/rss.rdf',
     'atom_path'      => '/srv/www/blog.fuktommy.com/atom.xml',
     'sitemap'        => '/srv/www/blog.fuktommy.com/sitemap.txt',
@@ -76,6 +76,7 @@ $config = array(
         '100744457182417235204',    // Naoya ISHIKAWA
         '100890200991479840634',    // Tomoe Fukutomi
         '101341483406792705086',    // ssig33
+        '101469377131638204516',    // Hiromi Ogata
         '102183698010783593298',    // 横田真俊
         '102354460982682319775',    // 赤井猫
         '104787602969620799839',    // Fuktommy
