@@ -54,7 +54,8 @@ class Category_Rule_Photo implements Category_Rule
                     if (strpos($host, '.ggpht.com') !== false) {
                         return true;
                     }
-                    if (strpos($host, '.googleusercontent.com') !== false) {
+                    if ((strpos($host, '.googleusercontent.com') !== false)
+                        && (strpos($link['href'], 'proxy') === false)) {
                         return true;
                     }
                 }

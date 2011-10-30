@@ -54,7 +54,8 @@ function smarty_function_buzzImage($params, $smarty)
                         $img['is_amazon'] = true;
                     } elseif (preg_match('/[.]ggpht[.]com$/', $host)) {
                         $img['is_buzz'] = true;
-                    } elseif (preg_match('/[.]googleusercontent[.]com$/', $host)) {
+                    } elseif (preg_match('/[.]googleusercontent[.]com$/', $host)
+                              && (! preg_match('/proxy/', $link['href']))) {
                         $img['is_buzz'] = true;
                     } else {
                         $img = array();

@@ -32,7 +32,7 @@
     {else}
         <a href="{$img.href|escape}">
     {/if}
-    {if $entry_html_mode}
+    {if $entry_html_mode || (! $img.preview) && $img.is_buzz}
         {if $img.width}
             {assign var=width value=256}
             {assign var=height value=$img.height/$img.width*256}
