@@ -35,7 +35,7 @@
     {if $entry_html_mode || (! $img.preview) && $img.is_buzz}
         {if $img.width}
             {assign var=width value=256}
-            {assign var=height value=$img.height/$img.width*256}
+            {assign var=height value=$img.height/$img.width*256|intval}
         {else}
             {assign var=width value=""}
             {assign var=height value=""}
@@ -61,7 +61,7 @@
     <li><a href="{$mirrorlink|escape}">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
     <li><a href="{$permalink|escape}" class="comments">コメント</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
-    <li><g:plusone href="{$permalink|escape}" size="medium"></g:plusone></li>
+    <li><div class="g-plusone" data-size="medium" data-href="{$permalink|escape}" style="display:inline"></div></li>
 </ul>
 
 {if $entry_html_mode}

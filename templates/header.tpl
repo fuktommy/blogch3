@@ -1,7 +1,5 @@
 {* Copyright (c) 2007-2009 Satoshi Fukutomi <info@fuktommy.com>. *}
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -13,7 +11,7 @@
     <meta name="keywords" content="{$meta_keywords|escape}" />
   {/if}
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10.0, user-scalable=yes;" />
-  <link rev="made" href="{$homepage}" />
+  <link rel="author" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
   <link rel="stylesheet" type="text/css" href="/{$cssname|default:"pc"}.css" media="screen,tv" />
@@ -28,7 +26,7 @@
     <link rel="canonical" href="{$permalink|escape}" />
   {/if}
   <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy" />
-  <link rel="meta" type="application/rdf+xml" title="license" href="/license" />
+  <link rel="license" type="application/rdf+xml" href="/license" />
 </head>
 <body>
 {strip}

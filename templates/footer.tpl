@@ -34,10 +34,6 @@ if (location.hash.search('#e') == 0) {ldelim}
 _uacct = "UA-61877-8";
 urchinTracker();
 </script>
-{literal}
-<script type="text/javascript" src="http://apis.google.com/js/plusone.js">
-  {lang: 'ja'}
-</script>
-{/literal}
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
 </body>
 </html>
