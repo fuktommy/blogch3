@@ -15,7 +15,7 @@
 {foreach from=$feed[1][0] item="entry"}
   {include assign="content" file="gplusfeed_atom_content.tpl" entry=$entry}
   <entry>
-    <title>{$content|strip_tags|regex_replace:'/\s+/':' '|mb_substr:0:60:"utf-8"|default:"untitled"}</title>
+    <title>{$content|strip_tags|regex_replace:'/\s+/':' '|htmlspecialchars_decode:$smarty.const.ENT_QUOTES|mb_substr:0:60:"utf-8"|escape|default:"untitled"}</title>
     <link rel="alternate" href="https://plus.google.com/{$entry[21]|escape}"/>
     <summary type="text">{$content|strip_tags|regex_replace:'/\s+/':' '}</summary>
     <content type="html"><![CDATA[
