@@ -17,7 +17,9 @@
 {* ブクマ先リンク *}
 {buzzLink entry=$entry var=links}
 {foreach from=$links item=link}
-    <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
+    {if $link.href && $link.title}
+        <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
+    {/if}
 {/foreach}
 
 {* 画像 *}

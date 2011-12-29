@@ -6,7 +6,7 @@
   <title>{$feed[1][0][0][3]|escape} - g+</title>
   <subtitle>{$feed[1][0][0][3]|escape}</subtitle>
   <link rel="self" href="http://blog.fuktommy.com/gplusfeed/{$feed[1][0][0][16]|escape}" />
-  <link rel="alternate" href="https://plus.google.com/104787602969620799839/{$feed[1][0][0][16]|escape}/posts" type="text/html"/>
+  <link rel="alternate" href="https://plus.google.com/{$feed[1][0][0][16]|escape}/posts" type="text/html"/>
   <updated>{$smarty.now|date_format:"%Y-%m-%dT%H:%M:%S"}{$w3ctimezone}</updated>
   <generator>GooglePlusFeedMaker</generator>
   <id>tag:fuktommy.com,2011:google/plusfeed</id>

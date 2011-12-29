@@ -73,7 +73,6 @@ $config = array(
 
     'gplusfeed_userids' => array(
         '100234116023959363815',    // Shin Iwata
-        '100744457182417235204',    // Naoya ISHIKAWA
         '100890200991479840634',    // Tomoe Fukutomi
         '101341483406792705086',    // ssig33
         '101469377131638204516',    // Hiromi Ogata
@@ -83,6 +82,7 @@ $config = array(
         '105684442055166146866',    // Hikaru Shimasaki
         '107002572043873162468',    // Masaki Yamada
         '108007043574812149024',    // 井原健紘
+        '108378184626168830206',    // Spider job Kumowaza
         '110399375715564974173',    // ひろしにしざわ
         '110737960632793111269',    // Masafumi Otsune
         '112667774340108374584',    // hiroyuki yamanaka

@@ -64,6 +64,9 @@ class Blog_Action_GplusFeed implements Blog_Action
         );
         $feedFetcher = new GplusJsonFeed($options);
         $feed = $feedFetcher->getFeed($userId);
+        if (empty($feed[1][0][0][3])) {
+            $feed = $feed[0];
+        }
 
         if ($context->get('get', 'debug')) {
             $context->putHeader('Content-Type', 'text/plain; charset=utf-8');
