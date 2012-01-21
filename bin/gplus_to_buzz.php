@@ -115,8 +115,12 @@ function mySimpleXmlLoadFile($file)
     return $xml;
 }
 
-
-$xml = mySimpleXmlLoadFile('php://stdin');
+$inputFile = (count($argv) < 2) ? 'php://stdin' : $argv[1];
+$xml = mySimpleXmlLoadFile($inputFile);
+if (! $xml instanceof SimpleXMLElement) {
+    fprintf(STDERR, "%s is not valid XML.\n", $inputFile);
+    exit(1);
+}
 $xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
 $entry = array();
 

@@ -11,9 +11,11 @@ img {
     border: none;
 }
 
-address {
+address, div.address {
     clear: both;
     text-align: center;
+    font-style: italic;
+    padding-top: 1em;
 }
 
 /* for PC */
@@ -35,7 +37,7 @@ ul.feedback li {
 
 h1 {
     font-size: 300%;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Times New Roman', sans-serif;
     font-weight: bold;
     margin: 0;
     padding: 0;

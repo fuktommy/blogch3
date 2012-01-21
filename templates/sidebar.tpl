@@ -10,6 +10,7 @@
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
+  <li><a href="http://fuktommy.hatenablog.com/">新ブログ</a></li>
   <li><a href="https://plus.google.com/104787602969620799839" rel="author">Google+</a></li>
   <li><a href="http://astore.amazon.co.jp/fuktommy-22">本</a></li>
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
@@ -20,7 +21,7 @@
 {/if}
 <h2>つながり</h2>
 <ul>
-  <li><a href="http://blogsearch.google.com/blogsearch?q=link:http://www.google.com/buzz/fuktommy/&amp;scoring=d">このブログへのリンク</a></li>
+  <li><a href="http://blogsearch.google.com/blogsearch?q=link:https://plus.google.com/104787602969620799839/&amp;scoring=d">このブログへのリンク</a></li>
   <li><a href="http://feeds.feedburner.com/fuktommy">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
       Atom Feed</a></li>
