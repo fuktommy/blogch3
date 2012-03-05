@@ -10,7 +10,6 @@
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
-  <li><a href="http://fuktommy.hatenablog.com/">新ブログ</a></li>
   <li><a href="https://plus.google.com/104787602969620799839" rel="author">Google+</a></li>
   <li><a href="http://astore.amazon.co.jp/fuktommy-22">本</a></li>
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>

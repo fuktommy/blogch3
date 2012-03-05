@@ -24,7 +24,7 @@ $config = array(
     'adsense_dir'    => '/srv/saku/mobileads',
     'log_dir'        => '/var/local/log/blog',
 
-    'blogtitle'      => 'blog.fuktommy.com',
+    'blogtitle'      => '福冨諭の福冨論',
     'rss_path'       => '/srv/www/blog.fuktommy.com/rss.rdf',
     'atom_path'      => '/srv/www/blog.fuktommy.com/atom.xml',
     'sitemap'        => '/srv/www/blog.fuktommy.com/sitemap.txt',
@@ -75,6 +75,7 @@ $config = array(
         '100234116023959363815',    // Shin Iwata
         '100890200991479840634',    // Tomoe Fukutomi
         '101341483406792705086',    // ssig33
+        '101463981287086074128',    // bkノート
         '101469377131638204516',    // Hiromi Ogata
         '102183698010783593298',    // 横田真俊
         '102354460982682319775',    // 赤井猫
@@ -87,6 +88,7 @@ $config = array(
         '110737960632793111269',    // Masafumi Otsune
         '112667774340108374584',    // hiroyuki yamanaka
         '114835769462966948273',    // skame
+        '115899767381375908215',    // Google Japan
         '118232482862277429111',    // Satoshi Endo
     ),
 );
