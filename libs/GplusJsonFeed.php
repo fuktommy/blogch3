@@ -2,7 +2,7 @@
 //
 // Google+ のフィード
 //
-// Copyright (c) 2011 Satoshi Fukutomi <info@fuktommy.com>.
+// Copyright (c) 2011,2012 Satoshi Fukutomi <info@fuktommy.com>.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -77,6 +77,7 @@ class GplusJsonFeed
         $json = str_replace(',,', ',null,', $json);
         $json = str_replace('[,', '[null,', $json);
         $json = str_replace(',]', ',null]', $json);
+        $json = preg_replace('/{(\d+):/', '{"$1":', $json);
         return json_decode($json, true);
     }
 

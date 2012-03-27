@@ -26,7 +26,6 @@ if (location.hash.search('#e') == 0) {ldelim}
 {rdelim}
 // ]]>
 </script>
-<script type="text/javascript" src="http://track3.mybloglog.com/js/jsserv.php?mblID=2006121501312191"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAcT4JfTS5r4-x6NBUXA9gwhTJ_TUiYtYbdm5mHFlqmiw_P_Bz5RRyqafKMMt9dPebrS_lDDq5Joa14g"></script>
 <script type="text/javascript" src="/googlefeeds.js"></script>
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
@@ -34,6 +33,5 @@ if (location.hash.search('#e') == 0) {ldelim}
 _uacct = "UA-61877-8";
 urchinTracker();
 </script>
-<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
 </body>
 </html>
