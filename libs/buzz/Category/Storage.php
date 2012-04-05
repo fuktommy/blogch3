@@ -1,7 +1,7 @@
 <?php
 /* Blog Category Storage.
  *
- * Copyright (c) 2010,2011 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2010-2012 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +29,14 @@
 
 /**
  * Blog Category Storage.
+ *
+ * <code>
+ *   $s = new Category_Storage($table, $pdo, $xml);
+ *   $s->setUp();
+ *   $s->append($entry1);
+ *   $s->append($entry2);
+ *   $s->commit();
+ * </code>
  * @package Category
  */
 class Category_Storage
@@ -74,15 +82,20 @@ class Category_Storage
     {
         $this->table = $table;
         $this->db = $db;
-        $this->setUp($table, $db);
         $this->countState = $this->getCountState($table, $db);
-        $this->insertState = $this->getInsertState($table, $db);
         $this->xmlHeader = $this->getHeader($root);
     }
 
-    private function setUp($table, PDO $db)
+    /**
+     * Set up storage.
+     *
+     * Call it before append().
+     */
+    public function setUp()
     {
-        $migration = new Migration($db);
+        $table = $this->table;
+        $this->db->beginTransaction();
+        $migration = new Migration($this->db);
         $migration->execute(
             "CREATE TABLE IF NOT EXISTS `{$table}`"
             . " (`id` CHAR PRIMARY KEY NOT NULL,"
@@ -100,6 +113,7 @@ class Category_Storage
         $migration->execute(
             "CREATE INDEX `visible` ON `{$table}` (`visible`)"
         );
+        $this->insertState = $this->getInsertState($table, $this->db);
     }
 
     private function getCountState($table, PDO $db)
@@ -237,5 +251,15 @@ class Category_Storage
             'date' => $date,
             'body' => $body,
         ));
+    }
+
+    /**
+     * Commit transaction.
+     *
+     * Call it after append()
+     */
+    public function commit()
+    {
+        $this->db->commit();
     }
 }

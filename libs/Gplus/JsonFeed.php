@@ -32,7 +32,7 @@
  *
  * キャッシュへの保存とかいろいろやっちゃう。
  */
-class GplusJsonFeed
+class Gplus_JsonFeed
 {
     /**
      * @var string

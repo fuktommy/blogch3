@@ -1,7 +1,7 @@
 <?php
 /* Google+ のフィード
  *
- * Copyright (c) 2011 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2011,2012 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -62,7 +62,7 @@ class Blog_Action_GplusFeed implements Blog_Action
             'cacheDir' => $context->config['gplus_cache_dir'],
             'log' => $context->getLog('gplusfeed'),
         );
-        $feedFetcher = new GplusJsonFeed($options);
+        $feedFetcher = new Gplus_JsonFeed($options);
         $feed = $feedFetcher->getFeed($userId);
         if (empty($feed[1][0][0][3])) {
             $feed = $feed[0];

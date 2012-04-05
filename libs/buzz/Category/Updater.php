@@ -45,11 +45,13 @@ class Category_Updater
         foreach ($config as $name => $conf) {
             $rule = $factory->getRule($conf);
             $storage = $factory->getStorage($conf, $xml);
+            $storage->setUp();
             foreach ($xml->entry as $entry) {
                 if ($rule->match($entry)) {
                     $storage->append($entry);
                 }
             }
+            $storage->commit();
         }
     }
 }
