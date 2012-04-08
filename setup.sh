@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-cd /srv/stage/blogch3
+cd `dirname $0`
 
 rsync -Cacv --delete \
     --exclude="- /img" \

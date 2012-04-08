@@ -57,6 +57,7 @@ class Category_Factory
 
         $db = new PDO('sqlite:' . $config['path']);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_TIMEOUT, 1.0);
 
         if (! $xml instanceof SimpleXMLElement) {
             $xml = new SimpleXMLElement('<entry/>');
