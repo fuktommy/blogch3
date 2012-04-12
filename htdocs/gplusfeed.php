@@ -68,6 +68,10 @@ class Blog_Action_GplusFeed implements Blog_Action
             $feed = $feed[0];
         }
 
+        if (empty($feed)) {
+            $context->getLog()->warning("Cannot parse json: {$userId}");
+        }
+
         if ($context->get('get', 'debug')) {
             $context->putHeader('Content-Type', 'text/plain; charset=utf-8');
             var_dump($feed);
