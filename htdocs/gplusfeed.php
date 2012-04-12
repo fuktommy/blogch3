@@ -58,18 +58,18 @@ class Blog_Action_GplusFeed implements Blog_Action
             return;
         }
 
+        $log = $context->getLog('gplusfeed');
         $options = array(
             'cacheDir' => $context->config['gplus_cache_dir'],
-            'log' => $context->getLog('gplusfeed'),
+            'log' => $log,
         );
         $feedFetcher = new Gplus_JsonFeed($options);
         $feed = $feedFetcher->getFeed($userId);
         if (empty($feed[1][0][0][3])) {
             $feed = $feed[0];
         }
-
         if (empty($feed)) {
-            $context->getLog()->warning("Cannot parse json: {$userId}");
+            $log->warning("Cannot parse json: {$userId}");
         }
 
         if ($context->get('get', 'debug')) {
