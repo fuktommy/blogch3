@@ -90,6 +90,9 @@ class Gplus_ToBuzzConverter
     {
         $images = array();
         foreach ($xml->xpath('//*[@class="attachment"]/xhtml:img') as $e) {
+            if (empty($e['class']) && empty($e['width']) && empty($e['height'])) {
+                continue;
+            }
             $images[] = array(
                 'href' => (string)$e['src'],
                 'src' => (string)$e['src'],
