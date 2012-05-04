@@ -39,8 +39,6 @@ $config = array(
 
     'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
 
-    'gplus_cache_dir' => '/var/local/cache/gplusfeed',
-
     'smarty_template_dir' => '/srv/templates/blog.fuktommy.com',
     'smarty_plugins_dir' => array('/srv/lib/php/plugins'),
     'smarty_compile_dir' => '/var/cache/smarty/templates_c/blog.fuktommy.com',
@@ -67,29 +65,6 @@ $config = array(
             'path' => '/srv/data/blog.fuktommy.com/category/photo.db',
             'table' => 'entries',
         ),
-    ),
-
-    'gplusfeed_default_userid' => '104787602969620799839', // Fuktommy
-
-    'gplusfeed_userids' => array(
-        '100234116023959363815',    // Shin Iwata
-        '100890200991479840634',    // Tomoe Fukutomi
-        '101341483406792705086',    // ssig33
-        '101463981287086074128',    // bkノート
-        '101469377131638204516',    // Hiromi Ogata
-        '102183698010783593298',    // 横田真俊
-        '102354460982682319775',    // 赤井猫
-        '104787602969620799839',    // Fuktommy
-        '105684442055166146866',    // Hikaru Shimasaki
-        '107002572043873162468',    // Masaki Yamada
-        '108007043574812149024',    // 井原健紘
-        '108378184626168830206',    // Spider job Kumowaza
-        '110399375715564974173',    // ひろしにしざわ
-        '110737960632793111269',    // Masafumi Otsune
-        '112667774340108374584',    // hiroyuki yamanaka
-        '114835769462966948273',    // skame
-        '115899767381375908215',    // Google Japan
-        '118232482862277429111',    // Satoshi Endo
     ),
 );
 
