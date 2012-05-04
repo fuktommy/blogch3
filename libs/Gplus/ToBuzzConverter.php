@@ -1,4 +1,4 @@
-<?php
+<?php // -*- coding: utf-8 -*-
 //
 // Copyright (c) 2011,2012 Satoshi Fukutomi <info@fuktommy.com>.
 // All rights reserved.
@@ -126,6 +126,21 @@ class Gplus_ToBuzzConverter
     }
 
     /**
+     * 公開記事かどうかを判定する。
+     * @param SimpleXMLElement $xml
+     * @return bool
+     */
+    private function _isPublicEntry(SimpleXMLElement $xml)
+    {
+        foreach ($xml->xpath('//*[@class="visibility"]') as $e) {
+            if (in_array((string)$e, array('一般公開', 'Public'), true)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 変換を実行する
      * @param string $inputFile
      * @return $string
@@ -137,6 +152,11 @@ class Gplus_ToBuzzConverter
             throw new DomainException("{$inputFile} is not valid XML.");
         }
         $xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
+
+        if (! $this->_isPublicEntry($xml)) {
+            throw new DomainException("{$inputFile} is not public.");
+        }
+
         $entry = array();
         
         $entry['title'] = (string)$xml->head->title;
