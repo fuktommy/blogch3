@@ -29,6 +29,9 @@
             <buzz:attachment>
                 <activity:object-type>http://activitystrea.ms/schema/1.0/photo</activity:object-type>
                 <link rel="enclosure" type="image/jpeg" href="{$image.href|escape}" media:height="{$image.height|escape}" media:width="{$image.width|escape}"/>
+                {if $image.preview}
+                    <link rel="preview" type="image/jpeg" href="{$image.preview.href|escape}" media:height="{$image.preview.height|escape}" media:width="{$image.preview.width|escape}"/>
+                {/if}
             </buzz:attachment>
         {/foreach}
     </activity:object>

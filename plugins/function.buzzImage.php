@@ -67,8 +67,11 @@ function smarty_function_buzzImage($params, $smarty)
                     $img['height'] = isset($media['height']) ? (int)$media['height'] : '';
                     $img['width'] = isset($media['width']) ? (int)$media['width'] : '';
                 } elseif ($link['rel'] == 'preview') {
+                    $media = $link->attributes('media', true);
                     $img['preview'] = array(
                         'src' => (string)$link['href'],
+                        'height' => isset($media['height']) ? (int)$media['height'] : '',
+                        'width' =>  isset($media['width']) ? (int)$media['width'] : '',
                     );
                     if (preg_match('/resize_h=(\d+)/', $link['href'], $matches)
                         && isset($img['height']) && isset($img['width'])) {

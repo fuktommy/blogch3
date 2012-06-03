@@ -88,19 +88,34 @@ class Gplus_ToBuzzConverter
      */
     private function _getImages(SimpleXMLElement $xml)
     {
-        $images = array();
+        $fullImages = array();
+        $previewImages = array();
         foreach ($xml->xpath('//*[@class="attachment"]/xhtml:img') as $e) {
             if (empty($e['class']) && empty($e['width']) && empty($e['height'])) {
                 continue;
             }
-            $images[] = array(
+            $image = array(
                 'href' => (string)$e['src'],
                 'src' => (string)$e['src'],
                 'height' => (string)$e['height'],
                 'width' => (string)$e['width'],
             );
+            $alt = strval(empty($e['alt']) ? mt_rand() : $e['alt']);
+            if ($e['class'] == 'full-image') {
+                $fullImages[$alt] = $image;
+            } else {
+                $previewImages[$alt] = $image;
+            }
         }
-        return $images;
+        if (empty($fullImages)) {
+            return array_values($previewImages);
+        }
+        foreach ($previewImages as $alt => $image) {
+            if (isset($fullImages[$alt])) {
+                $fullImages[$alt]['preview'] = $image;
+            }
+        }
+        return $fullImages;
     }
 
     /**
