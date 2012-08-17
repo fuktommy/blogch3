@@ -1,7 +1,7 @@
 <?php
 /* バズに含まれる画像情報を読み込む。
  *
- * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2010,2012 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,7 @@ function smarty_function_buzzImage($params, $smarty)
             foreach ($attach->link as $link) {
                 if ($link['rel'] == 'enclosure') {
                     $host = parse_url($link['href'], PHP_URL_HOST);
-                    if (preg_match('/[.]images-amazon[.]com$/', $host)) {
-                        $img['is_amazon'] = true;
-                    } elseif (preg_match('/[.]ggpht[.]com$/', $host)) {
+                    if (preg_match('/[.]ggpht[.]com$/', $host)) {
                         $img['is_buzz'] = true;
                     } elseif (preg_match('/[.]googleusercontent[.]com$/', $host)
                               && (! preg_match('/proxy/', $link['href']))) {
