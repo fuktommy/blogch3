@@ -24,7 +24,7 @@ $config = array(
     'adsense_dir'    => '/srv/saku/mobileads',
     'log_dir'        => '/var/local/log/blog',
 
-    'blogtitle'      => '福冨諭の福冨論',
+    'blogtitle'      => 'blog.fuktommy.com',
     'rss_path'       => '/srv/www/blog.fuktommy.com/rss.rdf',
     'atom_path'      => '/srv/www/blog.fuktommy.com/atom.xml',
     'sitemap'        => '/srv/www/blog.fuktommy.com/sitemap.txt',
