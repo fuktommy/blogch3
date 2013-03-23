@@ -59,7 +59,7 @@ class Category_Storage
     /**
      * @var PDOStatement
      */
-    private $countState;
+    private $entryExistState = null;
 
     /**
      * @var string
@@ -82,7 +82,6 @@ class Category_Storage
     {
         $this->table = $table;
         $this->db = $db;
-        $this->countState = $this->getCountState($table, $db);
         $this->xmlHeader = $this->getHeader($root);
     }
 
@@ -116,11 +115,14 @@ class Category_Storage
         $this->insertState = $this->getInsertState($table, $this->db);
     }
 
-    private function getCountState($table, PDO $db)
+    private function getEntryExistState()
     {
-        return $db->prepare(
-            "SELECT COUNT(*) FROM `{$table}` WHERE `id` = :id"
-        );
+        if ($this->entryExistState === null) {
+            $this->entryExistState = $this->db->prepare(
+               "SELECT COUNT(*) FROM `{$this->table}` WHERE `id` = :id"
+            );
+        }
+        return $this->entryExistState;
     }
 
     private function getInsertState($table, PDO $db)
@@ -241,8 +243,8 @@ class Category_Storage
         if (! simplexml_load_string($body)) {
             throw new UnexpectedValueException($body . ' is not XML.');
         }
-        $this->countState->execute(array('id' => $id));
-        if ((int)$this->countState->fetchColumn()) {
+        $this->getEntryExistState()->execute(array('id' => $id));
+        if ((int)$this->getEntryExistState()->fetchColumn()) {
             return;
         }
         $this->insertState->execute(array(
