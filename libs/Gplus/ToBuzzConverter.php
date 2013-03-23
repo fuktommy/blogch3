@@ -1,6 +1,6 @@
 <?php // -*- coding: utf-8 -*-
 //
-// Copyright (c) 2011,2012 Satoshi Fukutomi <info@fuktommy.com>.
+// Copyright (c) 2011-2013 Satoshi Fukutomi <info@fuktommy.com>.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -90,8 +90,12 @@ class Gplus_ToBuzzConverter
     {
         $fullImages = array();
         $previewImages = array();
-        foreach ($xml->xpath('//*[@class="attachment"]/xhtml:img') as $e) {
-            if (empty($e['class']) && empty($e['width']) && empty($e['height'])) {
+        foreach ($xml->xpath('//*[@class="attachment"]//xhtml:img') as $e) {
+            if (
+                empty($e['class'])
+                && empty($e['width'])
+                && empty($e['height'])
+                && ! preg_match('/[.]jpg$/', $e['src'])) {
                 continue;
             }
             $image = array(
