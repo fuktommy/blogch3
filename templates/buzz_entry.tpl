@@ -63,7 +63,8 @@
     <li><a href="{$mirrorlink|escape}">{$entry->updated|date_format:'%Y-%m-%d %H:%M:%S'}</a></li>
     <li><a href="{$permalink|escape}" class="comments">コメント</a></li>
     <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$permalink|escape:"url"}&amp;scoring=d" class="backlink">この記事へのリンク</a></li>
-    <li><a href="https://plus.google.com/share?url={$permalink|escape:"html"}" target="_blank">g+で共有</a></li>
+    <li><a href="https://plus.google.com/share?url={$permalink|escape:"url"}" target="_blank">g+で共有</a></li>
+    <li><g:plusone href="{$permalink|escape}"></g:plusone></li>
 </ul>
 
 {if $entry_html_mode}

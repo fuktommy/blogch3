@@ -10,7 +10,7 @@
   {if $meta_keywords}
     <meta name="keywords" content="{$meta_keywords|escape}" />
   {/if}
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10.0, user-scalable=yes;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10.0, user-scalable=yes" />
   <link rel="author" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
   <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
