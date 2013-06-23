@@ -99,8 +99,8 @@ class Gplus_ToBuzzConverter
                 continue;
             }
             $image = array(
-                'href' => (string)$e['src'],
-                'src' => (string)$e['src'],
+                'href' => preg_replace('/=$/', '', (string)$e['src']),
+                'src' => preg_replace('/=$/', '', (string)$e['src']),
                 'height' => (string)$e['height'],
                 'width' => (string)$e['width'],
             );
