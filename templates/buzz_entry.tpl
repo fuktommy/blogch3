@@ -1,8 +1,8 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007-2011 Satoshi Fukutomi <info@fuktommy.com>. *}
-{assign var=permalink value=$entry->link.href|buzzPermalink}
+{* Copyright (c) 2007-2013 Satoshi Fukutomi <info@fuktommy.com>. *}
 {assign var=entry_id value=$entry->id|buzzid}
 {assign var=mirrorlink value=$baseuri|cat:"buzz/"|cat:$entry_id}
+{assign var=permalink value=$entry->link.href|buzzPermalink:$mirrorlink}
 
 <div class="entry"><h2 class="entrytitle"><a href="{$permalink|escape}">{$entry|buzzTitle|default:"(タイトルなし)"}</a></h2>
 

@@ -1,21 +1,18 @@
 <?php
-function smarty_modifier_buzzPermalink($url)
+function smarty_modifier_buzzPermalink($url, $mirrorlink = null)
 {
-    $rule = array(
-        'src' => 'http://www.google.com/buzz/104787602969620799839/',
-        'dst' => 'https://profiles.google.com/fuktommy/buzz/',
-    );
-    if (preg_match('|^' . $rule['src'] . '(\w+)|', $url, $matches)) {
-        return $rule['dst'] . $matches[1];
+    if (empty($mirrorlink)) {
+        return $url;
     }
-
-    $rule = array(
-        'src' => 'https://profiles.google.com/fuktommy/posts/',
-        'dst' => 'https://profiles.google.com/fuktommy/buzz/',
+    $pattern = array(
+        'http://www.google.com/buzz/104787602969620799839/',
+        'https://profiles.google.com/fuktommy/buzz/',
+        'https://profiles.google.com/fuktommy/posts/',
     );
-    if (preg_match('|^' . $rule['src'] . '(\w+)|', $url, $matches)) {
-        return $rule['dst'] . $matches[1];
+    foreach ($pattern as $p) {
+        if (strpos($url, $p) !== false) {
+            return $mirrorlink;
+        }
     }
-
     return $url;
 }
