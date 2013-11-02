@@ -14,5 +14,11 @@ function smarty_modifier_buzzPermalink($url, $mirrorlink = null)
             return $mirrorlink;
         }
     }
+
+    $url = str_replace(
+        'https://plus.google.com/104787602969620799839/',
+        'https://plus.google.com/+%E8%AB%AD%E7%A6%8F%E5%86%A8Fuktommy/',
+        $url
+    );
     return $url;
 }

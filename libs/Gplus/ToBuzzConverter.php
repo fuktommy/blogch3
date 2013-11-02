@@ -185,7 +185,7 @@ class Gplus_ToBuzzConverter
         foreach ($xml->xpath('//*[@class="updated"]') as $e) {
             $entry['updated'] = (string)$e['title'];
         }
-        foreach ($xml->xpath('//xhtml:div[@class="permalink"]/xhtml:a') as $e) {
+        foreach ($xml->xpath('//xhtml:*[@class="permalink"]/xhtml:a') as $e) {
             $entry['link'] = (string)$e['href'];
         }
         foreach ($xml->xpath('//xhtml:div[@class="entry-content"]') as $e) {
