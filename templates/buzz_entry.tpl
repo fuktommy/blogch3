@@ -77,7 +77,7 @@
     {/if}
 {else}
     {if $smarty.foreach.entries.iteration == 1}
-        {include file="ads_entry_amazon_store.tpl"}
+        {include file="ads_entry_amazon.tpl" store=true}
     {/if}
 {/if}
 

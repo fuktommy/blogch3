@@ -1,4 +1,4 @@
-{* Copyright (c) 2007-2009 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2013 Satoshi Fukutomi <info@fuktommy.com>. *}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
@@ -10,6 +10,7 @@
   {if $meta_keywords}
     <meta name="keywords" content="{$meta_keywords|escape}" />
   {/if}
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10.0, user-scalable=yes" />
   <link rel="author" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
