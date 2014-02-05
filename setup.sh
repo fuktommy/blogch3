@@ -5,15 +5,14 @@ app_root=/srv/www/item.fuktommy.com
 
 rsync -Cacv --delete \
     --exclude="*.template" \
-    --exclude="- /htdocs/img" \
-    --exclude="- /htdocs/atom.xml" \
-    --exclude="- /htdocs/rss.rdf" \
-    --exclude="- /htdocs/sitemap.txt" \
+    --exclude="- /conf" \
     --exclude="- /setup.sh" \
     ./ $app_root/app/
 
 rsync -CacvL --exclude="*.template" conf/ $app_root/conf/
 
+mkdir -v -m 0777 -p $app_root/contents
+mkdir -v -m 0777 -p $app_root/contents/img
 mkdir -v -m 0777 -p $app_root/data
 mkdir -v -m 0777 -p $app_root/log
 mkdir -v -m 0777 -p $app_root/tmp

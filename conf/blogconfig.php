@@ -23,9 +23,9 @@ return [
     'log_dir'        => "{$appRoot}/log",
 
     'blogtitle'      => 'item.fuktommy.com',
-    'rss_path'       => "{$appRoot}/app/htdocs/rss.rdf",
-    'atom_path'      => "{$appRoot}/app/htdocs/atom.xml",
-    'sitemap'        => "{$appRoot}/app/htdocs/sitemap.txt",
+    'rss_path'       => "{$appRoot}/contents/rss.rdf",
+    'atom_path'      => "{$appRoot}/contents/atom.xml",
+    'sitemap'        => "{$appRoot}/contents/sitemap.txt",
     'w3ctimezone'    => '+09:00',
     'description'    => 'Fuktommyの日記',
     'creator'        => 'Fuktommy',
