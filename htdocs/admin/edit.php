@@ -1,7 +1,7 @@
 <?php
 /* 記事の投稿
  *
- * Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2014 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,8 +26,7 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
+require_once __DIR__ . '/../../libs/bootstrap.php';
 
 
 /**
@@ -124,7 +123,7 @@ class Blog_Action_Edit implements Blog_Action
 }
 
 
-$context = Web_Context::factory($config);
+$context = Web_Context::factory();
 if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
     Blog_Controller::factory()->run(new Blog_Action_EditDispatcher(), $context);
 }

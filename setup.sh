@@ -1,18 +1,21 @@
 #!/bin/sh -e
 
 cd `dirname $0`
+app_root=/srv/www/item.fuktommy.com
 
 rsync -Cacv --delete \
-    --exclude="- /img" \
-    --exclude="- /atom.xml" \
-    --exclude="- /rss.rdf" \
-    --exclude="- /sitemap.txt" \
-    --exclude="- /sitemap_buzz.txt" \
-    htdocs/ /srv/www/blog.fuktommy.com/
+    --exclude="*.template" \
+    --exclude="- /htdocs/img" \
+    --exclude="- /htdocs/atom.xml" \
+    --exclude="- /htdocs/rss.rdf" \
+    --exclude="- /htdocs/sitemap.txt" \
+    --exclude="- /setup.sh" \
+    ./ $app_root/app/
 
-rsync -Cacv --delete libs/ /srv/lib/php/blog.fuktommy.com/
-rsync -Cacv --delete mobile/index.php /srv/www/mobile.fuktommy.com/blog/
-rsync -Cacv --delete mobile/blog.php /srv/www/mobile.fuktommy.com/blog/
-rsync -Cacv --delete mobile/buzz.php /srv/www/mobile.fuktommy.com/blog/
-rsync -Cacv --delete plugins/ /srv/lib/php/plugins/
-rsync -Cacv --delete templates/ /srv/templates/blog.fuktommy.com/
+rsync -CacvL --exclude="*.template" conf/ $app_root/conf/
+
+mkdir -v -m 0777 -p $app_root/data
+mkdir -v -m 0777 -p $app_root/log
+mkdir -v -m 0777 -p $app_root/tmp
+mkdir -v -m 0777 -p $app_root/tmp/smarty_cache
+mkdir -v -m 0777 -p $app_root/tmp/templates_c

@@ -97,6 +97,9 @@ class Blog
     public function getRecentEntries()
     {
         $path = sprintf('%s/new.txt', $this->dataDir);
+        if (! file_exists($path)) {
+            return [];
+        }
         $ids = explode("\n", file_get_contents($path));
         array_pop($ids);
         $entries = array();

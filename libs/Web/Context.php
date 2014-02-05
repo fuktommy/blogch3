@@ -1,7 +1,7 @@
 <?php
 /* Web入出力の抽象化。
  *
- * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2010,2014 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -88,8 +88,10 @@ class Web_Context
      * ファクトリ。
      * @return Web_Context
      */
-    public static function factory(array $config)
+    public static function factory()
     {
+        $config = require __DIR__ . '/../../../conf/blogconfig.php';
+
         $instance = new self();
         $instance->config = $config;
         $instance->get = $_GET;

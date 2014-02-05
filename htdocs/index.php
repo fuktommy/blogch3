@@ -1,7 +1,8 @@
 <?php
-/* バズ全体表示。
+/* Blogch3.
+ * とてもシンプルなブログツール。
  *
- * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2014 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,41 +27,9 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
-require_once 'blogconfig.php';
+require_once __DIR__ . '/../libs/bootstrap.php';
 
-
-/**
- * バズ全体表示。
- * @package Blog
- */
-class Blog_Action_Index implements Blog_Action
-{
-    /**
-     * 実行。
-     * @param Web_Context $context
-     */
-    public function execute(Web_Context $context)
-    {
-        $factory = new Category_Factory();
-        $category = $factory->getStorage($context->config['category']['all']);
-
-        $page = (int)$context->get('get', 'page');
-
-        $buzz = new StdClass();
-        $buzz->entry = $category->select($page * 30, 30);
-
-        $smarty = $context->getSmarty();
-        $smarty->assign($context->config);
-        $smarty->assign('buzz', $buzz);
-        $smarty->assign('page', $page);
-        $smarty->assign('title', $context->config['blogtitle']);
-        $smarty->display('buzz_top.tpl');
-    }
-}
-
-
-$context = Web_Context::factory($config);
+$context = Web_Context::factory();
 if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {
-    Blog_Controller::factory()->run(new Blog_Action_Index(), $context);
+    Blog_Controller::factory()->run(new Blog_Action_Dispatch(), $context);
 }

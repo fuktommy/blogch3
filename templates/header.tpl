@@ -1,4 +1,4 @@
-{* Copyright (c) 2007-2013 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2014 Satoshi Fukutomi <info@fuktommy.com>. *}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
@@ -32,19 +32,10 @@
 <body>
 {strip}
 <h1><a href="{$baseuri}">
-{*
-  <span style="color:#0039b6">福</span>
-  <span style="color:#f3c518">冨</span>
-  <span style="color:#c41200">諭</span>
-  <span style="color:#30a72f">の</span>
-  <span style="color:#0039b6">福</span>
-  <span style="color:#f3c518">冨</span>
-  <span style="color:#c41200">論</span>
-*}
-  <span style="color:#30a72f">b</span>
-  <span style="color:#c41200">l</span>
-  <span style="color:#0039b6">o</span>
-  <span style="color:#c41200">g</span>
+  <span style="color:#30a72f">i</span>
+  <span style="color:#c41200">t</span>
+  <span style="color:#0039b6">e</span>
+  <span style="color:#c41200">m</span>
   <span style="color:#f3c518">.</span>
   <span style="color:#0039b6">f</span>
   <span style="color:#c41200">u</span>
@@ -59,10 +50,6 @@
   <span style="color:#30a72f">o</span>
   <span style="color:#0039b6">m</span>
 </a>
-{if $category_name && $category_id}
-    {* *} / <a href="{$baseuri}category/{$category_id|escape:"url"}">
-    {$category_name|escape}</a>
-{/if}
 </h1>
 {/strip}
 <form action="http://www.google.com/cse" id="searchbar"><p>

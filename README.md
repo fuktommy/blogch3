@@ -4,18 +4,17 @@ blogch3
 * Author(s):
     * (main) Satoshi Fukutomi <info@fuktommy.com>
 * WebSite:
-    * http://fuktommy.com/blogch/
+    * http://item.fuktommy.com/
 
-blogch3 is Blog web front using data from Google+.
-It includes simple blog system, Google buzz interface,
-and PubSubHubbub subscriver.
+blogch3 is a simple blog system
+includes PubSubHubbub subscriver.
 
 Install
 -------
 
 1. Install PHP5 and Smarty.
 2. Modify setup.sh and run it.
-3. Modify mode of /srv/data/blog.fuktommy.com/data
+3. Modify mode of /srv/www/item.fuktommy.com/data
 4. Modify libs/blogconfig.php
 5. Modify css and templates. Default template has ads for Fuktommy.
 

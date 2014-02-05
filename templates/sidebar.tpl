@@ -1,12 +1,6 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div id="links">
-<h2>カテゴリー</h2>
-<ul>
-  <li><a href="{$baseuri}category/tanuki">タヌキ</a></li>
-  <li><a href="{$baseuri}category/article">長文記事</a></li>
-  <li><a href="{$baseuri}category/photo">写真</a></li>
-</ul>
 <h2>リンク</h2>
 <ul>
   <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
@@ -20,18 +14,16 @@
 {/if}
 <h2>つながり</h2>
 <ul>
-  <li><a href="http://blogsearch.google.com/blogsearch?q=link:https://plus.google.com/%252B%25E8%25AB%25AD%25E7%25A6%258F%25E5%2586%25A8Fuktommy/&amp;scoring=d">このブログへのリンク</a></li>
-  <li><a href="http://feeds.feedburner.com/fuktommy">
+  <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$baseuri|escape:"url"}&amp;scoring=d">このブログへのリンク</a></li>
+  <li><a href="/atom">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
       Atom Feed</a></li>
-  <li><a href="http://fusion.google.com/add?feedurl=http://feeds.feedburner.com/fuktommy"><img src="http://buttons.googlesyndication.com/fusion/add.gif" width="104" height="17" alt="Add to Google" /></a></li>
   <li><form action="https://www.paypal.com/cgi-bin/webscr" method="post"><div>
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="7210101" />
         <input type="image" src="https://www.paypal.com/ja_JP/JP/i/btn/btn_paynow_SM.gif" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い" />
         <img alt="" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1" />
       </div></form></li>
-  <li><a href="http://mobile.fuktommy.com/"><img src="/mobileqrcode.gif" width="132" height="132" alt="for Mobile" title="for Mobile" /></a></li>
 </ul>
 
 {if $category_id == "tanuki"}
