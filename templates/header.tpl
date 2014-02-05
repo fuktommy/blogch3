@@ -18,15 +18,10 @@
   <link rel="stylesheet" type="text/css" href="/{$cssname|default:"pc"}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/touch.css" media="screen and (max-width: 500px)" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
-  {if $mobile_permalink}
-    <link rel="alternate" media="handheld" href="{$mobile_permalink|escape}" />
-  {else}
-    <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
-  {/if}
   {if $permalink}
     <link rel="canonical" href="{$permalink|escape}" />
   {/if}
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="{$baseuri}atom" />
   <link rel="license" type="application/rdf+xml" href="/license" />
 </head>
 <body>
