@@ -24,7 +24,9 @@
 </ul>
 
 {include file="ads_sidebar_google.tpl"}
-{include file="ads_sidebar_amazon.tpl"}
+{if ! $entry_html_mode}
+  {include file="ads_sidebar_amazon.tpl"}
+{/if}
 
 <p>Powered by <a href="http://fuktommy.com/blogch/">blogch3</a>.</p>
 </div>

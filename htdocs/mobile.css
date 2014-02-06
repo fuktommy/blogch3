@@ -10,6 +10,11 @@ img {
     border: none;
 }
 
+div.adsfoot {
+    clear: both;
+    text-align: center;
+}
+
 address, div.address {
     clear: both;
     text-align: center;

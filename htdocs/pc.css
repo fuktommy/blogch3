@@ -11,6 +11,12 @@ img {
     border: none;
 }
 
+div.adsfoot {
+    clear: both;
+    text-align: center;
+    padding-top: 1em;
+}
+
 address, div.address {
     clear: both;
     text-align: center;

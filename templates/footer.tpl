@@ -1,4 +1,7 @@
 {* Copyright (c) 2007,2014 Satoshi Fukutomi <info@fuktommy.com>. *}
+<div class="adsfoot">
+  {include file="ads_footer_amazon.tpl"}
+</div>
 <!--
 <rdf:RDF
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
