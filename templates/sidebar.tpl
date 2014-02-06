@@ -9,9 +9,6 @@
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>
 </ul>
-{if $category_id == "tanuki"}
-    {include file="ads_sidebar_google.tpl"}
-{/if}
 <h2>つながり</h2>
 <ul>
   <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$baseuri|escape:"url"}&amp;scoring=d">このブログへのリンク</a></li>
@@ -26,9 +23,8 @@
       </div></form></li>
 </ul>
 
-{if $category_id == "tanuki"}
-    {include file="ads_sidebar_amazon.tpl"}
-{/if}
+{include file="ads_sidebar_google.tpl"}
+{include file="ads_sidebar_amazon.tpl"}
 
 <p>Powered by <a href="http://fuktommy.com/blogch/">blogch3</a>.</p>
 </div>
