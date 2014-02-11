@@ -25,28 +25,7 @@
   <link rel="license" type="application/rdf+xml" href="/license" />
 </head>
 <body>
-{strip}
-<h1><a href="{$baseuri}">
-  <span style="color:#30a72f">i</span>
-  <span style="color:#c41200">t</span>
-  <span style="color:#0039b6">e</span>
-  <span style="color:#c41200">m</span>
-  <span style="color:#f3c518">.</span>
-  <span style="color:#0039b6">f</span>
-  <span style="color:#c41200">u</span>
-  <span style="color:#f3c518">k</span>
-  <span style="color:#0039b6">t</span>
-  <span style="color:#30a72f">o</span>
-  <span style="color:#c41200">m</span>
-  <span style="color:#0039b6">m</span>
-  <span style="color:#c41200">y</span>
-  <span style="color:#f3c518">.</span>
-  <span style="color:#0039b6">c</span>
-  <span style="color:#30a72f">o</span>
-  <span style="color:#0039b6">m</span>
-</a>
-</h1>
-{/strip}
+<h1><a href="{$baseuri}">{$blogtitle|escape}</a></h1>
 <form action="http://www.google.com/cse" id="searchbar"><p>
   <input type="text" name="q" size="31" />
   <input type="hidden" name="cx" value="003570941829906538055:5apetotzz44" />

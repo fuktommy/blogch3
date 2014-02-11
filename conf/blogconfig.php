@@ -22,12 +22,12 @@ return [
 
     'log_dir'        => "{$appRoot}/log",
 
-    'blogtitle'      => 'item.fuktommy.com',
+    'blogtitle'      => 'Fuktommyがこんなの買いました',
     'rss_path'       => "{$appRoot}/contents/rss.rdf",
     'atom_path'      => "{$appRoot}/contents/atom.xml",
     'sitemap'        => "{$appRoot}/contents/sitemap.txt",
     'w3ctimezone'    => '+09:00',
-    'description'    => 'Fuktommyの日記',
+    'description'    => '時系列が適当な日記です',
     'creator'        => 'Fuktommy',
     'rsssize'        => 15,
     'recentsize'     => 5,
