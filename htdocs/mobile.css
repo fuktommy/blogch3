@@ -42,3 +42,8 @@ ul.feedback {
     border-top: solid 1px gray;
     border-bottom: solid 1px gray;
 }
+
+div.amazonitem, p.amazonitem {
+    float: left;
+    margin: 0 1ex 1ex 0;
+}
