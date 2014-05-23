@@ -8,12 +8,8 @@
 <li><a href="http://www.google.com/buzz/post?url={$baseuri|escape:"url"}{$entry->id|escape:"url"}" class="comments">コメントする</a></li>
 <li><a href="http://blogsearch.google.com/blogsearch?q=link:{$baseuri|escape}{$entry->id|escape}&amp;scoring=d" class="backlink">
     この記事へのリンク</a></li>
-{if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}
-<li>[[<a href="http://bbs.shingetsu.info/" id="shingetsu_link">新月</a>]]</li>
-{/if}
 <li><g:plusone href="{$baseuri|escape}{$entry->id|escape}" size="small"></g:plusone></li>
 </ul>
-<script type="text/javascript" src="http://bbs.shingetsu.info/suggest.js"></script>
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}
 <div class="ads">
 {if $entry_html_mode}
