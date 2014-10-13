@@ -1,6 +1,14 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2014 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div id="links">
+{if $index}
+  <h2>過去記事</h2>
+  <ul id="archives">
+  {foreach from=$index item="month"}
+    <li><a href="{$baseuri}{$month}">{$month}</a></li>
+  {/foreach}
+  </ul>
+{/if}
 <h2>カテゴリー</h2>
 <ul>
   <li><a href="{$baseuri}category/tanuki">タヌキ</a></li>
