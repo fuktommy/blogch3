@@ -1,6 +1,6 @@
 <?php // -*- coding: utf-8 -*-
 //
-// Copyright (c) 2011-2013 Satoshi Fukutomi <info@fuktommy.com>.
+// Copyright (c) 2011-2014 Satoshi Fukutomi <info@fuktommy.com>.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -138,6 +138,7 @@ class Gplus_ToBuzzConverter
     private function _simpleXmlLoadFile($file)
     {
         $rawxml = file_get_contents($file);
+        $rawxml = str_replace('<br>', '<br />', $rawxml);
         set_error_handler(array($this, 'nop'), E_WARNING);
         $xml = simplexml_load_string($rawxml);
         set_error_handler('myHandleError', E_WARNING);
