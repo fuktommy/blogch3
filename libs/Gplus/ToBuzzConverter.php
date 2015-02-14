@@ -1,6 +1,6 @@
 <?php // -*- coding: utf-8 -*-
 //
-// Copyright (c) 2011-2014 Satoshi Fukutomi <info@fuktommy.com>.
+// Copyright (c) 2011-2015 Satoshi Fukutomi <info@fuktommy.com>.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -174,7 +174,7 @@ class Gplus_ToBuzzConverter
         $xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
 
         if (! $this->_isPublicEntry($xml)) {
-            throw new DomainException("{$inputFile} is not public.");
+            throw new Gplus_NotPublicException("{$inputFile} is not public.");
         }
 
         $entry = array();
@@ -205,4 +205,9 @@ class Gplus_ToBuzzConverter
         $smarty->assign('entry', $entry);
         return $smarty->fetch('buzzatom.tpl');
     }
+}
+
+
+class Gplus_NotPublicException extends DomainException
+{
 }

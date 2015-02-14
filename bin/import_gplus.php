@@ -1,7 +1,7 @@
 <?php
 // Import Gplus expored XHTML to blogch3.
 //
-// Copyright (c) 2012 Satoshi Fukutomi <info@fuktommy.com>.
+// Copyright (c) 2012,2015 Satoshi Fukutomi <info@fuktommy.com>.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -55,6 +55,8 @@ function loadXmls(array $config, array $xmlFiles)
     foreach ($xmlFiles as $file) {
         try {
             $ret[] = simplexml_load_string($converter->convert($file));
+        } catch (Gplus_NotPublicException $e) {
+            // pass
         } catch (DomainException $e) {
             fprintf(STDOUT, "%s\n", $e->getMessage());
             continue;
