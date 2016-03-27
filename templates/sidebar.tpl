@@ -32,6 +32,8 @@
   <li><a href="http://feeds.feedburner.com/fuktommy">
       <img src="/feed-icon-16x16.gif" width="16" height="16" alt="" />
       Atom Feed</a></li>
+  <li><div class="p7-b" data-p7id="8b4d08a4415949e481b2975596b00778" data-p7c="r"></div>
+      <script src="https://fuktommy.app.push7.jp/static/button/p7.js"></script></li>
   <li><a href="http://mobile.fuktommy.com/"><img src="/mobileqrcode.gif" width="132" height="132" alt="for Mobile" title="for Mobile" /></a></li>
 </ul>
 
