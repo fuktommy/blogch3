@@ -27,7 +27,7 @@
  * SUCH DAMAGE.
  */
 
-require_once __DIR__ . '/../libs/bootstrap.php';
+require_once __DIR__ . '/../libs/blog-bootstrap.php';
 
 $context = Web_Context::factory();
 if ($context->get('server', 'SCRIPT_FILENAME') === __FILE__) {

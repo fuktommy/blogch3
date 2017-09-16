@@ -4,10 +4,10 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <title>{$title}</title>
-  {if $meta_description}
+  {if ! empty($meta_description)}
     <meta name="description" content="{$meta_description|escape}" />
   {/if}
-  {if $meta_keywords}
+  {if ! empty($meta_keywords)}
     <meta name="keywords" content="{$meta_keywords|escape}" />
   {/if}
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -18,7 +18,7 @@
   <link rel="stylesheet" type="text/css" href="/{$cssname|default:"pc"}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/touch.css" media="screen and (max-width: 500px)" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
-  {if $permalink}
+  {if ! empty($permalink)}
     <link rel="canonical" href="{$permalink|escape}" />
   {/if}
   <link rel="alternate" type="application/atom+xml" title="Atom" href="{$baseuri}atom" />

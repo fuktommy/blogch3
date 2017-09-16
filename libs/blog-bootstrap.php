@@ -29,14 +29,16 @@
 require_once('Log.php');
 
 
-function __autoload($className)
+function __blog_autoload($className)
 {
     $path = strtr($className, array('_' => '/'))
           . '.php';
-    require_once $path;
+    if (is_file(__DIR__ . '/' . $path)) {
+        require_once $path;
+    }
 }
 
-spl_autoload_register('__autoload');
+spl_autoload_register('__blog_autoload');
 
 
 function myHandleError($errno, $errstr, $errfile, $errline)
