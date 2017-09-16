@@ -4,10 +4,10 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <title>{$title}</title>
-  {if $meta_description}
+  {if ! empty($meta_description)}
     <meta name="description" content="{$meta_description|escape}" />
   {/if}
-  {if $meta_keywords}
+  {if ! empty($meta_keywords)}
     <meta name="keywords" content="{$meta_keywords|escape}" />
   {/if}
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -18,12 +18,7 @@
   <link rel="stylesheet" type="text/css" href="/{$cssname|default:"pc"}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/touch.css" media="screen and (max-width: 500px)" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
-  {if $mobile_permalink}
-    <link rel="alternate" media="handheld" href="{$mobile_permalink|escape}" />
-  {else}
-    <link rel="alternate" media="handheld" href="{$mobileuri}{$pathname}" />
-  {/if}
-  {if $permalink}
+  {if ! empty($permalink)}
     <link rel="canonical" href="{$permalink|escape}" />
   {/if}
   <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy" />
@@ -59,7 +54,7 @@
   <span style="color:#30a72f">o</span>
   <span style="color:#0039b6">m</span>
 </a>
-{if $category_name && $category_id}
+{if ! empty($category_name) && ! empty($category_id)}
     {* *} / <a href="{$baseuri}category/{$category_id|escape:"url"}">
     {$category_name|escape}</a>
 {/if}

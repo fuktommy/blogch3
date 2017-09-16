@@ -23,7 +23,7 @@
   <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>
 </ul>
-{if $category_id == "tanuki"}
+{if isset($category_id) && $category_id == "tanuki"}
     {include file="ads_sidebar_google.tpl"}
 {/if}
 <h2>つながり</h2>
@@ -37,7 +37,7 @@
   <li><a href="http://mobile.fuktommy.com/"><img src="/mobileqrcode.gif" width="132" height="132" alt="for Mobile" title="for Mobile" /></a></li>
 </ul>
 
-{if $category_id == "tanuki"}
+{if isset($category_id) && $category_id == "tanuki"}
     {include file="ads_sidebar_amazon.tpl"}
 {/if}
 
