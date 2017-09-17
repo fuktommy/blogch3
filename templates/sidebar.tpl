@@ -1,7 +1,7 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2014 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div id="links">
-{if $index}
+{if ! empty($index)}
   <h2>過去記事</h2>
   <ul id="archives">
   {foreach from=$index item="month"}

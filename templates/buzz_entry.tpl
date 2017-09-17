@@ -29,12 +29,12 @@
         <br />
     {/if}
     {strip}
-    {if $img.is_amazon && $link.href}
+    {if ! empty($img.is_amazon) && $link.href}
         <a href="{$link.href|escape}">
     {else}
         <a href="{$img.href|escape}">
     {/if}
-    {if $entry_html_mode || (! $img.preview) && $img.is_buzz}
+    {if ! empty($entry_html_mode) || empty($img.preview) && $img.is_buzz}
         {if $img.width}
             {assign var=width value=256}
             {assign var=height value=$img.height/$img.width*256|intval}
@@ -43,7 +43,7 @@
             {assign var=height value=""}
         {/if}
         <img src="{$img.src|escape}" width="{$width|escape}" height="{$height|escape}" alt="" />
-    {elseif $img.preview}
+    {elseif ! empty($img.preview)}
         <img src="{$img.preview.src|escape}" width="{$img.preview.width}" height="{$img.preview.height}" alt="" />
     {else}
         【画像】
@@ -67,9 +67,9 @@
     <li><g:plusone href="{$permalink|escape}"></g:plusone></li>
 </ul>
 
-{if $entry_html_mode}
+{if ! empty($entry_html_mode)}
     {include file="ads_entry_amazon.tpl"}
-{elseif $category_id == "tanuki"}
+{elseif isset($category_id) && $category_id == "tanuki"}
     {if $smarty.foreach.entries.iteration == 1}
         {include file="ads_entry_amazon_tanuki.tpl"}
     {elseif $smarty.foreach.entries.iteration == 2}
