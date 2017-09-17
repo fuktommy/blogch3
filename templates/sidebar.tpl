@@ -1,7 +1,7 @@
 {* -*- coding: utf-8 -*- *}
 {* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. *}
 <div id="links">
-{if $index}
+{if ! empty($index)}
   <h2>過去記事</h2>
   <ul id="archives">
   {foreach from=$index item="month"}
@@ -26,7 +26,7 @@
 </ul>
 
 {include file="ads_sidebar_google.tpl"}
-{if ! $entry_html_mode}
+{if empty($entry_html_mode)}
   {include file="ads_sidebar_amazon.tpl"}
 {/if}
 
