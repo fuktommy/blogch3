@@ -26,7 +26,7 @@
  * SUCH DAMAGE.
  */
 
-require_once 'bootstrap.php';
+require_once 'blog-bootstrap.php';
 require_once 'blogconfig.php';
 
 
