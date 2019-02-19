@@ -28,15 +28,5 @@ if (location.hash.search('#e') == 0) {ldelim}
 </script>
 <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAcT4JfTS5r4-x6NBUXA9gwhTJ_TUiYtYbdm5mHFlqmiw_P_Bz5RRyqafKMMt9dPebrS_lDDq5Joa14g"></script>
 <script type="text/javascript" src="/googlefeeds.js"></script>
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-// <![CDATA[
-  {ldelim}"lang": "ja-JP"{rdelim}
-// ]]>
-</script>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
-<script type="text/javascript">
-_uacct = "UA-61877-8";
-urchinTracker();
-</script>
 </body>
 </html>
