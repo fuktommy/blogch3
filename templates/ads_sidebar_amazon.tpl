@@ -1,12 +1,12 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2014 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2014,2019 Satoshi Fukutomi <info@fuktommy.com>. *}
 {if $smarty.now % 3 == 0}
-{* インフルエンザ *}
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=fuktommy-22&amp;o=9&amp;p=11&amp;l=ur1&amp;category=healthbeauty&amp;banner=1DMEE6NQ59F5D7EGNMR2&amp;f=ifr" width="120" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+{* 自動 *}
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=11&amp;l=ez&amp;f=ifr&amp;linkID=2c0a127537afaed6d8eed0976c1782e5&amp;t=fuktommy-22&amp;tracking_id=fuktommy-22" width="120" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
 {elseif $smarty.now % 3 == 1}
-{* 花王 *}
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=fuktommysstor-22&amp;o=9&amp;p=11&amp;l=ur1&amp;category=healthbeauty&amp;banner=0N5KDBF6VBKSNGNRD7G2&amp;f=ifr" width="120" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+{* 一般 *}
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=14&amp;l=ur1&amp;category=amazonrotate&amp;f=ifr&amp;linkID=5c840973f28b58d73c653587fb9f6307&amp;t=fuktommy-22&amp;tracking_id=fuktommy-22" width="160" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
 {else}
-{* メリーズ *}
-<iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=fuktommysstor-22&amp;o=9&amp;p=11&amp;l=ur1&amp;category=healthbeauty&amp;banner=0SXTQK6RXEX5BJTJQV02&amp;f=ifr" width="120" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+{* 食品＆飲料 *}
+<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&amp;p=14&amp;l=ur1&amp;category=foodbeverage&amp;f=ifr&amp;linkID=b6f43636b5aed733a900f8640881db71&amp;t=fuktommy-22&amp;tracking_id=fuktommy-22" width="160" height="600" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
 {/if}
