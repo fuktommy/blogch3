@@ -1,7 +1,7 @@
 <?php
 /* 記事の投稿
  *
- * Copyright (c) 2007-2014 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2019 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
  * SUCH DAMAGE.
  */
 
-require_once __DIR__ . '/../../libs/bootstrap.php';
+require_once __DIR__ . '/../../libs/blog-bootstrap.php';
 
 
 /**
