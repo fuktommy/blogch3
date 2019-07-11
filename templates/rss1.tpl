@@ -1,5 +1,5 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007,2019 Satoshi Fukutomi <info@fuktommy.com>. *}
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="/rss1.xsl" type="text/xsl"?>
 <rdf:RDF
@@ -15,7 +15,7 @@
   <description>{$description}</description>
   <dc:creator>{$creator}</dc:creator>
   <items><rdf:Seq>
-{foreach from=$entries item="entry}
+{foreach from=$entries item="entry"}
     <rdf:li rdf:resource="{$baseuri}{$entry->id}"/>
 {/foreach}
 </rdf:Seq></items></channel>
