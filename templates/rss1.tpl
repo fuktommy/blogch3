@@ -19,7 +19,7 @@
     <rdf:li rdf:resource="{$baseuri}{$entry->id}"/>
 {/foreach}
 </rdf:Seq></items></channel>
-{foreach from=$entries item="entry}
+{foreach from=$entries item="entry"}
   <item rdf:about="{$baseuri}{$entry->id}">
   <title>{$entry->title|escape:"html"}</title>
   <link>{$baseuri}{$entry->id}</link>
