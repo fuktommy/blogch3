@@ -1,6 +1,6 @@
 <?php
 /* -*- coding: utf-8 -*- */
-/* Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>. */
+/* Copyright (c) 2007-2020 Satoshi Fukutomi <info@fuktommy.com>. */
 
 setlocale(LC_ALL, 'en_US.UTF-8');
 date_default_timezone_set('Asia/Tokyo');
@@ -12,7 +12,6 @@ ini_set('user_agent', 'User-Agent: http://fuktommy.com/');
  */
 $config = array(
     'homepage'       => 'http://fuktommy.com/',
-    'mobileuri'      => 'http://mobile.fuktommy.com/blog/',
     'rssuri'         => 'http://blog.fuktommy.com/rss',
     'atomuri'        => 'http://blog.fuktommy.com/atom',
     'baseuri'        => 'http://blog.fuktommy.com/',
@@ -21,14 +20,12 @@ $config = array(
     'ticket_file'    => '/srv/data/blog.fuktommy.com/data/ticket.txt',
 
     'upload_dir'     => '/srv/www/blog.fuktommy.com/img',
-    'adsense_dir'    => '/srv/saku/mobileads',
     'log_dir'        => '/var/local/log/blog',
 
     'blogtitle'      => 'blog.fuktommy.com',
     'rss_path'       => '/srv/www/blog.fuktommy.com/rss.rdf',
     'atom_path'      => '/srv/www/blog.fuktommy.com/atom.xml',
     'sitemap'        => '/srv/www/blog.fuktommy.com/sitemap.txt',
-    'mobile_sitemap' => '/srv/www/mobile.fuktommy.com/blogsitemap.txt',
     'w3ctimezone'    => '+09:00',
     'description'    => 'Fuktommyの日記',
     'creator'        => 'Fuktommy',
@@ -36,8 +33,6 @@ $config = array(
     'recentsize'     => 5,
 
     'buzz_atom_path' => '/srv/data/blog.fuktommy.com/buzz/00atom.xml',
-
-    'mobile_baseuri' => 'http://mobile.fuktommy.com/blog/',
 
     'smarty_template_dir' => '/srv/templates/blog.fuktommy.com',
     'smarty_plugins_dir' => array('/srv/lib/php/plugins'),

@@ -1,5 +1,5 @@
 {* -*- coding: utf-8 -*- *}
-{* Copyright (c) 2007-2013 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2019 Satoshi Fukutomi <info@fuktommy.com>. *}
 {assign var=entry_id value=$entry->id|buzzid}
 {assign var=mirrorlink value=$baseuri|cat:"buzz/"|cat:$entry_id}
 {assign var=permalink value=$entry->link.href|buzzPermalink:$mirrorlink}
@@ -9,7 +9,7 @@
 {$entry->content|strval|default:$entry->summary|formatBuzz}
 
 {foreach from=$entry->link item=link}
-    {if ($link.rel == "enclosure") && $link.title}
+    {if ($link.rel == "enclosure") && ! empty($link.title)}
         <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
     {/if}
 {/foreach}
@@ -17,7 +17,7 @@
 {* ブクマ先リンク *}
 {buzzLink entry=$entry var=links}
 {foreach from=$links item=link}
-    {if $link.href && $link.title}
+    {if ! empty($link.href) && ! empty($link.title)}
         <p><a href="{$link.href|escape}">{$link.title|escape}</a></p>
     {/if}
 {/foreach}
@@ -29,13 +29,15 @@
         <br />
     {/if}
     {strip}
-    {if ! empty($img.is_amazon) && $link.href}
+    {if ! empty($img.is_amazon) && ! empty($link.href)}
         <a href="{$link.href|escape}">
-    {else}
+    {else if ! empty($img.href)}
         <a href="{$img.href|escape}">
+    {else}
+        <a href="#">
     {/if}
-    {if ! empty($entry_html_mode) || empty($img.preview) && $img.is_buzz}
-        {if $img.width}
+    {if (! empty($entry_html_mode) || empty($img.preview)) && ! empty($img.src) && $img.is_buzz}
+        {if ! empty($img.width)}
             {assign var=width value=256}
             {assign var=height value=$img.height/$img.width*256|intval}
         {else}
@@ -54,9 +56,9 @@
 
 {* 住所 *}
 {buzzMap entry=$entry var=map}
-{if $map}
+{if ! empty($map) && ! empty($map.href)}
    <p><a href="{$map.href|escape}">{$map.featureName|default:"地図"}</a><br />
-      {if $map.address}{$map.address|escape}{/if}</p>
+      {if !empty($map.address)}{$map.address|escape}{/if}</p>
 {/if}
 
 <ul class="feedback">

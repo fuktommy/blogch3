@@ -2,7 +2,7 @@
 /* Blogch3.
  * とてもシンプルなブログツール。
  *
- * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2020 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,11 +66,6 @@ class Blog_Action_Month implements Blog_Action
         $smarty->assign('entries', $entries);
         $smarty->assign('pathname', $entries->month);
 
-        if ($context->get('vars', 'mobile')) {
-            $smarty->assign('ua', $context->get('vars', 'ua'));
-            $smarty->display('mobile_month_html.tpl');
-        } else {
-            $smarty->display('month_html.tpl');
-        }
+        $smarty->display('month_html.tpl');
     }
 }

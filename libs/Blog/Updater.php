@@ -1,7 +1,7 @@
 <?php
 /* 記事の更新。
  *
- * Copyright (c) 2007-2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2020 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -139,16 +139,12 @@ class Blog_Updater
     {
         $blog = new Blog($this->config);
         $f = fopen($this->config['sitemap'], 'wb');
-        $mf = fopen($this->config['mobile_sitemap'], 'wb');
         fwrite($f, $this->config['baseuri'] . "\n");
-        fwrite($mf, $this->config['mobile_baseuri'] . "\n");
         foreach ($blog->getIndex() as $m) {
             foreach ($blog->getMonth($m) as $row) {
                 fprintf($f, "%s%d\n", $this->config['baseuri'], $row[0]);
-                fprintf($mf, "%s%d\n", $this->config['mobile_baseuri'], $row[0]);
             }
         }
         fclose($f);
-        fclose($mf);
     }
 }

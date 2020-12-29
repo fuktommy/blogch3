@@ -1,7 +1,7 @@
 <?php
 /* バズ1記事表示。
  *
- * Copyright (c) 2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2010,2020 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,11 +60,6 @@ class Blog_Action_Buzz implements Blog_Action
         $smarty->assign($context->config);
         $smarty->assign('buzz', $buzz);
 
-        if ($context->get('vars', 'mobile')) {
-            $smarty->assign('ua', $context->get('vars', 'ua'));
-            $smarty->display('mobile_buzz_entry.tpl');
-        } else {
-            $smarty->display('buzz_entry_html.tpl');
-        }
+        $smarty->display('buzz_entry_html.tpl');
     }
 }

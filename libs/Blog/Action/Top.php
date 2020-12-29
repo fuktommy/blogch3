@@ -2,7 +2,7 @@
 /* Blogch3.
  * とてもシンプルなブログツール。
  *
- * Copyright (c) 2007,2010 Satoshi Fukutomi <info@fuktommy.com>.
+ * Copyright (c) 2007-2020 Satoshi Fukutomi <info@fuktommy.com>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,12 +46,7 @@ class Blog_Action_Top implements Blog_Action
         $smarty->assign('index', $index);
         $smarty->assign('entry_html_mode', false);
 
-        if ($context->get('vars', 'mobile')) {
-            $smarty->assign('ua', $context->get('vars', 'ua'));
-            $smarty->display('mobile_top_html.tpl');
-        } else {
-            $smarty->assign('entries', $blog->getRecentEntries());
-            $smarty->display('top_html.tpl');
-        }
+        $smarty->assign('entries', $blog->getRecentEntries());
+        $smarty->display('top_html.tpl');
     }
 }

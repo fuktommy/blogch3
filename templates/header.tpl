@@ -1,4 +1,4 @@
-{* Copyright (c) 2007-2013 Satoshi Fukutomi <info@fuktommy.com>. *}
+{* Copyright (c) 2007-2020 Satoshi Fukutomi <info@fuktommy.com>. *}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 <head>
@@ -14,14 +14,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=10.0, user-scalable=yes" />
   <link rel="author" href="{$homepage}" />
   <link rel="contents" href="/" title="Top" />
-  <link rel="stylesheet" type="text/css" href="/mobile.css" media="handheld" />
   <link rel="stylesheet" type="text/css" href="/{$cssname|default:"pc"}.css" media="screen,tv" />
   <link rel="stylesheet" type="text/css" href="/touch.css" media="screen and (max-width: 500px)" />
   <link rel="stylesheet" type="text/css" href="/print.css" media="print,projection " />
   {if ! empty($permalink)}
     <link rel="canonical" href="{$permalink|escape}" />
   {/if}
-  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://feeds.feedburner.com/fuktommy" />
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="https://feeds.feedburner.com/fuktommy" />
   <link rel="license" type="application/rdf+xml" href="/license" />
 </head>
 <body>
@@ -60,9 +59,9 @@
 {/if}
 </h1>
 {/strip}
-<form action="http://www.google.com/cse" id="searchbar"><p>
+<form action="https://www.google.com/cse" id="searchbar"><p>
   <input type="text" name="q" size="31" />
   <input type="hidden" name="cx" value="003570941829906538055:5apetotzz44" />
   <input type="hidden" name="ie" value="UTF-8" />
 </p></form>
-<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbar&amp;lang=ja"></script>
+<script type="text/javascript" src="https://www.google.com/coop/cse/brand?form=searchbar&amp;lang=ja"></script>

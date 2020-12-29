@@ -4,7 +4,7 @@
 {if isset($page)}
     {if $page > 0}
         <a href="{$baseuri}
-        {if $category_id}
+        {if ! empty($category_id)}
             category/{$category_id|escape:"url"}
         {/if}
         ?page={$page-1|escape:"url"}
