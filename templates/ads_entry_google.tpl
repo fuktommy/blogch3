@@ -16,6 +16,6 @@ google_ui_features = "rc:6";
 //-->
 </script>
 <script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 

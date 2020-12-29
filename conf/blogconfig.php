@@ -3,16 +3,16 @@
 
 // local variables
 $appRoot = __DIR__ . '/..';
-$baseUri = 'http://item.fuktommy.com/';
+$baseUri = 'https://item.fuktommy.com/';
 
 // global settings
 setlocale(LC_ALL, 'en_US.UTF-8');
 date_default_timezone_set('Asia/Tokyo');
-ini_set('user_agent', 'User-Agent: http://fuktommy.com/'); 
+ini_set('user_agent', 'User-Agent: https://fuktommy.com/'); 
 
 // configration
 return [
-    'homepage'       => 'http://fuktommy.com/',
+    'homepage'       => 'https://fuktommy.com/',
     'rssuri'         => "{$baseUri}rss",
     'atomuri'        => "{$baseUri}atom",
     'baseuri'        => $baseUri,

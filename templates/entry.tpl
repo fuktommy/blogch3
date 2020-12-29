@@ -9,9 +9,11 @@
 {if $entry_html_mode || ($smarty.foreach.entries.iteration == 1)}
 <div class="ads">
 {include file="ads_entry_google_link.tpl"}
+{*
 <noscript>
 <iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=fuktommy-22&amp;o=9&amp;p=13&amp;l=ez&amp;f=ifr&amp;f=ifr" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border:none;"></iframe>
 </noscript>
+*}
 </div>
 {/if}
 </div>

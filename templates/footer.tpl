@@ -17,13 +17,13 @@
 </rdf:Description>
 </rdf:RDF>
 -->
-<div class="address">Copyright&copy; 1998-2019 <a href="http://profiles.google.com/fuktommy/about">Fuktommy</a>.
+<div class="address">Copyright&copy; 1998-2019 <a href="https://fuktommy.com/">Fuktommy</a>.
 All Rights Reserved.<br />
 <a href="mailto:webmaster@fuktommy.com">webmaster@fuktommy.com</a>
-(<a rel="license" href="http://creativecommons.org/licenses/by/2.1/jp/" title="This work is licensed under a Creative Commons Attribution 2.1 Japan License.">Legal Notices</a>)
+(<a rel="license" href="https://creativecommons.org/licenses/by/2.1/jp/" title="This work is licensed under a Creative Commons Attribution 2.1 Japan License.">Legal Notices</a>)
 </div>
 </script>
-<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAcT4JfTS5r4-x6NBUXA9gwhTJ_TUiYtYbdm5mHFlqmiw_P_Bz5RRyqafKMMt9dPebrS_lDDq5Joa14g"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAcT4JfTS5r4-x6NBUXA9gwhTJ_TUiYtYbdm5mHFlqmiw_P_Bz5RRyqafKMMt9dPebrS_lDDq5Joa14g"></script>
 <script type="text/javascript" src="/googlefeeds.js"></script>
 </body>
 </html>

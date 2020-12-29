@@ -26,9 +26,9 @@
 </head>
 <body>
 <h1><a href="{$baseuri}">{$blogtitle|escape}</a></h1>
-<form action="http://www.google.com/cse" id="searchbar"><p>
+<form action="https://www.google.com/cse" id="searchbar"><p>
   <input type="text" name="q" size="31" />
   <input type="hidden" name="cx" value="003570941829906538055:5apetotzz44" />
   <input type="hidden" name="ie" value="UTF-8" />
 </p></form>
-<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbar&amp;lang=ja"></script>
+<script type="text/javascript" src="https://www.google.com/coop/cse/brand?form=searchbar&amp;lang=ja"></script>

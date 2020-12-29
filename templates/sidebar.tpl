@@ -11,10 +11,9 @@
 {/if}
 <h2>リンク</h2>
 <ul>
-  <li><a href="http://fuktommy.com/">Fuktommy.com</a></li>
+  <li><a href="https://fuktommy.com/">Fuktommy.com</a></li>
   <li><a href="https://twitter.com/fuktommy">twitter</a></li>
   <li><a href="https://www.amazon.co.jp/hz/wishlist/ls/3VGI29TIGSZ8?tag=fuktommy-22">ほしい物リスト</a></li>
-  <li><a href="http://bbs.fuktommy.com/">掲示板</a></li>
   <li><a href="mailto:webmaster@fuktommy.com">メール</a></li>
 </ul>
 <h2>つながり</h2>
@@ -29,5 +28,5 @@
 {/if}
 {include file="ads_sidebar_google.tpl"}
 
-<p>Powered by <a href="http://fuktommy.com/blogch/">blogch3</a>.</p>
+<p>Powered by <a href="https://fuktommy.com/blogch/">blogch3</a>.</p>
 </div>
