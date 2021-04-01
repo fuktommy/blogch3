@@ -26,8 +26,6 @@
  * SUCH DAMAGE.
  */
 
-require_once('Log.php');
-
 
 function __blog_autoload($className)
 {
