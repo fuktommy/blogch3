@@ -23,6 +23,7 @@
   {/if}
   <link rel="alternate" type="application/atom+xml" title="Atom" href="{$baseuri}atom" />
   <link rel="license" type="application/rdf+xml" href="/license" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0908882948816599" crossorigin="anonymous"></script>
 </head>
 <body>
 <h1><a href="{$baseuri}">{$blogtitle|escape}</a></h1>

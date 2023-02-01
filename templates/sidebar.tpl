@@ -26,7 +26,9 @@
 {if empty($entry_html_mode)}
   {include file="ads_sidebar_amazon.tpl"}
 {/if}
+{*
 {include file="ads_sidebar_google.tpl"}
+*}
 
 <p>Powered by <a href="https://fuktommy.com/blogch/">blogch3</a>.</p>
 </div>
