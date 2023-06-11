@@ -32,9 +32,7 @@
       <script src="https://fuktommy.app.push7.jp/static/button/p7.js"></script></li>
 </ul>
 
-{if isset($category_id) && $category_id == "tanuki"}
-    {include file="ads_sidebar_amazon.tpl"}
-{/if}
+{include file="ads_sidebar_amazon.tpl"}
 
 <p>Powered by <a href="http://fuktommy.com/blogch/">blogch3</a>.</p>
 </div>

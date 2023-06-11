@@ -4,7 +4,7 @@
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-<Work rdf:about="http://blog.fuktommy.com/">
+<Work rdf:about="https://blog.fuktommy.com/">
   <dc:title>blog.fuktommy.com</dc:title>
   <dc:creator>
     <Agent>

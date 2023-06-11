@@ -1,20 +1,20 @@
 <?php
 /* -*- coding: utf-8 -*- */
-/* Copyright (c) 2007-2020 Satoshi Fukutomi <info@fuktommy.com>. */
+/* Copyright (c) 2007-2022 Satoshi Fukutomi <info@fuktommy.com>. */
 
 setlocale(LC_ALL, 'en_US.UTF-8');
 date_default_timezone_set('Asia/Tokyo');
-ini_set('user_agent', 'User-Agent: http://fuktommy.com/'); 
+ini_set('user_agent', 'User-Agent: https://fuktommy.com/'); 
 
 /**
  * 設定。
  * @return array    設定項目の連想配列
  */
 $config = array(
-    'homepage'       => 'http://fuktommy.com/',
-    'rssuri'         => 'http://blog.fuktommy.com/rss',
-    'atomuri'        => 'http://blog.fuktommy.com/atom',
-    'baseuri'        => 'http://blog.fuktommy.com/',
+    'homepage'       => 'https://fuktommy.com/',
+    'rssuri'         => 'https://blog.fuktommy.com/rss',
+    'atomuri'        => 'https://blog.fuktommy.com/atom',
+    'baseuri'        => 'https://blog.fuktommy.com/',
     'domain'         => 'fuktommy.com',
     'data_dir'       => '/srv/data/blog.fuktommy.com/data',
     'ticket_file'    => '/srv/data/blog.fuktommy.com/data/ticket.txt',
